@@ -547,17 +547,17 @@ export default function ContactPage() {
           {/* Image */}
           <div className="lg:col-span-6 relative h-[340px] sm:h-[440px]">
             <Image
-              src="/images/amber-villa.jpg"
-              alt="The Amber Reflection Villa Alibaug Coast"
+              src="/images/travertine-living.jpg"
+              alt="Private Site Viewings & Architecture"
               fill
               className="object-cover"
             />
             <div className="absolute bottom-4 left-4 bg-black/65 backdrop-blur-xs text-white px-4 py-2.5 rounded-lg text-xs">
               <span className="text-[10px] tracking-widest uppercase text-[#C29246] block font-light">
-                SIGNATURE RESIDENCE
+                EXPERIENCE SANCTUARY
               </span>
               <span className="font-serif-luxury text-base font-normal">
-                The Amber Reflection Villa • Alibaug Coast
+                Curated Architecture &amp; Interior Showcases
               </span>
             </div>
           </div>
@@ -565,15 +565,13 @@ export default function ContactPage() {
           {/* Text & Action */}
           <div className="lg:col-span-6 p-8 sm:p-12 space-y-6">
             <span className="text-[10px] tracking-[0.24em] uppercase text-[#8F8B83] font-medium block">
-              IMMEDIATE ARCHITECTURAL OPPORTUNITY
+              SCHEDULED CONSULTATION
             </span>
             <h3 className="font-serif-luxury text-3xl sm:text-4xl font-normal text-[#141A23]">
               Private Site Viewings Available
             </h3>
             <p className="text-xs sm:text-sm text-[#63615C] leading-relaxed font-light">
-              Experience the convergence of travertine masonry and quiet reflective water
-              first-hand. Private site helicopter transfers or luxury yacht shuttles arranged
-              directly through our desk.
+              Experience the craftsmanship of our interior atelier and explore premier verified developments across Greater Noida and Delhi NCR first-hand. Dedicated site walkthroughs arranged directly through our advisory desk.
             </p>
             <div className="pt-2">
               <button

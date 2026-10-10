@@ -52,45 +52,6 @@ export default function InteriorDesignPage() {
     ]
   };
 
-  const interiorProjects = [
-    {
-      id: "travertine-living",
-      title: "The Travertine Living Pavilion",
-      category: "Residential Architecture",
-      location: "Alibaug Coast",
-      image: "/images/travertine-living.jpg",
-      year: "2024",
-      description: "Double-height volume anchored by a hand-carved Roman travertine monolith, grain-matched European oak millwork, and museum-grade art illumination."
-    },
-    {
-      id: "serene-suite",
-      title: "Serene Master Suite",
-      category: "Interior Architecture",
-      location: "Lonavala Highlands",
-      image: "/images/serene-bedroom.jpg",
-      year: "2024",
-      description: "Acoustically isolated private retreat featuring bespoke linen-paneled walls, floating walnut headboard, and soft atmospheric cove lighting."
-    },
-    {
-      id: "skyline-dining",
-      title: "The Skyline Dining Room",
-      category: "Penthouse Interior",
-      location: "Bandra West, Mumbai",
-      image: "/images/skyline-dining.jpg",
-      year: "2023",
-      description: "Curated 12-seat Calacatta marble dining table framed by floor-to-ceiling panoramic glass, hand-cast bronze lighting, and private sommelier bar."
-    },
-    {
-      id: "courtyard-living",
-      title: "Courtyard Living & Water Garden",
-      category: "Sanctuary Interior",
-      location: "Kashid Coast",
-      image: "/images/courtyard-living.jpg",
-      year: "2024",
-      description: "Seamless transition between internal living volume and external reflection pool with fluted timber screens and weathered bronze accents."
-    }
-  ];
-
   const scrollToEnquiry = (serviceTitle?: string) => {
     if (serviceTitle) {
       setContactForm((prev) => ({ ...prev, service: serviceTitle }));
@@ -320,51 +281,7 @@ export default function InteriorDesignPage() {
         </div>
 
         {/* =========================================================================
-            6.2 HIGH-QUALITY PROJECT IMAGES GALLERY
-           ========================================================================= */}
-        <div className="mb-20">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#e2ded6]">
-            <div>
-              <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Monograph Archive</span>
-              <h3 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mt-1">High-Quality Project Gallery</h3>
-            </div>
-            <p className="text-xs text-[#6e737c] mt-2 sm:mt-0 max-w-md">
-              Selected completed interior commissions reflecting material honesty, spatial balance, and quiet refinement.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {interiorProjects.map((p) => (
-              <div key={p.id} className="group overflow-hidden rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059]/50 transition duration-500 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-2xl flex flex-col justify-between">
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <img 
-                    src={p.image} 
-                    alt={p.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-700" 
-                  />
-                  <div className="absolute top-4 left-4 bg-[#0c0d0e]/80 backdrop-blur-md px-3.5 py-1 rounded-full text-[10px] tracking-wider uppercase text-[#c5a059] border border-[#c5a059]/30 font-semibold">
-                    {p.category}
-                  </div>
-                  <div className="absolute top-4 right-4 bg-[#0c0d0e]/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] tracking-wider text-white border border-white/10">
-                    {p.year}
-                  </div>
-                </div>
-                <div className="p-6 sm:p-8 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-serif-azimute text-2xl text-[#0f1115]">{p.title}</h4>
-                    <span className="text-xs text-[#c5a059] font-medium">{p.location}</span>
-                  </div>
-                  <p className="text-xs text-[#5a5f67] leading-relaxed font-light">
-                    {p.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* =========================================================================
-            6.3 PROJECT ENQUIRY FORM / GET A CONSULTATION CTA
+            6.2 PROJECT ENQUIRY FORM / GET A CONSULTATION CTA
            ========================================================================= */}
         <div id="interior-consultation-form" className="p-8 sm:p-12 rounded-3xl bg-[#0c0d0e] border border-[#c5a059]/30 text-white shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">

@@ -37,6 +37,7 @@ export default function RealEstatePage() {
       id: "ashtech-presidential",
       title: "Ashtech Presidential",
       developer: "Ashtech",
+      category: "RESIDENTIAL",
       badge: "TOP PICK",
       status: "Under Construction",
       statusColor: "bg-amber-500/10 text-amber-600 border-amber-500/30",
@@ -53,6 +54,7 @@ export default function RealEstatePage() {
       id: "godrej-majesty",
       title: "Godrej Majesty",
       developer: "Godrej Properties",
+      category: "RESIDENTIAL",
       badge: "TOP PICK",
       status: "Ready to Move",
       statusColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/30",
@@ -69,6 +71,7 @@ export default function RealEstatePage() {
       id: "grandthum",
       title: "Grandthum by Group 108",
       developer: "Group 108",
+      category: "COMMERCIAL",
       badge: "TOP PICK",
       status: "Under Construction",
       statusColor: "bg-amber-500/10 text-amber-600 border-amber-500/30",
@@ -122,97 +125,13 @@ export default function RealEstatePage() {
     }
   ];
 
-  // Comprehensive Catalog
-  const allProperties = [
-    ...topPickProjects,
-    {
-      id: "travertine-villa",
-      title: "The Travertine Villa",
-      developer: "Sunrise Atelier Private Estates",
-      badge: "COASTAL RESIDENCE",
-      status: "Ready for Possession",
-      statusColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/30",
-      location: "Alibaug Coastline, Maharashtra",
-      price: "Private Tender",
-      type: "Luxury Villa",
-      beds: "5 Bed",
-      area: "14,800 SQ FT",
-      image: "/images/hero-villa.jpg",
-      description: "A striking coastal sanctuary featuring expansive floor-to-ceiling glazing, private infinity pool, and seamless indoor-outdoor living.",
-      highlights: ["Direct Shoreline Access", "Infinity Edge Pool", "Monolithic Hearth", "Subterranean Cellar"]
-    },
-    {
-      id: "skyline-residence",
-      title: "The Skyline Residence",
-      developer: "Sunrise Atelier Penthouses",
-      badge: "PENTHOUSE RESIDENCE",
-      status: "Ready for Possession",
-      statusColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/30",
-      location: "Bandra West, Mumbai",
-      price: "₹68 Cr ($8.2M)",
-      type: "Penthouse Residence",
-      beds: "4 Bed",
-      area: "6,450 SQ FT",
-      image: "/images/skyline-dining.jpg",
-      description: "Panoramic Arabian Sea views, private elevator foyer, double-height volumes, and bespoke Italian marble finishes throughout.",
-      highlights: ["Arabian Sea Vistas", "Private Lift Foyer", "Double-Height Living", "Automated Shading"]
-    },
-    {
-      id: "greenfield-terraces",
-      title: "Greenfield Terraces",
-      developer: "Highland Living Group",
-      badge: "ESTATE VILLA",
-      status: "Ready for Possession",
-      statusColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/30",
-      location: "Lonavala Highlands",
-      price: "₹42 Cr ($5.1M)",
-      type: "Hillside Villa",
-      beds: "6 Bed",
-      area: "11,200 SQ FT",
-      image: "/images/serene-bedroom.jpg",
-      description: "Nestled into lush hillside topography with cantilevered decks, private spa courtyard, and natural stone fireplaces.",
-      highlights: ["Hillside Sanctuary", "Cantilevered Decks", "Spa Courtyard", "Stone Fireplace"]
-    },
-    {
-      id: "amber-villa",
-      title: "The Amber Reflection Villa",
-      developer: "Sunrise Atelier Private Estates",
-      badge: "OFF-MARKET",
-      status: "Off-Market Tender",
-      statusColor: "bg-[#c5a059]/15 text-[#a6833d] border-[#c5a059]/30",
-      location: "Awas Beach, Alibaug",
-      price: "On Confidential Request",
-      type: "Waterfront Estate",
-      beds: "6 Bed",
-      area: "16,500 SQ FT",
-      image: "/images/amber-villa.jpg",
-      description: "Direct private shoreline access, reflection lagoon, subterranean wine cellar, and standalone guest pavilion.",
-      highlights: ["Reflection Lagoon", "Wine Cellar", "Guest Pavilion", "Private Heliport"]
-    },
-    {
-      id: "coastal-pavilion",
-      title: "Monolith Horizon Pavilion",
-      developer: "Sunrise Architecture Atelier",
-      badge: "ARCHITECTURAL MONOLITH",
-      status: "New Release",
-      statusColor: "bg-blue-500/10 text-blue-600 border-blue-500/30",
-      location: "Mandwa Jetty Enclave",
-      price: "₹55 Cr ($6.6M)",
-      type: "Architectural Monolith",
-      beds: "5 Bed",
-      area: "13,400 SQ FT",
-      image: "/images/coastal-pavilion.jpg",
-      description: "Constructed with board-formed concrete and warm teak wood, featuring 180-degree ocean vistas and private helipad access.",
-      highlights: ["Board-Formed Concrete", "180° Ocean Vistas", "Teak Wood Joinery", "Helipad Access"]
-    }
-  ];
+  // Verified Property Portfolio
+  const allProperties = topPickProjects;
 
   const filteredProperties = allProperties.filter((p) => {
     if (activeTab === "ALL") return true;
-    if (activeTab === "GREATER NOIDA") return p.location.includes("Greater Noida");
-    if (activeTab === "RESIDENTIAL") return p.type.toLowerCase().includes("apartment") || p.type.toLowerCase().includes("villa") || p.type.toLowerCase().includes("residence");
-    if (activeTab === "COMMERCIAL") return p.type.toLowerCase().includes("office") || p.type.toLowerCase().includes("retail") || p.type.toLowerCase().includes("commercial");
-    if (activeTab === "COASTAL") return p.location.includes("Alibaug") || p.location.includes("Awas") || p.location.includes("Mandwa");
+    if (activeTab === "RESIDENTIAL") return p.category === "RESIDENTIAL";
+    if (activeTab === "COMMERCIAL") return p.category === "COMMERCIAL";
     return true;
   });
 
@@ -231,7 +150,7 @@ export default function RealEstatePage() {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between text-[10px] sm:text-[11px] tracking-[0.24em] uppercase text-[#8F8B83] gap-2">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#c5a059]"></span>
-            <span>05 / REAL ESTATE ADVISORY • GREATER NOIDA · MUMBAI · ALIBAUG</span>
+            <span>05 / REAL ESTATE ADVISORY • GREATER NOIDA & NCR</span>
           </div>
           <div>Strict Bilateral Due Diligence • Verified Title Deeds</div>
         </div>
@@ -247,7 +166,7 @@ export default function RealEstatePage() {
             Curated Estates &amp; Prime Developments
           </h1>
           <p className="text-base text-[#5a5f67] max-w-3xl mt-4 font-light leading-relaxed">
-            From private residential sanctuaries in Alibaug and penthouses overlooking Mumbai waters, to premier Greater Noida developments including Ashtech Presidential, Godrej Majesty, and Grandthum by Group 108.
+            From premier residential apartments and bespoke sanctuaries to high-street commercial destinations and premium studio suites across Greater Noida, Noida, and NCR.
           </p>
         </div>
 
@@ -302,23 +221,37 @@ export default function RealEstatePage() {
         </div>
 
         {/* =========================================================================
-            5.2 FEATURED PROJECTS / OUR TOP PICKS (Exact User Request)
+            5.2 FEATURED PRIME DEVELOPMENTS & AVAILABLE PORTFOLIO
            ========================================================================= */}
         <div className="mb-20">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#e2ded6]">
             <div>
               <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Curated Developments</span>
               <h2 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mt-1">
-                Featured Projects / Our Top Picks
+                Featured Prime Developments
               </h2>
             </div>
-            <p className="text-xs text-[#6e737c] mt-2 sm:mt-0 max-w-md">
-              Premier verified developments evaluated for superior construction standards, capital appreciation, and prime location.
-            </p>
+            
+            {/* Filter Tabs */}
+            <div className="flex flex-wrap items-center gap-2 mt-4 sm:mt-0">
+              {["ALL", "RESIDENTIAL", "COMMERCIAL"].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-4 py-1.5 rounded-full text-xs uppercase tracking-widest transition cursor-pointer ${
+                    activeTab === tab 
+                      ? "bg-[#0c0d0e] text-white font-semibold shadow-sm" 
+                      : "bg-white border border-[#e8e4dc] text-[#5a5f67] hover:text-[#0f1115] hover:border-[#c5a059]"
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {topPickProjects.map((p) => (
+            {filteredProperties.map((p) => (
               <div 
                 key={p.id}
                 className="bg-white rounded-2xl overflow-hidden border border-[#e8e4dc] hover:border-[#c5a059] transition duration-500 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-2xl flex flex-col justify-between group"
@@ -377,83 +310,6 @@ export default function RealEstatePage() {
                     className="w-full py-3 rounded-xl bg-[#0c0d0e] hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] text-xs uppercase tracking-wider transition cursor-pointer font-semibold shadow-sm text-center"
                   >
                     Contact
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* =========================================================================
-            5.3 AVAILABLE PROPERTIES CATALOG WITH FILTER
-           ========================================================================= */}
-        <div className="mb-20">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#e2ded6]">
-            <div>
-              <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Available Portfolio</span>
-              <h2 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mt-1">
-                Featured / Available Properties
-              </h2>
-            </div>
-            
-            {/* Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-2 mt-4 sm:mt-0">
-              {["ALL", "GREATER NOIDA", "RESIDENTIAL", "COMMERCIAL", "COASTAL"].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-1.5 rounded-full text-xs uppercase tracking-widest transition cursor-pointer ${
-                    activeTab === tab 
-                      ? "bg-[#0c0d0e] text-white font-semibold shadow-sm" 
-                      : "bg-white border border-[#e8e4dc] text-[#5a5f67] hover:text-[#0f1115] hover:border-[#c5a059]"
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {filteredProperties.map((p) => (
-              <div key={p.id} className="bg-white rounded-2xl overflow-hidden border border-[#e8e4dc] hover:border-[#c5a059]/60 transition group flex flex-col justify-between shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-2xl duration-500">
-                <div>
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
-                    <span className="absolute top-4 left-4 text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border backdrop-blur-md bg-[#0c0d0e]/80 text-[#c5a059] border-[#c5a059]/30">
-                      {p.badge}
-                    </span>
-                  </div>
-                  <div className="p-6">
-                    <div className="text-[11px] uppercase tracking-wider text-[#a6833d] font-semibold mb-1">
-                      Developer: {p.developer}
-                    </div>
-                    <h3 className="font-serif-azimute text-2xl text-[#0f1115] mb-2">
-                      {p.title}
-                    </h3>
-                    <p className="text-xs text-[#6e737c] flex items-center gap-1.5 mb-3">
-                      <MapPin className="w-3.5 h-3.5 text-[#c5a059]" />
-                      {p.location}
-                    </p>
-                    <p className="text-xs text-[#5a5f67] leading-relaxed mb-4">
-                      {p.description}
-                    </p>
-                    <div className="pt-3 border-t border-[#f0ece3] flex items-center justify-between text-xs">
-                      <span className="text-[#8a8f98]">Configuration</span>
-                      <span className="text-[#0f1115] font-medium">{p.beds} · {p.area}</span>
-                    </div>
-                    <div className="pt-2 flex items-center justify-between text-xs">
-                      <span className="text-[#8a8f98]">Guide Price</span>
-                      <span className="font-semibold text-sm text-[#0f1115]">{p.price}</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6 pt-0">
-                  <button 
-                    onClick={() => scrollToEnquiry(`Property Enquiry: ${p.title}`)}
-                    className="w-full py-3 rounded-xl bg-[#0c0d0e] hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] text-xs uppercase tracking-widest transition cursor-pointer font-semibold shadow-sm"
-                  >
-                    Enquire Availability
                   </button>
                 </div>
               </div>
