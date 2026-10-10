@@ -51,7 +51,7 @@ export default function RootLayout({
       lang="en"
       className={`${serifFont.variable} ${sansFont.variable} scroll-smooth antialiased`}
     >
-      <body className="min-h-screen flex flex-col bg-[#211f1c] text-[#f3f0e9] font-sans selection:bg-[#c4a386] selection:text-[#211f1c]">
+      <body className="min-h-screen flex flex-col bg-[#0c0d0e] text-[#faf8f5] font-sans selection:bg-[#c5a059] selection:text-[#0c0d0e]">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

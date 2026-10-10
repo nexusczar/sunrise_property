@@ -36,7 +36,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#121615]/95 backdrop-blur-md border-b border-[#dfb48d]/30 shadow-2xl py-3.5 sm:py-4"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#0c0d0e]/95 backdrop-blur-md border-b border-[#c5a059]/25 shadow-2xl py-3.5 sm:py-4"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
         {/* Brand / Logo */}
@@ -62,8 +62,8 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                 href={link.href}
                 className={`text-[11px] tracking-[0.24em] uppercase transition-colors duration-200 ${
                   isActive
-                    ? "text-white font-semibold border-b-2 border-[#dfb48d] pb-0.5"
-                    : "text-white/75 hover:text-white font-normal"
+                    ? "text-white font-semibold border-b-2 border-[#c5a059] pb-0.5"
+                    : "text-[#faf8f5]/75 hover:text-[#c5a059] font-normal"
                 }`}
               >
                 {link.label}
@@ -76,7 +76,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
         <div className="hidden sm:flex items-center gap-3.5">
           <Link
             href="/contact"
-            className="text-[11px] tracking-[0.2em] uppercase px-6 py-2.5 rounded-full font-medium transition-all duration-300 border border-white/20 hover:border-[#dfb48d] bg-white/5 hover:bg-[#dfb48d] text-white hover:text-[#211f1c]"
+            className="text-[11px] tracking-[0.2em] uppercase px-6 py-2.5 rounded-full font-medium transition-all duration-300 border border-[#c5a059]/40 hover:border-[#c5a059] bg-[#c5a059]/10 hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] shadow-sm"
           >
             ENQUIRE NOW
           </Link>
@@ -102,7 +102,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[65px] bg-[#121615]/98 backdrop-blur-xl border-b border-[#dfb48d]/30 py-6 px-6 shadow-2xl">
+        <div className="lg:hidden fixed inset-x-0 top-[65px] bg-[#0c0d0e]/98 backdrop-blur-xl border-b border-[#c5a059]/25 py-6 px-6 shadow-2xl">
           <nav className="flex flex-col gap-4">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -112,7 +112,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`text-xs tracking-[0.2em] uppercase py-2.5 border-b border-white/10 ${
-                    isActive ? "text-[#dfb48d] font-semibold" : "text-white/75"
+                    isActive ? "text-[#c5a059] font-semibold" : "text-white/75"
                   }`}
                 >
                   {link.label}
@@ -123,7 +123,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full block bg-[#dfb48d] text-[#211f1c] text-xs tracking-[0.2em] uppercase py-3 rounded-full text-center font-semibold"
+                className="w-full block bg-[#c5a059] text-[#0c0d0e] text-xs tracking-[0.2em] uppercase py-3 rounded-full text-center font-semibold shadow-md"
               >
                 ENQUIRE NOW
               </Link>

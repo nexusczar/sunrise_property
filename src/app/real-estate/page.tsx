@@ -2,284 +2,707 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import EnquiryModal from "@/components/EnquiryModal";
+import { 
+  Building2, 
+  Home, 
+  Maximize, 
+  Clock, 
+  Sparkles, 
+  Award, 
+  ShieldCheck, 
+  MapPin, 
+  Check, 
+  CheckCircle2, 
+  MessageCircle, 
+  ArrowUpRight, 
+  X 
+} from "lucide-react";
 
 export default function RealEstatePage() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedProperty, setSelectedProperty] = useState<string>("");
   const [activeTab, setActiveTab] = useState("ALL");
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [selectedProjectModal, setSelectedProjectModal] = useState<any | null>(null);
 
-  const properties = [
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    service: "Ashtech Presidential (Sec 12, Greater Noida)",
+    message: ""
+  });
+
+  // Top Picks specifically requested by user
+  const topPickProjects = [
+    {
+      id: "ashtech-presidential",
+      title: "Ashtech Presidential",
+      developer: "Ashtech",
+      badge: "TOP PICK",
+      status: "Under Construction",
+      statusColor: "bg-amber-500/10 text-amber-600 border-amber-500/30",
+      location: "Greater Noida, Sector 12",
+      price: "₹26.1 L – ₹48.5 L",
+      type: "Residential Apartments",
+      beds: "1, 2 & 3 BHK",
+      area: "650 – 1,450 SQ FT",
+      image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+      description: "Sophisticated multi-tier residential development with Olympic-grade clubhouse, private elevators, landscaped sky balconies, and supreme sector connectivity.",
+      highlights: ["Prime Sector 12 Connectivity", "Clubhouse & Gymnasium", "Children Play Zone", "24x7 Tier-3 Security"]
+    },
+    {
+      id: "godrej-majesty",
+      title: "Godrej Majesty",
+      developer: "Godrej Properties",
+      badge: "TOP PICK",
+      status: "Ready to Move",
+      statusColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/30",
+      location: "Greater Noida, Sector 27",
+      price: "₹1.90 Cr – ₹4 Cr",
+      type: "2, 3 & 4 BHK Apartments",
+      beds: "2, 3 & 4 BHK",
+      area: "1,950 – 3,800 SQ FT",
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      description: "Ultra-luxury high-rise sanctuary by Godrej Properties featuring Olympic-grade amenities, infinity pool, and panoramic forest corridor vistas.",
+      highlights: ["Forest Views & Clean Air", "Immediate Possession Available", "Olympic Length Lap Pool", "White-Glove Concierge"]
+    },
+    {
+      id: "grandthum",
+      title: "Grandthum by Group 108",
+      developer: "Group 108",
+      badge: "TOP PICK",
+      status: "Under Construction",
+      statusColor: "bg-amber-500/10 text-amber-600 border-amber-500/30",
+      location: "Techzone 4, Greater Noida West",
+      price: "₹50 L – ₹3 Cr",
+      type: "Office Spaces, Studio Apartments & Retail Shops",
+      beds: "Studio, Retail & Office",
+      area: "550 – 4,800 SQ FT",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+      description: "Iconic twin-tower commercial and mixed-use landmark featuring an artificial water canal boulevard, dining decks, and retail high street.",
+      highlights: ["Iconic Twin-Tower Landmark", "Canal Dining Boulevard", "High-Footfall Retail Street", "Grade-A Corporate Offices"]
+    }
+  ];
+
+  // 7 Core Real Estate Services requested by user
+  const realEstateServices = [
+    {
+      title: "Residential Properties",
+      tag: "Villas & Penthouses",
+      desc: "Prime luxury residences, bespoke villas, waterfront bungalows, and penthouses curated for discerning homeowners."
+    },
+    {
+      title: "Commercial Properties",
+      tag: "Offices & High-Street",
+      desc: "Strategic high-street retail, Grade-A office suites, and mixed-use commercial destinations with superior footfall and capital appreciation."
+    },
+    {
+      title: "Studio Apartments",
+      tag: "High-Yield Assets",
+      desc: "Smart, efficient, and beautifully finished modern studio suites ideal for urban living and high rental yields."
+    },
+    {
+      title: "Rental & Leasing Services",
+      tag: "Asset Management",
+      desc: "End-to-end leasing management, verified corporate tenancy onboarding, and hassle-free white-glove property upkeep."
+    },
+    {
+      title: "New Projects",
+      tag: "Verified Launches",
+      desc: "Early pre-launch access and construction-linked payment plans with India’s leading trusted real estate developers."
+    },
+    {
+      title: "Property Buying & Selling",
+      tag: "Confidential Broking",
+      desc: "Discreet buyer-seller representation, seamless title vetting, transparent deal structuring, and prompt conveyance execution."
+    },
+    {
+      title: "Property Consultation",
+      tag: "Strategic Advisory",
+      desc: "Institutional-grade valuation, market forecasting, legal due diligence, and bespoke portfolio structuring."
+    }
+  ];
+
+  // Comprehensive Catalog
+  const allProperties = [
+    ...topPickProjects,
     {
       id: "travertine-villa",
       title: "The Travertine Villa",
-      type: "COASTAL",
+      developer: "Sunrise Atelier Private Estates",
       badge: "COASTAL RESIDENCE",
-      status: "ON REQUEST",
+      status: "Ready for Possession",
+      statusColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/30",
       location: "Alibaug Coastline, Maharashtra",
-      image: "/images/hero-villa.jpg",
+      price: "Private Tender",
+      type: "Luxury Villa",
       beds: "5 Bed",
       area: "14,800 SQ FT",
-      plot: "2.4 AC",
-      price: "Private Tender",
-      desc: "A striking coastal sanctuary featuring expansive floor-to-ceiling glazing, private infinity pool, and seamless indoor-outdoor living.",
+      image: "/images/hero-villa.jpg",
+      description: "A striking coastal sanctuary featuring expansive floor-to-ceiling glazing, private infinity pool, and seamless indoor-outdoor living.",
+      highlights: ["Direct Shoreline Access", "Infinity Edge Pool", "Monolithic Hearth", "Subterranean Cellar"]
     },
     {
       id: "skyline-residence",
       title: "The Skyline Residence",
-      type: "PENTHOUSE",
+      developer: "Sunrise Atelier Penthouses",
       badge: "PENTHOUSE RESIDENCE",
-      status: "PRIVATE LISTING",
+      status: "Ready for Possession",
+      statusColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/30",
       location: "Bandra West, Mumbai",
-      image: "/images/skyline-dining.jpg",
+      price: "₹68 Cr ($8.2M)",
+      type: "Penthouse Residence",
       beds: "4 Bed",
       area: "6,450 SQ FT",
-      plot: "34th Floor",
-      price: "₹68 Cr ($8.2M)",
-      desc: "Panoramic Arabian Sea views, private lift foyer, double-height volumes, and bespoke Italian marble finishes throughout.",
+      image: "/images/skyline-dining.jpg",
+      description: "Panoramic Arabian Sea views, private elevator foyer, double-height volumes, and bespoke Italian marble finishes throughout.",
+      highlights: ["Arabian Sea Vistas", "Private Lift Foyer", "Double-Height Living", "Automated Shading"]
     },
     {
       id: "greenfield-terraces",
       title: "Greenfield Terraces",
-      type: "ESTATE",
+      developer: "Highland Living Group",
       badge: "ESTATE VILLA",
-      status: "AVAILABLE",
+      status: "Ready for Possession",
+      statusColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/30",
       location: "Lonavala Highlands",
-      image: "/images/serene-bedroom.jpg",
+      price: "₹42 Cr ($5.1M)",
+      type: "Hillside Villa",
       beds: "6 Bed",
       area: "11,200 SQ FT",
-      plot: "1.8 AC",
-      price: "₹42 Cr ($5.1M)",
-      desc: "Nestled into lush hillside topography with cantilevered decks, private spa courtyard, and natural stone fireplaces.",
+      image: "/images/serene-bedroom.jpg",
+      description: "Nestled into lush hillside topography with cantilevered decks, private spa courtyard, and natural stone fireplaces.",
+      highlights: ["Hillside Sanctuary", "Cantilevered Decks", "Spa Courtyard", "Stone Fireplace"]
     },
     {
       id: "amber-villa",
       title: "The Amber Reflection Villa",
-      type: "COASTAL",
-      badge: "WATERFRONT SANCTUARY",
-      status: "OFF-MARKET",
+      developer: "Sunrise Atelier Private Estates",
+      badge: "OFF-MARKET",
+      status: "Off-Market Tender",
+      statusColor: "bg-[#c5a059]/15 text-[#a6833d] border-[#c5a059]/30",
       location: "Awas Beach, Alibaug",
-      image: "/images/amber-villa.jpg",
+      price: "On Confidential Request",
+      type: "Waterfront Estate",
       beds: "6 Bed",
       area: "16,500 SQ FT",
-      plot: "3.2 AC",
-      price: "On Confidential Request",
-      desc: "Direct private shoreline access, reflection lagoon, subterranean wine cellar, and standalone guest pavilion.",
+      image: "/images/amber-villa.jpg",
+      description: "Direct private shoreline access, reflection lagoon, subterranean wine cellar, and standalone guest pavilion.",
+      highlights: ["Reflection Lagoon", "Wine Cellar", "Guest Pavilion", "Private Heliport"]
     },
     {
       id: "coastal-pavilion",
       title: "Monolith Horizon Pavilion",
-      type: "ESTATE",
+      developer: "Sunrise Architecture Atelier",
       badge: "ARCHITECTURAL MONOLITH",
-      status: "NEW RELEASE",
+      status: "New Release",
+      statusColor: "bg-blue-500/10 text-blue-600 border-blue-500/30",
       location: "Mandwa Jetty Enclave",
-      image: "/images/coastal-pavilion.jpg",
+      price: "₹55 Cr ($6.6M)",
+      type: "Architectural Monolith",
       beds: "5 Bed",
       area: "13,400 SQ FT",
-      plot: "2.1 AC",
-      price: "₹55 Cr ($6.6M)",
-      desc: "Constructed with board-formed concrete and warm teak wood, featuring 180-degree ocean vistas and private helipad access.",
-    },
-    {
-      id: "lagoon-residence",
-      title: "Lagoon Reflection Estate",
-      type: "COASTAL",
-      badge: "LAGOON RESIDENCE",
-      status: "EXCLUSIVE",
-      location: "Kashid Coast, Maharashtra",
-      image: "/images/villa-lagoon.jpg",
-      beds: "7 Bed",
-      area: "18,200 SQ FT",
-      plot: "4.5 AC",
-      price: "Private Tender",
-      desc: "An ultra-private compound bordered by pristine coconut groves, private natural water lagoon, and private wellness spa.",
-    },
+      image: "/images/coastal-pavilion.jpg",
+      description: "Constructed with board-formed concrete and warm teak wood, featuring 180-degree ocean vistas and private helipad access.",
+      highlights: ["Board-Formed Concrete", "180° Ocean Vistas", "Teak Wood Joinery", "Helipad Access"]
+    }
   ];
 
-  const filteredProperties = properties.filter((prop) => {
+  const filteredProperties = allProperties.filter((p) => {
     if (activeTab === "ALL") return true;
-    if (activeTab === "COASTAL") return prop.type === "COASTAL";
-    if (activeTab === "PENTHOUSE") return prop.type === "PENTHOUSE";
-    if (activeTab === "ESTATE") return prop.type === "ESTATE";
-    if (activeTab === "OFF-MARKET") return prop.status.includes("OFF-MARKET") || prop.status.includes("PRIVATE");
+    if (activeTab === "GREATER NOIDA") return p.location.includes("Greater Noida");
+    if (activeTab === "RESIDENTIAL") return p.type.toLowerCase().includes("apartment") || p.type.toLowerCase().includes("villa") || p.type.toLowerCase().includes("residence");
+    if (activeTab === "COMMERCIAL") return p.type.toLowerCase().includes("office") || p.type.toLowerCase().includes("retail") || p.type.toLowerCase().includes("commercial");
+    if (activeTab === "COASTAL") return p.location.includes("Alibaug") || p.location.includes("Awas") || p.location.includes("Mandwa");
     return true;
   });
 
-  const handleInquire = (title: string) => {
-    setSelectedProperty(title);
-    setModalOpen(true);
+  const scrollToEnquiry = (projectName?: string) => {
+    if (projectName) {
+      setContactForm((prev) => ({ ...prev, service: projectName }));
+    }
+    const elem = document.getElementById("property-enquiry-form");
+    if (elem) elem.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div className="bg-[#FAF8F5] text-[#141A23] overflow-x-hidden">
-      {/* Top Bar */}
+    <div className="bg-[#FAF8F5] text-[#0f1115] overflow-x-hidden min-h-screen">
+      {/* Top Breadcrumb & Metadata Bar */}
       <div className="border-b border-[#EAE6DF] bg-[#F7F5F0] pt-24 pb-3.5 px-6 sm:px-8">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between text-[10px] sm:text-[11px] tracking-[0.24em] uppercase text-[#8F8B83] gap-2">
           <div className="flex items-center gap-2">
-            <span className="w-1 h-1 rounded-full bg-[#C29246]"></span>
-            <span>REAL ESTATE DISCOVERY • CURATED ACTIVE PORTFOLIO 2024</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#c5a059]"></span>
+            <span>05 / REAL ESTATE ADVISORY • GREATER NOIDA · MUMBAI · ALIBAUG</span>
           </div>
-          <div>Strict Bilateral NDA • Verified Provenance</div>
+          <div>Strict Bilateral Due Diligence • Verified Title Deeds</div>
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="pt-28 pb-16 px-6 sm:px-8 max-w-7xl mx-auto border-b border-[#EAE6DF]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div>
-            <span className="text-[11px] font-medium tracking-[0.28em] uppercase text-[#8F8B83] block mb-2">
-              CURATED PROPERTY COLLECTION
-            </span>
-            <h1 className="font-serif-luxury text-4xl sm:text-6xl font-normal text-[#141A23]">
-              Architectural Sanctums <br />
-              <span className="italic font-light text-[#A87A36]">Across Prime Terrains.</span>
-            </h1>
-          </div>
-          <p className="text-sm text-[#63615C] max-w-md leading-relaxed font-light">
-            Every property in our portfolio is vetted through structural diagnostics, light ingress
-            studies, and long-term provenance value before representation.
+      {/* Hero Header */}
+      <section className="pt-16 pb-12 px-6 sm:px-8 max-w-7xl mx-auto">
+        <div className="border-b border-[#e2ded6] pb-8 mb-12">
+          <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">
+            Property Portfolio &amp; Strategic Advisory
+          </span>
+          <h1 className="font-serif-azimute text-4xl sm:text-6xl lg:text-7xl mt-2 text-[#0f1115]">
+            Curated Estates &amp; Prime Developments
+          </h1>
+          <p className="text-base text-[#5a5f67] max-w-3xl mt-4 font-light leading-relaxed">
+            From private residential sanctuaries in Alibaug and penthouses overlooking Mumbai waters, to premier Greater Noida developments including Ashtech Presidential, Godrej Majesty, and Grandthum by Group 108.
           </p>
         </div>
 
-        {/* Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 pt-10">
-          {[
-            { id: "ALL", label: "ALL LISTINGS" },
-            { id: "COASTAL", label: "COASTAL VILLAS" },
-            { id: "PENTHOUSE", label: "URBAN PENTHOUSES" },
-            { id: "ESTATE", label: "ESTATE SANCTUARIES" },
-            { id: "OFF-MARKET", label: "DISCREET & OFF-MARKET" },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`text-[10px] tracking-[0.18em] uppercase px-5 py-2.5 rounded-full font-medium transition-colors cursor-pointer border ${
-                activeTab === tab.id
-                  ? "bg-[#141A23] text-[#FAF8F5] border-[#141A23]"
-                  : "bg-white text-[#63615C] border-[#EAE6DF] hover:border-[#C29246]"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-      </section>
+        {/* =========================================================================
+            5.1 REAL ESTATE SERVICES (7 Core Disciplines)
+           ========================================================================= */}
+        <div className="mb-20">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#e2ded6]">
+            <div>
+              <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Comprehensive Advisory</span>
+              <h2 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mt-1">Our Real Estate Services</h2>
+            </div>
+            <p className="text-xs text-[#6e737c] mt-2 sm:mt-0 max-w-md">
+              End-to-end custody spanning private acquisitions, commercial destinations, studio apartments, and portfolio advisory.
+            </p>
+          </div>
 
-      {/* Properties Grid */}
-      <section className="py-20 px-6 sm:px-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProperties.map((prop) => (
-            <div
-              key={prop.id}
-              className="bg-white rounded-2xl overflow-hidden border border-[#EAE6DF] flex flex-col justify-between"
-            >
-              <div>
-                {/* Image */}
-                <div className="relative h-64 w-full overflow-hidden">
-                  <Image
-                    src={prop.image}
-                    alt={prop.title}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                    <span className="bg-[#141A23]/80 text-[#FAF8F5] text-[9px] tracking-[0.2em] uppercase px-3 py-1 rounded-full font-light">
-                      {prop.badge}
-                    </span>
-                    <span className="bg-white/95 text-[#141A23] text-[9px] tracking-[0.2em] uppercase px-3 py-1 rounded-full font-medium">
-                      {prop.status}
-                    </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {realEstateServices.map((service, idx) => (
+              <div 
+                key={idx}
+                className="p-6 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_28px_rgba(197,160,89,0.12)] flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-4 group-hover:scale-105 transition">
+                    {idx === 0 && <Home className="w-5 h-5" />}
+                    {idx === 1 && <Building2 className="w-5 h-5" />}
+                    {idx === 2 && <Maximize className="w-5 h-5" />}
+                    {idx === 3 && <Clock className="w-5 h-5" />}
+                    {idx === 4 && <Sparkles className="w-5 h-5" />}
+                    {idx === 5 && <Award className="w-5 h-5" />}
+                    {idx === 6 && <ShieldCheck className="w-5 h-5" />}
                   </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <div className="text-[10px] tracking-[0.16em] uppercase text-[#8F8B83] mb-1 font-light">
-                    {prop.location}
-                  </div>
-                  <h3 className="font-serif-luxury text-2xl font-normal text-[#141A23] mb-2">
-                    {prop.title}
+                  <span className="text-[10px] font-mono tracking-widest uppercase text-[#a6833d] font-semibold">{service.tag}</span>
+                  <h3 className="font-serif-azimute text-xl text-[#0f1115] mt-1 mb-2.5">
+                    {service.title}
                   </h3>
-                  <p className="text-xs text-[#63615C] leading-relaxed mb-6 font-light">{prop.desc}</p>
-
-                  {/* Specs */}
-                  <div className="grid grid-cols-3 gap-2 py-3 border-y border-[#EAE5DC] text-center mb-4">
-                    <div>
-                      <span className="text-[10px] uppercase tracking-wider text-[#8F8B83] block">
-                        Bedrooms
-                      </span>
-                      <span className="text-xs font-medium text-[#141A23]">{prop.beds}</span>
-                    </div>
-                    <div>
-                      <span className="text-[10px] uppercase tracking-wider text-[#8F8B83] block">
-                        Built-up
-                      </span>
-                      <span className="text-xs font-medium text-[#141A23]">{prop.area}</span>
-                    </div>
-                    <div>
-                      <span className="text-[10px] uppercase tracking-wider text-[#8F8B83] block">
-                        Terrain
-                      </span>
-                      <span className="text-xs font-medium text-[#141A23]">{prop.plot}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between text-xs pt-1">
-                    <span className="text-[#8F8B83] uppercase tracking-wider text-[10px] font-light">
-                      Guidance Value
-                    </span>
-                    <span className="font-medium text-[#141A23] font-serif-luxury text-base">
-                      {prop.price}
-                    </span>
-                  </div>
+                  <p className="text-xs text-[#5a5f67] leading-relaxed font-light">
+                    {service.desc}
+                  </p>
                 </div>
-              </div>
-
-              {/* Action Button */}
-              <div className="p-6 pt-0">
                 <button
-                  onClick={() => handleInquire(prop.title)}
-                  className="w-full bg-[#141A23] hover:bg-[#202836] text-[#FAF8F5] text-[10px] tracking-[0.22em] uppercase py-3.5 rounded-xl font-medium transition-colors cursor-pointer"
+                  onClick={() => scrollToEnquiry(`Enquiry: ${service.title}`)}
+                  className="mt-5 pt-3 border-t border-[#f0ece3] text-[11px] uppercase tracking-wider font-semibold text-[#c5a059] hover:text-[#0f1115] flex items-center gap-1.5 transition text-left cursor-pointer"
                 >
-                  ENQUIRE ABOUT THIS PROPERTY
+                  <span>Inquire Service</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </button>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </section>
 
-      {/* Discreet Acquisition Advisory */}
-      <section className="bg-[#121212] text-white py-20 px-6 sm:px-8">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <span className="text-[11px] font-medium tracking-[0.28em] uppercase text-[#C29246] block">
-            • PRIVATE PORTFOLIO ACCESS
-          </span>
-          <h2 className="font-serif-luxury text-3xl sm:text-5xl font-normal">
-            Seeking an Unlisted Off-Market Estate?
-          </h2>
-          <p className="text-sm leading-relaxed text-[#B3AEA2] max-w-xl mx-auto font-light">
-            Over 60% of our architectural acquisitions occur privately without public marketing.
-            Contact our Senior Director to register your acquisition criteria under bilateral NDA.
-          </p>
-          <div className="pt-4">
-            <button
-              onClick={() => handleInquire("Confidential Off-Market Search")}
-              className="bg-[#C29246] hover:bg-[#A87A36] text-[#121212] text-xs tracking-[0.2em] uppercase px-8 py-4 rounded-full font-medium transition-colors cursor-pointer"
-            >
-              REQUEST CONFIDENTIAL ACCESS
-            </button>
+        {/* =========================================================================
+            5.2 FEATURED PROJECTS / OUR TOP PICKS (Exact User Request)
+           ========================================================================= */}
+        <div className="mb-20">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#e2ded6]">
+            <div>
+              <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Curated Developments</span>
+              <h2 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mt-1">
+                Featured Projects / Our Top Picks
+              </h2>
+            </div>
+            <p className="text-xs text-[#6e737c] mt-2 sm:mt-0 max-w-md">
+              Premier verified developments evaluated for superior construction standards, capital appreciation, and prime location.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {topPickProjects.map((p) => (
+              <div 
+                key={p.id}
+                className="bg-white rounded-2xl overflow-hidden border border-[#e8e4dc] hover:border-[#c5a059] transition duration-500 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-2xl flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img 
+                      src={p.image} 
+                      alt={p.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-700" 
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border backdrop-blur-md bg-[#0c0d0e]/85 text-[#c5a059] border-[#c5a059]/30 font-semibold">
+                        {p.badge}
+                      </span>
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <span className={`text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border backdrop-blur-md font-medium ${p.statusColor}`}>
+                        {p.status}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <div className="text-[11px] uppercase tracking-wider text-[#a6833d] font-semibold mb-1">
+                      Developer: {p.developer}
+                    </div>
+                    <h3 className="font-serif-azimute text-2xl text-[#0f1115] mb-2">
+                      {p.title}
+                    </h3>
+                    <p className="text-xs text-[#6e737c] flex items-center gap-1.5 mb-3">
+                      <MapPin className="w-3.5 h-3.5 text-[#c5a059] shrink-0" />
+                      <span>{p.location}</span>
+                    </p>
+                    <div className="bg-[#faf8f5] px-3.5 py-2 rounded-xl border border-[#e8e4dc] mb-3 text-xs">
+                      <span className="text-[#8a8f98] block text-[10px] uppercase tracking-wider">Property Type</span>
+                      <span className="text-[#0f1115] font-medium">{p.type}</span>
+                    </div>
+                    <p className="text-xs text-[#5a5f67] line-clamp-2 mb-4 leading-relaxed font-light">
+                      {p.description}
+                    </p>
+                    <div className="pt-3 border-t border-[#f0ece3] flex items-center justify-between text-xs">
+                      <span className="text-[#8a8f98]">Price Range</span>
+                      <span className="font-semibold text-base text-[#0f1115]">{p.price}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 pt-0 grid grid-cols-2 gap-2.5">
+                  <button 
+                    onClick={() => setSelectedProjectModal(p)}
+                    className="w-full py-3 rounded-xl border border-[#0c0d0e]/20 hover:border-[#0c0d0e] hover:bg-[#faf8f5] text-[#0c0d0e] text-xs uppercase tracking-wider transition cursor-pointer font-medium text-center"
+                  >
+                    View Details
+                  </button>
+                  <button 
+                    onClick={() => scrollToEnquiry(`Enquiry: ${p.title} (${p.developer})`)}
+                    className="w-full py-3 rounded-xl bg-[#0c0d0e] hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] text-xs uppercase tracking-wider transition cursor-pointer font-semibold shadow-sm text-center"
+                  >
+                    Contact
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* =========================================================================
+            5.3 AVAILABLE PROPERTIES CATALOG WITH FILTER
+           ========================================================================= */}
+        <div className="mb-20">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#e2ded6]">
+            <div>
+              <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Available Portfolio</span>
+              <h2 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mt-1">
+                Featured / Available Properties
+              </h2>
+            </div>
+            
+            {/* Filter Tabs */}
+            <div className="flex flex-wrap items-center gap-2 mt-4 sm:mt-0">
+              {["ALL", "GREATER NOIDA", "RESIDENTIAL", "COMMERCIAL", "COASTAL"].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-4 py-1.5 rounded-full text-xs uppercase tracking-widest transition cursor-pointer ${
+                    activeTab === tab 
+                      ? "bg-[#0c0d0e] text-white font-semibold shadow-sm" 
+                      : "bg-white border border-[#e8e4dc] text-[#5a5f67] hover:text-[#0f1115] hover:border-[#c5a059]"
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {filteredProperties.map((p) => (
+              <div key={p.id} className="bg-white rounded-2xl overflow-hidden border border-[#e8e4dc] hover:border-[#c5a059]/60 transition group flex flex-col justify-between shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-2xl duration-500">
+                <div>
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+                    <span className="absolute top-4 left-4 text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border backdrop-blur-md bg-[#0c0d0e]/80 text-[#c5a059] border-[#c5a059]/30">
+                      {p.badge}
+                    </span>
+                  </div>
+                  <div className="p-6">
+                    <div className="text-[11px] uppercase tracking-wider text-[#a6833d] font-semibold mb-1">
+                      Developer: {p.developer}
+                    </div>
+                    <h3 className="font-serif-azimute text-2xl text-[#0f1115] mb-2">
+                      {p.title}
+                    </h3>
+                    <p className="text-xs text-[#6e737c] flex items-center gap-1.5 mb-3">
+                      <MapPin className="w-3.5 h-3.5 text-[#c5a059]" />
+                      {p.location}
+                    </p>
+                    <p className="text-xs text-[#5a5f67] leading-relaxed mb-4">
+                      {p.description}
+                    </p>
+                    <div className="pt-3 border-t border-[#f0ece3] flex items-center justify-between text-xs">
+                      <span className="text-[#8a8f98]">Configuration</span>
+                      <span className="text-[#0f1115] font-medium">{p.beds} · {p.area}</span>
+                    </div>
+                    <div className="pt-2 flex items-center justify-between text-xs">
+                      <span className="text-[#8a8f98]">Guide Price</span>
+                      <span className="font-semibold text-sm text-[#0f1115]">{p.price}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 pt-0">
+                  <button 
+                    onClick={() => scrollToEnquiry(`Property Enquiry: ${p.title}`)}
+                    className="w-full py-3 rounded-xl bg-[#0c0d0e] hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] text-xs uppercase tracking-widest transition cursor-pointer font-semibold shadow-sm"
+                  >
+                    Enquire Availability
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* =========================================================================
+            5.4 PROPERTY ENQUIRY FORM / ENQUIRE NOW CTA
+           ========================================================================= */}
+        <div id="property-enquiry-form" className="p-8 sm:p-12 rounded-3xl bg-[#0c0d0e] border border-[#c5a059]/30 text-white shadow-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-5 space-y-4">
+              <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Priority Booking &amp; Due Diligence</span>
+              <h3 className="font-serif-azimute text-3xl sm:text-4xl text-white">
+                Property Enquiry Form
+              </h3>
+              <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light">
+                Direct consultation with our senior acquisitions desk. Whether enquiring about Ashtech Presidential, Godrej Majesty, Grandthum by Group 108, or private portfolio acquisitions, our partners provide confidential guidance.
+              </p>
+
+              <div className="pt-4 space-y-3">
+                <div className="flex items-center gap-3 text-xs text-white/80">
+                  <Check className="w-4 h-4 text-[#c5a059]" />
+                  <span>Direct builder allocations &amp; inventory access</span>
+                </div>
+                <div className="flex items-center gap-3 text-xs text-white/80">
+                  <Check className="w-4 h-4 text-[#c5a059]" />
+                  <span>Complete legal title &amp; RERA verification</span>
+                </div>
+                <div className="flex items-center gap-3 text-xs text-white/80">
+                  <Check className="w-4 h-4 text-[#c5a059]" />
+                  <span>Confidential transaction structuring</span>
+                </div>
+              </div>
+
+              {/* Direct WhatsApp CTA */}
+              <div className="pt-6">
+                <a
+                  href="https://wa.me/919820001234?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20real%20estate%20projects."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
+                >
+                  <MessageCircle className="w-4 h-4 fill-current" />
+                  <span>Chat on WhatsApp Directly</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Interactive Form */}
+            <div className="lg:col-span-7 bg-[#131518] p-6 sm:p-8 rounded-2xl border border-white/10">
+              {formSubmitted ? (
+                <div className="p-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-2">
+                  <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
+                  <h4 className="font-serif-azimute text-xl text-white">Property Enquiry Received</h4>
+                  <p className="text-xs text-white/70 max-w-sm mx-auto">
+                    Our acquisitions director will reach out within two business hours with exhaustive brochures and scheduling details.
+                  </p>
+                  <button 
+                    onClick={() => setFormSubmitted(false)}
+                    className="mt-3 px-5 py-2 rounded-full bg-[#c5a059] text-[#0c0d0e] text-xs font-semibold uppercase tracking-wider hover:bg-white transition cursor-pointer"
+                  >
+                    Send Another Enquiry
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={(e) => { e.preventDefault(); setFormSubmitted(true); }} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Your Name</label>
+                      <input 
+                        type="text" 
+                        required 
+                        value={contactForm.name} 
+                        onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })} 
+                        placeholder="e.g. Rahul Sharma"
+                        className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Email Address</label>
+                      <input 
+                        type="email" 
+                        required 
+                        value={contactForm.email} 
+                        onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })} 
+                        placeholder="name@company.com"
+                        className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Phone / WhatsApp</label>
+                      <input 
+                        type="tel" 
+                        required 
+                        value={contactForm.phone} 
+                        onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })} 
+                        placeholder="+91 98200 00000"
+                        className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Project / Service of Interest</label>
+                      <select 
+                        value={contactForm.service}
+                        onChange={(e) => setContactForm({ ...contactForm, service: e.target.value })}
+                        className="w-full px-4 py-2.5 rounded-xl bg-[#0c0d0e] border border-white/15 text-white text-xs focus:border-[#c5a059] outline-none transition"
+                      >
+                        <option value="Ashtech Presidential (Sec 12, Greater Noida)">Ashtech Presidential (Greater Noida, Sector 12)</option>
+                        <option value="Godrej Majesty (Sec 27, Greater Noida)">Godrej Majesty (Greater Noida, Sector 27)</option>
+                        <option value="Grandthum by Group 108 (Greater Noida West)">Grandthum by Group 108 (Greater Noida West)</option>
+                        <option value="Residential Properties">Residential Properties (Villas &amp; Penthouses)</option>
+                        <option value="Commercial Properties">Commercial Properties (Offices &amp; Retail)</option>
+                        <option value="Studio Apartments">Studio Apartments</option>
+                        <option value="Rental &amp; Leasing Services">Rental &amp; Leasing Services</option>
+                        <option value="New Projects">New Projects Launch</option>
+                        <option value="Property Buying &amp; Selling">Property Buying &amp; Selling</option>
+                        <option value="Property Consultation">Property Consultation &amp; Valuation</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Requirements / Preferred Unit Size</label>
+                    <textarea 
+                      rows={3} 
+                      value={contactForm.message} 
+                      onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })} 
+                      placeholder="Mention budget range, timeline to purchase, or preferred unit configuration..."
+                      className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
+                    />
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className="w-full py-3.5 rounded-xl bg-[#c5a059] hover:bg-white text-[#0c0d0e] font-semibold text-xs uppercase tracking-widest transition cursor-pointer shadow-lg"
+                  >
+                    Enquire Now · Schedule Consultation
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Global Consultation Modal */}
-      <EnquiryModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        propertyTitle={selectedProperty}
-        initialInterest="REAL ESTATE"
-      />
+      {/* Project Details Modal */}
+      {selectedProjectModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+          <div className="bg-[#0c0d0e] border border-[#c5a059]/30 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl text-slate-100 flex flex-col max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-4 border-b border-white/10">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border bg-[#c5a059]/15 text-[#c5a059] border-[#c5a059]/40 font-semibold">
+                  {selectedProjectModal.badge}
+                </span>
+                <span className={`text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border font-medium ${selectedProjectModal.statusColor}`}>
+                  {selectedProjectModal.status}
+                </span>
+              </div>
+              <button 
+                onClick={() => setSelectedProjectModal(null)} 
+                className="text-white/60 hover:text-white p-1 rounded-full bg-white/5 hover:bg-white/10 transition cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="py-6 space-y-6">
+              <div className="relative aspect-[16/9] rounded-xl overflow-hidden border border-white/10">
+                <img 
+                  src={selectedProjectModal.image} 
+                  alt={selectedProjectModal.title} 
+                  className="w-full h-full object-cover" 
+                />
+              </div>
+
+              <div>
+                <span className="text-xs uppercase tracking-wider text-[#c5a059] font-semibold">
+                  Developer: {selectedProjectModal.developer}
+                </span>
+                <h3 className="font-serif-azimute text-3xl sm:text-4xl text-white mt-1">
+                  {selectedProjectModal.title}
+                </h3>
+                <p className="text-xs text-white/70 flex items-center gap-1.5 mt-2">
+                  <MapPin className="w-3.5 h-3.5 text-[#c5a059] shrink-0" />
+                  <span>{selectedProjectModal.location}</span>
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 bg-[#131518] p-4 rounded-xl border border-white/10 text-xs">
+                <div>
+                  <span className="text-white/50 block text-[10px] uppercase tracking-wider">Property Type</span>
+                  <span className="text-white font-medium">{selectedProjectModal.type}</span>
+                </div>
+                <div>
+                  <span className="text-white/50 block text-[10px] uppercase tracking-wider">Price Range</span>
+                  <span className="text-[#c5a059] font-bold text-sm">{selectedProjectModal.price}</span>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <span className="text-xs uppercase tracking-wider text-white/50 font-medium">Architectural Narrative</span>
+                <p className="text-xs text-white/80 leading-relaxed font-light">
+                  {selectedProjectModal.description}
+                </p>
+              </div>
+
+              {selectedProjectModal.highlights && (
+                <div className="space-y-2.5 pt-2">
+                  <span className="text-xs uppercase tracking-wider text-[#c5a059] font-medium">Key Highlights &amp; Amenities</span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    {selectedProjectModal.highlights.map((h: string, i: number) => (
+                      <div key={i} className="flex items-center gap-2 text-white/80">
+                        <Check className="w-3.5 h-3.5 text-[#c5a059] shrink-0" />
+                        <span>{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <a
+                href={`https://wa.me/919820001234?text=Hello%20Sunrise%20Property,%20I%20am%20interested%20in%20${encodeURIComponent(selectedProjectModal.title)}%20(${encodeURIComponent(selectedProjectModal.developer)}).`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition cursor-pointer text-center"
+              >
+                <MessageCircle className="w-4 h-4 fill-current" />
+                <span>WhatsApp Brochure</span>
+              </a>
+              <button
+                onClick={() => {
+                  setSelectedProjectModal(null);
+                  scrollToEnquiry(`Enquiry: ${selectedProjectModal.title} (${selectedProjectModal.developer})`);
+                }}
+                className="py-3 px-4 rounded-xl bg-[#c5a059] hover:bg-white text-[#0c0d0e] text-xs uppercase tracking-wider font-semibold transition cursor-pointer text-center"
+              >
+                Contact Advisory Desk
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -3,665 +3,505 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import EnquiryModal from "@/components/EnquiryModal";
+import { 
+  Compass, 
+  Wrench, 
+  Layers, 
+  Sparkles, 
+  Check, 
+  CheckCircle2, 
+  MessageCircle, 
+  ArrowUpRight 
+} from "lucide-react";
 
 export default function InteriorDesignPage() {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [beforeAfterSlider, setBeforeAfterSlider] = useState<number>(50);
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [atelierForm, setAtelierForm] = useState({
+  const [contactForm, setContactForm] = useState({
     name: "",
     email: "",
-    projectType: "Full Residential Interior Architecture",
-    budget: "₹25 Cr – ₹50 Cr",
+    phone: "",
+    service: "Design Services (Concept, Space Planning, 3D)",
+    message: ""
   });
 
+  const interiorDisciplines = {
+    design: [
+      { name: "Concept Design", desc: "Custom visual moodboards, architectural theme definitions, and spatial narratives tailored to lifestyle aspirations." },
+      { name: "Space Planning", desc: "Precision layout flow, circulation zoning, natural daylight ingress analysis, and ergonomic volume optimization." },
+      { name: "2D Drawings", desc: "Exhaustive civil blueprints, detailed MEP coordination layouts, electrical schematics, and elevation sections." },
+      { name: "3D Visualization", desc: "Photorealistic, ray-traced 3D visual walkthroughs and lighting simulations before execution begins." },
+      { name: "Material Selection", desc: "Honed travertine, Italian marble book-matching, grain-matched European hardwoods, and artisanal brass hardware." }
+    ],
+    execution: [
+      { name: "Civil Work", desc: "Precision structural demolition, masonry alterations, waterproofing membranes, and engineering restructuring." },
+      { name: "Carpentry", desc: "Bespoke architectural joinery, walk-in wardrobes, fluted wall treatments, and floating custom cabinetry." },
+      { name: "Electrical", desc: "Concealed automation conduits, Lutron architectural dimming, low-glare magnetic track lights, and ambient cove lighting." },
+      { name: "Plumbing", desc: "Concealed pressure-tested sanitary lines, thermostatic valves, artisanal marble sinks, and premium European fixtures." },
+      { name: "False Ceiling", desc: "Minimalist shadow-reveal architectural drywall ceilings, acoustic dampening, and seamless recessed linear AC slots." },
+      { name: "Flooring", desc: "Monolithic Roman travertine, Calacatta marble slab installation, herringbone engineered hardwood, and micro-cement." },
+      { name: "Painting", desc: "Artisanal Italian lime washes, mineral micro-plaster, breathable textured Venetian stucco, and smooth matte finishes." }
+    ],
+    specialized: [
+      { name: "Residential", desc: "Ultra-luxury waterfront estates, duplex penthouses, and private family sanctuaries crafted for stillness." },
+      { name: "Commercial", desc: "Corporate headquarters, discreet family offices, and executive suites engineered for focus and executive prestige." },
+      { name: "Retail", desc: "High-end luxury flagship boutiques, concept showrooms, and curated spatial branding environments." },
+      { name: "Hospitality", desc: "Boutique eco-resorts, experiential restaurants, intimate speakeasies, and private member clubs." },
+      { name: "Furniture Design", desc: "Custom bespoke furniture prototyping, sculptural stone tables, monolithic credenzas, and tailored upholstery." },
+      { name: "Renovation", desc: "Full-scale structural retrofitting, heritage revitalizations, and turnkey transformational modernizations." }
+    ]
+  };
+
+  const interiorProjects = [
+    {
+      id: "travertine-living",
+      title: "The Travertine Living Pavilion",
+      category: "Residential Architecture",
+      location: "Alibaug Coast",
+      image: "/images/travertine-living.jpg",
+      year: "2024",
+      description: "Double-height volume anchored by a hand-carved Roman travertine monolith, grain-matched European oak millwork, and museum-grade art illumination."
+    },
+    {
+      id: "serene-suite",
+      title: "Serene Master Suite",
+      category: "Interior Architecture",
+      location: "Lonavala Highlands",
+      image: "/images/serene-bedroom.jpg",
+      year: "2024",
+      description: "Acoustically isolated private retreat featuring bespoke linen-paneled walls, floating walnut headboard, and soft atmospheric cove lighting."
+    },
+    {
+      id: "skyline-dining",
+      title: "The Skyline Dining Room",
+      category: "Penthouse Interior",
+      location: "Bandra West, Mumbai",
+      image: "/images/skyline-dining.jpg",
+      year: "2023",
+      description: "Curated 12-seat Calacatta marble dining table framed by floor-to-ceiling panoramic glass, hand-cast bronze lighting, and private sommelier bar."
+    },
+    {
+      id: "courtyard-living",
+      title: "Courtyard Living & Water Garden",
+      category: "Sanctuary Interior",
+      location: "Kashid Coast",
+      image: "/images/courtyard-living.jpg",
+      year: "2024",
+      description: "Seamless transition between internal living volume and external reflection pool with fluted timber screens and weathered bronze accents."
+    }
+  ];
+
+  const scrollToEnquiry = (serviceTitle?: string) => {
+    if (serviceTitle) {
+      setContactForm((prev) => ({ ...prev, service: serviceTitle }));
+    }
+    const elem = document.getElementById("interior-consultation-form");
+    if (elem) elem.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="bg-[#FAF8F5] text-[#141A23] overflow-x-hidden">
-      {/* =========================================================================
-          TOP BREADCRUMB & METADATA BAR (Image 2)
-         ========================================================================= */}
+    <div className="bg-[#FAF8F5] text-[#0f1115] overflow-x-hidden min-h-screen">
+      {/* Top Breadcrumb & Metadata Bar */}
       <div className="border-b border-[#EAE6DF] bg-[#F7F5F0] pt-24 pb-3.5 px-6 sm:px-8">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between text-[10px] sm:text-[11px] tracking-[0.24em] uppercase text-[#8F8B83] gap-2">
           <div className="flex items-center gap-2">
-            <span className="w-1 h-1 rounded-full bg-[#C29246]"></span>
-            <span>01 / ATELIER ARCHITECTURE &amp; DESIGN • SELECTION COMMISSIONS 2020-2024</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#c5a059]"></span>
+            <span>06 / INTERIOR ARCHITECTURE &amp; ATELIER • BESPOKE RESIDENTIAL COMMISSIONS</span>
           </div>
-          <div>London • Geneva • Tokyo • Mumbai</div>
+          <div>Turnkey Single-Point Custody • Artisanal Sourcing</div>
         </div>
       </div>
 
-      {/* =========================================================================
-          HERO SECTION (Image 2)
-         ========================================================================= */}
+      {/* Hero Header */}
       <section className="pt-16 pb-12 px-6 sm:px-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-12">
-          {/* Title (7 cols) */}
-          <div className="lg:col-span-7">
-            <h1 className="font-serif-luxury text-4xl sm:text-6xl lg:text-7xl font-normal leading-[1.08] text-[#141A23]">
-              Interiors With Purpose. <br />
-              <span className="italic font-light text-[#A87A36]">Spaces With Character.</span>
-            </h1>
-          </div>
-
-          {/* Description & Buttons (5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
-            <p className="text-sm sm:text-base leading-relaxed text-[#63615C] font-light">
-              Our atelier crafts spatial sanctuaries where proportion, soft daylight, and tactile
-              finishes compose quiet monumentalism. Every project is conceived as an architectural
-              monograph crafted to elevate daily existence.
-            </p>
-            <div className="flex items-center gap-4 pt-2">
-              <button
-                onClick={() => {
-                  const elem = document.getElementById("commissions");
-                  elem?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="bg-[#141A23] hover:bg-[#202836] text-white text-xs tracking-[0.2em] uppercase px-6 py-3.5 rounded-full font-medium transition-colors cursor-pointer"
-              >
-                VIEW DESIGN PORTFOLIO
-              </button>
-              <button
-                onClick={() => setModalOpen(true)}
-                className="border border-[#D9D3C7] hover:border-[#141A23] text-[#141A23] text-xs tracking-[0.2em] uppercase px-6 py-3.5 rounded-full font-normal transition-colors cursor-pointer"
-              >
-                COMMISSION ATELIER
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Big Hero Image matching Image 2 */}
-        <div className="rounded-2xl overflow-hidden border border-[#EAE6DF] bg-white relative">
-          <div className="relative h-[420px] sm:h-[620px] w-full">
-            <Image
-              src="/images/travertine-living.jpg"
-              alt="The Travertine Villa Interior"
-              fill
-              priority
-              className="object-cover object-center"
-            />
-          </div>
-          {/* Floating Caption Overlay */}
-          <div className="absolute bottom-6 left-6 right-6 sm:right-auto sm:max-w-md bg-black/65 backdrop-blur-xs text-white p-5 rounded-xl border border-white/15">
-            <p className="font-serif-luxury text-lg font-normal text-[#FAF8F5]">
-              The Travertine Villa
-            </p>
-            <p className="text-xs text-[#D2CEBE] mt-1 leading-relaxed font-light">
-              Architectural living pavilion with double-height volume, bespoke oak millwork, and
-              monolithic travertine hearth.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 2: ARCHITECTURAL DISCIPLINES (Image 2)
-         ========================================================================= */}
-      <section id="disciplines" className="py-24 px-6 sm:px-8 max-w-7xl mx-auto border-t border-[#EAE6DF]">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div>
-            <span className="text-[11px] font-medium tracking-[0.28em] uppercase text-[#8F8B83] block mb-2">
-              SYSTEM OF PRACTICE
-            </span>
-            <h2 className="font-serif-luxury text-3xl sm:text-5xl font-normal text-[#141A23]">
-              Architectural Disciplines
-            </h2>
-          </div>
-          <p className="text-sm text-[#63615C] max-w-md leading-relaxed font-light">
-            A precision system spanning bespoke spatial design, custom joinery manufacturing,
-            tailored material curation, and execution governance.
+        <div className="border-b border-[#e2ded6] pb-8 mb-12">
+          <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">
+            Interior Architecture &amp; Spatial Atelier
+          </span>
+          <h1 className="font-serif-azimute text-4xl sm:text-6xl lg:text-7xl mt-2 text-[#0f1115]">
+            Interiors With Purpose. Spaces With Character.
+          </h1>
+          <p className="text-base text-[#5a5f67] max-w-3xl mt-4 font-light leading-relaxed">
+            End-to-end bespoke interior architecture: from conceptual 3D space planning and moodboards to structural civil works, custom joinery, specialized fit-outs, and artisanal stone finishes.
           </p>
         </div>
 
-        {/* 5 Disciplines Cards Grid matching Image 2 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
-          {/* Card 1 (Span 3 cols) */}
-          <div className="lg:col-span-3 bg-white p-8 sm:p-10 rounded-2xl border border-[#EAE6DF] flex flex-col justify-between">
+        {/* =========================================================================
+            BEFORE & AFTER COMPARISON SLIDER
+           ========================================================================= */}
+        <div className="mb-20">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-[#e2ded6] gap-2">
             <div>
-              <div className="flex items-center justify-between text-[10px] tracking-[0.2em] uppercase text-[#8F8B83] pb-4 mb-6 border-b border-[#EAE5DC]">
-                <span>01 / ARCHITECTURE</span>
-                <span className="font-serif-luxury text-[#B8893F] tracking-widest">[01]</span>
-              </div>
-              <h3 className="font-serif-luxury text-2xl text-[#141A23] font-normal mb-3">
-                Full Residential Interior Architecture
+              <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Turnkey Evolution</span>
+              <h3 className="font-serif-azimute text-2xl sm:text-3xl text-[#0f1115]">
+                Spatial Transformation (Before &amp; After)
               </h3>
-              <p className="text-xs sm:text-sm text-[#63615C] leading-relaxed mb-6 font-light">
-                Holistic spatial and volumetric reconfigurations. We optimize zoning, circulation,
-                indoor-outdoor flow, structural wall niches, and sightlines to transform cold shells
-                into architectural sanctums.
-              </p>
             </div>
-            <div className="flex flex-wrap gap-2 pt-4 border-t border-[#EAE5DC]">
-              {["Structural Layout Plan", "Volumetric Design", "Sightline Study"].map((tag) => (
-                <span
-                  key={tag}
-                  className="text-[10px] tracking-wider uppercase bg-[#FAF8F5] border border-[#EAE6DF] text-[#63615C] px-3 py-1 rounded-md"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            <span className="text-xs text-[#a6833d]">Drag horizontal slider handle to examine transformation</span>
           </div>
+          
+          <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden border border-[#e2ded6] select-none shadow-2xl">
+            {/* After image (Underneath) */}
+            <img 
+              src="/images/travertine-living.jpg" 
+              alt="After Interior Design Finished Space" 
+              className="absolute inset-0 w-full h-full object-cover" 
+            />
+            <div className="absolute top-4 right-4 bg-[#0c0d0e]/80 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs text-white border border-white/20">
+              After (Finished Atelier Interior)
+            </div>
 
-          {/* Card 2 (Span 3 cols) */}
-          <div className="lg:col-span-3 bg-white p-8 sm:p-10 rounded-2xl border border-[#EAE6DF] flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between text-[10px] tracking-[0.2em] uppercase text-[#8F8B83] pb-4 mb-6 border-b border-[#EAE5DC]">
-                <span>02 / SPATIAL</span>
-                <span className="font-serif-luxury text-[#B8893F] tracking-widest">[02]</span>
-              </div>
-              <h3 className="font-serif-luxury text-2xl text-[#141A23] font-normal mb-3">
-                Spatial Planning &amp; Layout Optimization
-              </h3>
-              <p className="text-xs sm:text-sm text-[#63615C] leading-relaxed mb-6 font-light">
-                Harmonizing daily routines with natural daylight patterns and acoustics. Flow
-                patterns that balance grand social gathering with acoustic privacy niches for
-                quiet contemplation.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2 pt-4 border-t border-[#EAE5DC]">
-              {["Ergonomic Modeling", "Acoustic Zoning", "Daylight Calibration"].map((tag) => (
-                <span
-                  key={tag}
-                  className="text-[10px] tracking-wider uppercase bg-[#FAF8F5] border border-[#EAE6DF] text-[#63615C] px-3 py-1 rounded-md"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Card 3 (Span 2 cols) */}
-          <div className="lg:col-span-2 bg-white p-8 rounded-2xl border border-[#EAE6DF] flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between text-[10px] tracking-[0.2em] uppercase text-[#8F8B83] pb-4 mb-5 border-b border-[#EAE5DC]">
-                <span>03 / MATERIALITY</span>
-                <span className="font-serif-luxury text-[#B8893F] tracking-widest">[03]</span>
-              </div>
-              <h3 className="font-serif-luxury text-xl text-[#141A23] font-normal mb-3">
-                Bespoke Materiality &amp; Finishes Curation
-              </h3>
-              <p className="text-xs text-[#63615C] leading-relaxed mb-6 font-light">
-                Sourcing stone directly from quarries, artisan lime plasters, fluted timber millwork,
-                patinated bronze hardware, and hand-finished micro-cement.
-              </p>
-            </div>
-            <button
-              onClick={() => setModalOpen(true)}
-              className="text-xs font-medium tracking-[0.16em] uppercase text-[#141A23] hover:text-[#A87A36] transition-colors inline-flex items-center gap-1.5 pt-4 border-t border-[#EAE5DC] cursor-pointer"
+            {/* Before image (Clipped) */}
+            <div 
+              className="absolute inset-0 overflow-hidden" 
+              style={{ clipPath: `inset(0 ${100 - beforeAfterSlider}% 0 0)` }}
             >
-              <span>Explore Material Library</span>
-              <span>→</span>
-            </button>
-          </div>
-
-          {/* Card 4 (Span 2 cols) */}
-          <div className="lg:col-span-2 bg-white p-8 rounded-2xl border border-[#EAE6DF] flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between text-[10px] tracking-[0.2em] uppercase text-[#8F8B83] pb-4 mb-5 border-b border-[#EAE5DC]">
-                <span>04 / STYLING</span>
-                <span className="font-serif-luxury text-[#B8893F] tracking-widest">[04]</span>
+              <img 
+                src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1400&q=80" 
+                alt="Before Interior Design Raw Space" 
+                className="absolute inset-0 w-full h-full object-cover filter grayscale contrast-125 brightness-75" 
+              />
+              <div className="absolute top-4 left-4 bg-[#0c0d0e]/80 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs text-[#c5a059] border border-[#c5a059]/30">
+                Before (Raw Bare Shell)
               </div>
-              <h3 className="font-serif-luxury text-xl text-[#141A23] font-normal mb-3">
-                Custom Furniture &amp; Decorative Styling
-              </h3>
-              <p className="text-xs text-[#63615C] leading-relaxed mb-6 font-light">
-                Commissioning single-edition furniture pieces made by master craftsmen, bespoke
-                rugs, sculptural lighting, and museum-grade art framing.
-              </p>
             </div>
-            <button
-              onClick={() => setModalOpen(true)}
-              className="text-xs font-medium tracking-[0.16em] uppercase text-[#141A23] hover:text-[#A87A36] transition-colors inline-flex items-center gap-1.5 pt-4 border-t border-[#EAE5DC] cursor-pointer"
-            >
-              <span>View Curated Furniture</span>
-              <span>→</span>
-            </button>
-          </div>
 
-          {/* Card 5 (Span 2 cols) */}
-          <div className="lg:col-span-2 bg-white p-8 rounded-2xl border border-[#EAE6DF] flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between text-[10px] tracking-[0.2em] uppercase text-[#8F8B83] pb-4 mb-5 border-b border-[#EAE5DC]">
-                <span>05 / MANAGEMENT</span>
-                <span className="font-serif-luxury text-[#B8893F] tracking-widest">[05]</span>
-              </div>
-              <h3 className="font-serif-luxury text-xl text-[#141A23] font-normal mb-3">
-                Turnkey Execution &amp; Project Coordination
-              </h3>
-              <p className="text-xs text-[#63615C] leading-relaxed mb-6 font-light">
-                Strict site management, white-glove logistics, custom millwork installation
-                governance, and turnkey handover protecting clients from site stress.
-              </p>
-            </div>
-            <button
-              onClick={() => setModalOpen(true)}
-              className="text-xs font-medium tracking-[0.16em] uppercase text-[#141A23] hover:text-[#A87A36] transition-colors inline-flex items-center gap-1.5 pt-4 border-t border-[#EAE5DC] cursor-pointer"
+            {/* Slider Divider Bar */}
+            <div 
+              className="absolute top-0 bottom-0 w-1 bg-[#c5a059] shadow-[0_0_15px_#c5a059] pointer-events-none"
+              style={{ left: `${beforeAfterSlider}%` }}
             >
-              <span>See Our Execution Method</span>
-              <span>→</span>
-            </button>
+              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#c5a059] text-[#0c0d0e] flex items-center justify-center text-xs font-bold shadow-xl">
+                ↔
+              </div>
+            </div>
+
+            {/* Range input */}
+            <input 
+              type="range" 
+              min={0} 
+              max={100} 
+              value={beforeAfterSlider} 
+              onChange={(e) => setBeforeAfterSlider(Number(e.target.value))} 
+              className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" 
+              aria-label="Before and after comparison control"
+            />
           </div>
         </div>
-      </section>
 
-      {/* =========================================================================
-          SECTION 3: CURATED COMMISSIONS (Case Studies matching Image 2)
-         ========================================================================= */}
-      <section id="commissions" className="py-24 px-6 sm:px-8 max-w-7xl mx-auto border-t border-[#EAE6DF]">
-        {/* Header with Filter Pills */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
-          <div>
-            <span className="text-[11px] font-medium tracking-[0.28em] uppercase text-[#8F8B83] block mb-2">
-              ARCHITECTURAL MONOGRAPHS
-            </span>
-            <h2 className="font-serif-luxury text-3xl sm:text-5xl font-normal text-[#141A23]">
-              Curated Commissions
-            </h2>
+        {/* =========================================================================
+            6.1 THE 3 INTERIOR PILLARS (Design, Execution, Specialized)
+           ========================================================================= */}
+        <div className="mb-20">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-[#e2ded6]">
+            <div>
+              <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Disciplines &amp; Craft</span>
+              <h2 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mt-1">
+                Comprehensive Interior Services
+              </h2>
+            </div>
+            <p className="text-xs text-[#6e737c] mt-2 sm:mt-0 max-w-md">
+              Three unified pillars of interior architecture ensuring seamless continuity from conceptual planning to final handover.
+            </p>
           </div>
-          <div className="flex items-center gap-2">
-            {["3 COMPLETED WORKS", "PRIVATE RESIDENCES"].map((f) => (
-              <span
-                key={f}
-                className="text-[10px] tracking-[0.16em] uppercase border border-[#D9D3C7] px-4 py-2 rounded-full font-normal text-[#63615C]"
-              >
-                {f}
-              </span>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Pillar 1: Design Services */}
+            <div className="bg-white rounded-2xl p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6">
+                  <Compass className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-mono tracking-widest uppercase text-[#a6833d] font-semibold">PILLAR 01</span>
+                <h3 className="font-serif-azimute text-2xl text-[#0f1115] mt-1 mb-4">
+                  Design Services
+                </h3>
+                <p className="text-xs text-[#5a5f67] leading-relaxed mb-6 font-light">
+                  Conceptual foundation and technical blueprints tailored to spatial volume, daylight, and client lifestyle.
+                </p>
+                
+                <div className="space-y-4 pt-4 border-t border-[#f0ece3]">
+                  {interiorDisciplines.design.map((item, idx) => (
+                    <div key={idx} className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <Check className="w-3.5 h-3.5 text-[#c5a059] shrink-0" />
+                        <h4 className="text-xs font-semibold text-[#0f1115]">{item.name}</h4>
+                      </div>
+                      <p className="text-[11px] text-[#6e737c] pl-5 leading-relaxed font-light">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-6 mt-6 border-t border-[#f0ece3]">
+                <button
+                  onClick={() => scrollToEnquiry("Design Services (Concept, Space Planning, 3D)")}
+                  className="w-full py-2.5 rounded-xl border border-[#0c0d0e]/20 hover:border-[#0c0d0e] hover:bg-[#faf8f5] text-[#0c0d0e] text-xs uppercase tracking-wider font-semibold transition cursor-pointer text-center"
+                >
+                  Request Design Proposal
+                </button>
+              </div>
+            </div>
+
+            {/* Pillar 2: Execution Services */}
+            <div className="bg-white rounded-2xl p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6">
+                  <Wrench className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-mono tracking-widest uppercase text-[#a6833d] font-semibold">PILLAR 02</span>
+                <h3 className="font-serif-azimute text-2xl text-[#0f1115] mt-1 mb-4">
+                  Execution Services
+                </h3>
+                <p className="text-xs text-[#5a5f67] leading-relaxed mb-6 font-light">
+                  On-site craft mastery, structural transformations, MEP engineering, and artisanal architectural finishes.
+                </p>
+                
+                <div className="space-y-4 pt-4 border-t border-[#f0ece3]">
+                  {interiorDisciplines.execution.map((item, idx) => (
+                    <div key={idx} className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <Check className="w-3.5 h-3.5 text-[#c5a059] shrink-0" />
+                        <h4 className="text-xs font-semibold text-[#0f1115]">{item.name}</h4>
+                      </div>
+                      <p className="text-[11px] text-[#6e737c] pl-5 leading-relaxed font-light">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-6 mt-6 border-t border-[#f0ece3]">
+                <button
+                  onClick={() => scrollToEnquiry("Execution Services (Civil, Carpentry, Electrical, False Ceiling)")}
+                  className="w-full py-2.5 rounded-xl border border-[#0c0d0e]/20 hover:border-[#0c0d0e] hover:bg-[#faf8f5] text-[#0c0d0e] text-xs uppercase tracking-wider font-semibold transition cursor-pointer text-center"
+                >
+                  Request Fit-Out Quote
+                </button>
+              </div>
+            </div>
+
+            {/* Pillar 3: Specialized Services */}
+            <div className="bg-white rounded-2xl p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6">
+                  <Layers className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-mono tracking-widest uppercase text-[#a6833d] font-semibold">PILLAR 03</span>
+                <h3 className="font-serif-azimute text-2xl text-[#0f1115] mt-1 mb-4">
+                  Specialized Services
+                </h3>
+                <p className="text-xs text-[#5a5f67] leading-relaxed mb-6 font-light">
+                  Tailored spatial sectors spanning luxury residences, commercial office suites, retail flagships, and renovations.
+                </p>
+                
+                <div className="space-y-4 pt-4 border-t border-[#f0ece3]">
+                  {interiorDisciplines.specialized.map((item, idx) => (
+                    <div key={idx} className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <Check className="w-3.5 h-3.5 text-[#c5a059] shrink-0" />
+                        <h4 className="text-xs font-semibold text-[#0f1115]">{item.name}</h4>
+                      </div>
+                      <p className="text-[11px] text-[#6e737c] pl-5 leading-relaxed font-light">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-6 mt-6 border-t border-[#f0ece3]">
+                <button
+                  onClick={() => scrollToEnquiry("Specialized Services: Full Turnkey Renovation")}
+                  className="w-full py-2.5 rounded-xl border border-[#0c0d0e]/20 hover:border-[#0c0d0e] hover:bg-[#faf8f5] text-[#0c0d0e] text-xs uppercase tracking-wider font-semibold transition cursor-pointer text-center"
+                >
+                  Discuss Specialized Brief
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            6.2 HIGH-QUALITY PROJECT IMAGES GALLERY
+           ========================================================================= */}
+        <div className="mb-20">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#e2ded6]">
+            <div>
+              <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Monograph Archive</span>
+              <h3 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mt-1">High-Quality Project Gallery</h3>
+            </div>
+            <p className="text-xs text-[#6e737c] mt-2 sm:mt-0 max-w-md">
+              Selected completed interior commissions reflecting material honesty, spatial balance, and quiet refinement.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {interiorProjects.map((p) => (
+              <div key={p.id} className="group overflow-hidden rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059]/50 transition duration-500 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-2xl flex flex-col justify-between">
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img 
+                    src={p.image} 
+                    alt={p.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-700" 
+                  />
+                  <div className="absolute top-4 left-4 bg-[#0c0d0e]/80 backdrop-blur-md px-3.5 py-1 rounded-full text-[10px] tracking-wider uppercase text-[#c5a059] border border-[#c5a059]/30 font-semibold">
+                    {p.category}
+                  </div>
+                  <div className="absolute top-4 right-4 bg-[#0c0d0e]/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] tracking-wider text-white border border-white/10">
+                    {p.year}
+                  </div>
+                </div>
+                <div className="p-6 sm:p-8 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-serif-azimute text-2xl text-[#0f1115]">{p.title}</h4>
+                    <span className="text-xs text-[#c5a059] font-medium">{p.location}</span>
+                  </div>
+                  <p className="text-xs text-[#5a5f67] leading-relaxed font-light">
+                    {p.description}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* 3 Commission Case Studies */}
-        <div className="space-y-16">
-          {/* Commission 1: The Travertine Villa */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-[#EAE6DF] grid grid-cols-1 lg:grid-cols-12 items-center">
-            {/* Image (6 cols) */}
-            <div className="lg:col-span-6 relative h-[360px] sm:h-[480px]">
-              <Image
-                src="/images/travertine-living.jpg"
-                alt="The Travertine Villa Living Room"
-                fill
-                className="object-cover"
-              />
-            </div>
-            {/* Content (6 cols) */}
-            <div className="lg:col-span-6 p-8 sm:p-12 space-y-6">
-              <span className="text-[10px] tracking-[0.2em] uppercase text-[#8F8B83] block">
-                RESIDENTIAL VILLA / ALBAUG COASTLINE
-              </span>
-              <h3 className="font-serif-luxury text-3xl sm:text-4xl font-normal text-[#141A23]">
-                The Travertine Villa
+        {/* =========================================================================
+            6.3 PROJECT ENQUIRY FORM / GET A CONSULTATION CTA
+           ========================================================================= */}
+        <div id="interior-consultation-form" className="p-8 sm:p-12 rounded-3xl bg-[#0c0d0e] border border-[#c5a059]/30 text-white shadow-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-5 space-y-4">
+              <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Atelier Commission Desk</span>
+              <h3 className="font-serif-azimute text-3xl sm:text-4xl text-white">
+                Project Enquiry &amp; Consultation
               </h3>
-              <p className="text-xs sm:text-sm text-[#63615C] leading-relaxed font-light">
-                A serene coastal living project harmonizing indoor-outdoor living, muted acoustic
-                finishes and monolithic stone elements. Warm illumination casts gentle shadows
-                across custom ribbed millwork, curved shearling seating, patinated brass details,
-                and framed garden vistas.
+              <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light">
+                Our principal interior architects accept a curated number of residential, commercial, and renovation commissions each year to maintain uncompromising standards of craftsmanship and personalized custody.
               </p>
 
-              {/* Specs Table */}
-              <div className="border-t border-[#EAE5DC] pt-4 space-y-2 text-xs">
-                <div className="flex justify-between py-1.5 border-b border-[#EAE5DC]/60">
-                  <span className="text-[#8F8B83]">Site Details</span>
-                  <span className="font-normal text-[#141A23]">
-                    Coastal Travertine Villa, Private Estate
-                  </span>
+              <div className="pt-4 space-y-3">
+                <div className="flex items-center gap-3 text-xs text-white/80">
+                  <Check className="w-4 h-4 text-[#c5a059]" />
+                  <span>Complete 3D spatial simulation prior to physical work</span>
                 </div>
-                <div className="flex justify-between py-1.5 border-b border-[#EAE5DC]/60">
-                  <span className="text-[#8F8B83]">Project Scope</span>
-                  <span className="font-normal text-[#141A23]">
-                    Full Interior Architecture &amp; Furniture
-                  </span>
+                <div className="flex items-center gap-3 text-xs text-white/80">
+                  <Check className="w-4 h-4 text-[#c5a059]" />
+                  <span>Direct sourcing of Italian stone &amp; European hardwoods</span>
                 </div>
-                <div className="flex justify-between py-1.5">
-                  <span className="text-[#8F8B83]">Status</span>
-                  <span className="font-normal text-[#141A23]">
-                    Completed &amp; Furnished, 14,800 sq ft
-                  </span>
+                <div className="flex items-center gap-3 text-xs text-white/80">
+                  <Check className="w-4 h-4 text-[#c5a059]" />
+                  <span>Single-point turnkey accountability with warranty</span>
                 </div>
               </div>
 
-              <button
-                onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.2em] uppercase text-[#141A23] hover:text-[#A87A36] transition-colors pt-2 cursor-pointer"
-              >
-                <span>Explore Project Case Study</span>
-                <span>→</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Commission 2: The Skyline Residence */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-[#EAE6DF] grid grid-cols-1 lg:grid-cols-12 items-center">
-            {/* Content (6 cols) */}
-            <div className="lg:col-span-6 p-8 sm:p-12 space-y-6 order-2 lg:order-1">
-              <span className="text-[10px] tracking-[0.2em] uppercase text-[#8F8B83] block">
-                HIGH-RISE PENTHOUSE / BANDRA WEST, MUMBAI
-              </span>
-              <h3 className="font-serif-luxury text-3xl sm:text-4xl font-normal text-[#141A23]">
-                The Skyline Residence
-              </h3>
-              <p className="text-xs sm:text-sm text-[#63615C] leading-relaxed font-light">
-                A minimalist yet warm penthouse designed for elevated urban living. Featuring
-                floor-to-ceiling glass, custom fluted walnut millwork, Calacatta Viola kitchen
-                island, and discreet acoustic insulation creating an oasis above the city.
-              </p>
-
-              {/* Specs Table */}
-              <div className="border-t border-[#EAE5DC] pt-4 space-y-2 text-xs">
-                <div className="flex justify-between py-1.5 border-b border-[#EAE5DC]/60">
-                  <span className="text-[#8F8B83]">Site Details</span>
-                  <span className="font-normal text-[#141A23]">
-                    Waterfront High-Rise, Bandra West
-                  </span>
-                </div>
-                <div className="flex justify-between py-1.5 border-b border-[#EAE5DC]/60">
-                  <span className="text-[#8F8B83]">Scope</span>
-                  <span className="font-normal text-[#141A23]">
-                    Interior Architecture &amp; Art Advisory
-                  </span>
-                </div>
-                <div className="flex justify-between py-1.5">
-                  <span className="text-[#8F8B83]">Area</span>
-                  <span className="font-normal text-[#141A23]">6,450 sq ft</span>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.2em] uppercase text-[#141A23] hover:text-[#A87A36] transition-colors pt-2 cursor-pointer"
-              >
-                <span>Explore Project Case Study</span>
-                <span>→</span>
-              </button>
-            </div>
-
-            {/* Image (6 cols) */}
-            <div className="lg:col-span-6 relative h-[360px] sm:h-[480px] order-1 lg:order-2">
-              <Image
-                src="/images/skyline-dining.jpg"
-                alt="The Skyline Residence Kitchen and Dining"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Commission 3: Serene Sanctuary */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-[#EAE6DF] grid grid-cols-1 lg:grid-cols-12 items-center">
-            {/* Image (6 cols) */}
-            <div className="lg:col-span-6 relative h-[360px] sm:h-[480px]">
-              <Image
-                src="/images/serene-bedroom.jpg"
-                alt="Serene Sanctuary Master Suite"
-                fill
-                className="object-cover"
-              />
-            </div>
-            {/* Content (6 cols) */}
-            <div className="lg:col-span-6 p-8 sm:p-12 space-y-6">
-              <span className="text-[10px] tracking-[0.2em] uppercase text-[#8F8B83] block">
-                HILLSIDE RETREAT / LONAVALA HIGHLANDS
-              </span>
-              <h3 className="font-serif-luxury text-3xl sm:text-4xl font-normal text-[#141A23]">
-                Serene Sanctuary
-              </h3>
-              <p className="text-xs sm:text-sm text-[#63615C] leading-relaxed font-light">
-                A restful master suite and private pavilion immersed in forest views. Tactile
-                limewashed walls, solid oak platforms, custom acoustic headboard, and subtle
-                recessed ambient light bands foster deep recovery.
-              </p>
-
-              {/* Specs Table */}
-              <div className="border-t border-[#EAE5DC] pt-4 space-y-2 text-xs">
-                <div className="flex justify-between py-1.5 border-b border-[#EAE5DC]/60">
-                  <span className="text-[#8F8B83]">Site Details</span>
-                  <span className="font-normal text-[#141A23]">
-                    Mountain Estate, Forest Ridge
-                  </span>
-                </div>
-                <div className="flex justify-between py-1.5 border-b border-[#EAE5DC]/60">
-                  <span className="text-[#8F8B83]">Scope</span>
-                  <span className="font-normal text-[#141A23]">
-                    Master Bedroom Pavilion &amp; Wellness Suite
-                  </span>
-                </div>
-                <div className="flex justify-between py-1.5">
-                  <span className="text-[#8F8B83]">Area</span>
-                  <span className="font-normal text-[#141A23]">4,200 sq ft</span>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.2em] uppercase text-[#141A23] hover:text-[#A87A36] transition-colors pt-2 cursor-pointer"
-              >
-                <span>Explore Project Case Study</span>
-                <span>→</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 4: THE ARCHITECTURAL APPROACH (Process & Stats matching Image 2)
-         ========================================================================= */}
-      <section className="py-24 px-6 sm:px-8 max-w-7xl mx-auto border-t border-[#EAE6DF]">
-        <div className="max-w-3xl mb-16">
-          <span className="text-[11px] font-medium tracking-[0.28em] uppercase text-[#8F8B83] block mb-2">
-            METHODOLOGY
-          </span>
-          <h2 className="font-serif-luxury text-3xl sm:text-5xl font-normal text-[#141A23] mb-4">
-            The Architectural Approach
-          </h2>
-          <p className="text-sm sm:text-base text-[#63615C] leading-relaxed font-light">
-            Every project develops from well-honed intuition of space, structure, and integrity, for
-            the harmony and enduring serenity of execution.
-          </p>
-        </div>
-
-        {/* 3 Step Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {[
-            {
-              step: "01",
-              title: "Discovery & Materiality",
-              desc: "We begin with deep contextual listening, understanding your domestic rituals, light preferences, and daily cadence. We develop a tailored materiality palette.",
-              milestones: "Spatial Briefing • Sensory Moodboards • Limestone Selections",
-            },
-            {
-              step: "02",
-              title: "Spatial Geometry",
-              desc: "Translating your brief into millimeter-accurate spatial schematics. We resolve ceiling datum lines, electrical layouts, air vents, and sightlines.",
-              milestones: "3D Spatial Models • Lighting Environment • Full Joinery Elevation",
-            },
-            {
-              step: "03",
-              title: "Artisanal Execution",
-              desc: "Our master craftspeople and project architects oversee execution on site. From slab selection at the quarry to bespoke joinery installation, we maintain quality.",
-              milestones: "Quarry Supervision • White-Glove Installation • Turnkey Handover",
-            },
-          ].map((item) => (
-            <div
-              key={item.step}
-              className="bg-white p-8 rounded-2xl border border-[#EAE6DF] flex flex-col justify-between"
-            >
-              <div>
-                <span className="font-serif-luxury text-3xl text-[#A87A36] block mb-3 font-normal">
-                  {item.step}
-                </span>
-                <h3 className="font-serif-luxury text-2xl font-normal text-[#141A23] mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-[#63615C] leading-relaxed mb-6 font-light">{item.desc}</p>
-              </div>
-              <div className="pt-4 border-t border-[#EAE5DC] text-[10px] tracking-wider uppercase text-[#8F8B83] font-light">
-                {item.milestones}
+              {/* Direct WhatsApp CTA */}
+              <div className="pt-6">
+                <a
+                  href="https://wa.me/919820001234?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20discuss%20an%20interior%20design%20consultation."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
+                >
+                  <MessageCircle className="w-4 h-4 fill-current" />
+                  <span>Chat on WhatsApp Directly</span>
+                </a>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-[#EAE6DF] text-center">
-          <div>
-            <p className="font-serif-luxury text-4xl text-[#141A23] font-normal">100%</p>
-            <p className="text-[10px] tracking-[0.2em] uppercase text-[#8F8B83] mt-1 font-light">
-              BESPOKE BLUEPRINTS
-            </p>
-          </div>
-          <div>
-            <p className="font-serif-luxury text-4xl text-[#141A23] font-normal">38</p>
-            <p className="text-[10px] tracking-[0.2em] uppercase text-[#8F8B83] mt-1 font-light">
-              ATELIER COMMISSIONS
-            </p>
-          </div>
-          <div>
-            <p className="font-serif-luxury text-4xl text-[#141A23] font-normal">14</p>
-            <p className="text-[10px] tracking-[0.2em] uppercase text-[#8F8B83] mt-1 font-light">
-              QUARRY PARTNERSHIPS
-            </p>
-          </div>
-          <div>
-            <p className="font-serif-luxury text-4xl text-[#141A23] font-normal">0</p>
-            <p className="text-[10px] tracking-[0.2em] uppercase text-[#8F8B83] mt-1 font-light">
-              COMPROMISED ELEMENTS
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 5: DARK CTA (Begin the Architecture of Your Next Residence)
-         ========================================================================= */}
-      <section className="bg-[#121212] text-[#FAF8F5] py-24 sm:py-32 px-6 sm:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Text */}
-          <div className="lg:col-span-7 space-y-6">
-            <span className="text-[11px] font-medium tracking-[0.28em] uppercase text-[#C29246] block">
-              • COMMISSION AN ATELIER
-            </span>
-            <h2 className="font-serif-luxury text-4xl sm:text-6xl font-normal leading-[1.12]">
-              Begin the Architecture <br />
-              <span className="italic font-light text-[#C29246]">of Your Next Residence.</span>
-            </h2>
-            <p className="text-sm sm:text-base leading-relaxed text-[#B3AEA2] max-w-xl font-light">
-              We accept a strictly limited number of private residential commissions annually to
-              guarantee intensive oversight from principal partners. Schedule a confidential design
-              conversation at our studio or private residence.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
-              <button
-                onClick={() => setModalOpen(true)}
-                className="w-full sm:w-auto bg-[#FAF8F5] hover:bg-white text-[#121212] text-xs tracking-[0.2em] uppercase px-8 py-4 rounded-full font-medium transition-colors cursor-pointer"
-              >
-                SCHEDULE STUDIO VISIT
-              </button>
-              <button
-                onClick={() => setModalOpen(true)}
-                className="w-full sm:w-auto border border-[#444440] hover:border-white text-white text-xs tracking-[0.2em] uppercase px-8 py-4 rounded-full font-light transition-colors cursor-pointer"
-              >
-                ATELIER SPECIFICATION BROCHURE
-              </button>
-            </div>
-          </div>
-
-          {/* Right Dark Form matching Image 2 */}
-          <div className="lg:col-span-5">
-            <div className="bg-[#1C1C1A] text-[#FAF8F5] rounded-2xl p-8 sm:p-10 border border-[#2E2E2A]">
+            {/* Interactive Interior Form */}
+            <div className="lg:col-span-7 bg-[#131518] p-6 sm:p-8 rounded-2xl border border-white/10">
               {formSubmitted ? (
-                <div className="py-8 text-center space-y-3">
-                  <h3 className="font-serif-luxury text-2xl font-normal">Application Received</h3>
-                  <p className="text-xs text-[#A69F8E] font-light leading-relaxed">
-                    Our Senior Design Principal will review your spatial scope and contact you
-                    within 24 hours.
+                <div className="p-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-2">
+                  <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
+                  <h4 className="font-serif-azimute text-xl text-white">Interior Brief Received</h4>
+                  <p className="text-xs text-white/70 max-w-sm mx-auto">
+                    Thank you. Our design director will review your brief and schedule an exploratory virtual or in-person design consultation.
                   </p>
+                  <button 
+                    onClick={() => setFormSubmitted(false)}
+                    className="mt-3 px-5 py-2 rounded-full bg-[#c5a059] text-[#0c0d0e] text-xs font-semibold uppercase tracking-wider hover:bg-white transition cursor-pointer"
+                  >
+                    Submit Another Brief
+                  </button>
                 </div>
               ) : (
-                <div>
-                  <h3 className="font-serif-luxury text-2xl font-normal mb-1">Atelier Inquiry</h3>
-                  <p className="text-xs text-[#A69F8E] mb-6 font-light">
-                    Direct access to design principals. Non-disclosure bilateral agreements
-                    guaranteed.
-                  </p>
-
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      setFormSubmitted(true);
-                    }}
-                    className="space-y-4"
-                  >
+                <form onSubmit={(e) => { e.preventDefault(); setFormSubmitted(true); }} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[10px] tracking-wider uppercase text-[#A69F8E] block mb-1">
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. Dr. Arishta Mehta"
-                        value={atelierForm.name}
-                        onChange={(e) => setAtelierForm({ ...atelierForm, name: e.target.value })}
-                        className="w-full bg-[#272724] border border-[#3A3A35] focus:border-[#C29246] px-4 py-2.5 rounded-lg text-xs text-white focus:outline-none"
+                      <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Your Name</label>
+                      <input 
+                        type="text" 
+                        required 
+                        value={contactForm.name} 
+                        onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })} 
+                        placeholder="e.g. Priya Kapur"
+                        className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
                       />
                     </div>
-
                     <div>
-                      <label className="text-[10px] tracking-wider uppercase text-[#A69F8E] block mb-1">
-                        Email Address
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="name@domain.com"
-                        value={atelierForm.email}
-                        onChange={(e) => setAtelierForm({ ...atelierForm, email: e.target.value })}
-                        className="w-full bg-[#272724] border border-[#3A3A35] focus:border-[#C29246] px-4 py-2.5 rounded-lg text-xs text-white focus:outline-none"
+                      <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Email Address</label>
+                      <input 
+                        type="email" 
+                        required 
+                        value={contactForm.email} 
+                        onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })} 
+                        placeholder="priya@design.com"
+                        className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
                       />
                     </div>
+                  </div>
 
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[10px] tracking-wider uppercase text-[#A69F8E] block mb-1">
-                        Project Scope
-                      </label>
-                      <select
-                        value={atelierForm.projectType}
-                        onChange={(e) =>
-                          setAtelierForm({ ...atelierForm, projectType: e.target.value })
-                        }
-                        className="w-full bg-[#272724] border border-[#3A3A35] focus:border-[#C29246] px-3.5 py-2.5 rounded-lg text-xs text-white focus:outline-none"
+                      <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Phone / WhatsApp</label>
+                      <input 
+                        type="tel" 
+                        required 
+                        value={contactForm.phone} 
+                        onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })} 
+                        placeholder="+91 98200 00000"
+                        className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Desired Service Category</label>
+                      <select 
+                        value={contactForm.service}
+                        onChange={(e) => setContactForm({ ...contactForm, service: e.target.value })}
+                        className="w-full px-4 py-2.5 rounded-xl bg-[#0c0d0e] border border-white/15 text-white text-xs focus:border-[#c5a059] outline-none transition"
                       >
-                        <option>Full Residential Interior Architecture</option>
-                        <option>Bespoke Penthouse Joinery &amp; Millwork</option>
-                        <option>Turnkey Coastal Villa Transformation</option>
-                        <option>Master Suite &amp; Wellness Sanctuary</option>
+                        <option value="Design Services (Concept, Space Planning, 3D)">Design Services (Concept, Space Planning, 3D)</option>
+                        <option value="Execution Services (Civil, Carpentry, Electrical, False Ceiling)">Execution Services (Civil, Carpentry, Electrical, False Ceiling)</option>
+                        <option value="Specialized Services: Residential (Villas &amp; Penthouses)">Specialized Services: Residential (Villas &amp; Penthouses)</option>
+                        <option value="Specialized Services: Commercial &amp; Executive Suites">Specialized Services: Commercial &amp; Executive Suites</option>
+                        <option value="Specialized Services: Retail &amp; Hospitality">Specialized Services: Retail &amp; Hospitality</option>
+                        <option value="Specialized Services: Furniture Design">Specialized Services: Furniture Design</option>
+                        <option value="Specialized Services: Full Turnkey Renovation">Specialized Services: Full Turnkey Renovation</option>
                       </select>
                     </div>
+                  </div>
 
-                    <div className="pt-2">
-                      <button
-                        type="submit"
-                        className="w-full bg-[#C29246] hover:bg-[#A87A36] text-[#121212] text-xs tracking-[0.2em] uppercase py-3.5 rounded-xl font-medium transition-colors cursor-pointer"
-                      >
-                        APPLY FOR COMMISSION
-                      </button>
-                    </div>
-                  </form>
-                </div>
+                  <div>
+                    <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Space Dimensions &amp; Project Vision</label>
+                    <textarea 
+                      rows={3} 
+                      value={contactForm.message} 
+                      onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })} 
+                      placeholder="Detail the approximate square footage, current state (raw shell / renovation), and preferred aesthetic palette..."
+                      className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
+                    />
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className="w-full py-3.5 rounded-xl bg-[#c5a059] hover:bg-white text-[#0c0d0e] font-semibold text-xs uppercase tracking-widest transition cursor-pointer shadow-lg"
+                  >
+                    Get a Consultation · Initiate Brief
+                  </button>
+                </form>
               )}
             </div>
           </div>
         </div>
       </section>
-
-      {/* Global Consultation Modal */}
-      <EnquiryModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        initialInterest="INTERIOR DESIGN"
-      />
     </div>
   );
 }
