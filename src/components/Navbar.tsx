@@ -36,7 +36,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#0c0d0e]/95 backdrop-blur-md border-b border-[#c5a059]/25 shadow-2xl py-3.5 sm:py-4"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#0c0d0e]/95 backdrop-blur-md border-b border-[#c5a059]/25 shadow-2xl py-3 sm:py-3.5"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
         {/* Brand / Logo */}
@@ -47,9 +47,9 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
               window.scrollTo({ top: 0, left: 0, behavior: "instant" });
             }
           }}
-          className="flex items-center gap-3.5 group"
+          className="flex items-center gap-3 group py-1 px-1.5 transition-all"
         >
-          <div className="relative h-14 w-48 sm:h-16 sm:w-56 transition-opacity group-hover:opacity-90">
+          <div className="relative h-9 w-32 sm:h-10 sm:w-36 md:h-11 md:w-40 transition-transform duration-300 group-hover:scale-[1.02]">
             <Image
               src="/images/logo-light.png"
               alt="Sunrise Properties & Interior Design"
@@ -116,7 +116,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[65px] bg-[#0c0d0e]/98 backdrop-blur-xl border-b border-[#c5a059]/25 py-6 px-6 shadow-2xl">
+        <div className="lg:hidden absolute inset-x-0 top-full bg-[#0c0d0e]/98 backdrop-blur-xl border-b border-[#c5a059]/25 py-6 px-6 shadow-2xl">
           <nav className="flex flex-col gap-4">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;

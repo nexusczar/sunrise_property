@@ -916,20 +916,20 @@ export default function App() {
           : 'opacity-100 translate-y-0 visible'
       } ${
         showNavbarBg 
-          ? 'bg-[#0c0d0e]/95 backdrop-blur-md border-b border-[#c5a059]/25 shadow-2xl py-3.5 sm:py-4' 
-          : 'bg-transparent border-transparent py-4 sm:py-5'
+          ? 'bg-[#0c0d0e]/95 backdrop-blur-md border-b border-[#c5a059]/25 shadow-2xl py-3 sm:py-3.5' 
+          : 'bg-transparent border-transparent py-3.5 sm:py-4.5'
       }`}>
         {/* Brand Logo from public/images/logo-light.png */}
         <button 
           type="button"
           onClick={() => navigateTo('home')} 
-          className="flex items-center gap-3.5 group cursor-pointer transition text-left"
+          className="flex items-center gap-3.5 group cursor-pointer transition text-left py-1 px-1.5"
           aria-label="Sunrise Property Home"
         >
           <img 
             src="/images/logo-light.png" 
             alt="Sunrise Property - Properties & Interior Design" 
-            className="h-14 sm:h-16 md:h-20 w-auto object-contain drop-shadow transition-transform duration-300 group-hover:scale-105" 
+            className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto object-contain drop-shadow transition-transform duration-300 group-hover:scale-105" 
           />
         </button>
 
