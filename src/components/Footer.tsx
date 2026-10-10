@@ -18,9 +18,9 @@ export default function Footer() {
           <div className="lg:col-span-5 flex flex-col justify-between pr-0 lg:pr-8">
             <div>
               <div className="mb-5">
-                <div className="relative h-12 w-44">
+                <div className="relative h-16 w-56">
                   <Image
-                    src="/images/logo-transparent.png"
+                    src="/images/logo-light.png"
                     alt="Sunrise Properties & Interior Design"
                     fill
                     className="object-contain object-left"

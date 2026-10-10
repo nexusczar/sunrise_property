@@ -21,20 +21,22 @@ const sansFont = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Azimute — Your Next Horizon | ASL",
+  title: "Sunrise Property | Real Estate & Interior Design",
   description:
-    "Discover Azimute Residences by ASL in Vila Vitória, Mauá. Apartments featuring 63 and 67 m², 2 bedrooms, 1 master suite, and private gourmet balconies.",
+    "Sunrise Property unites prime real estate advisory with bespoke architectural interior design. Featured developments in Greater Noida including Ashtech Presidential, Godrej Majesty, and Grandthum.",
   keywords: [
-    "Azimute Residences",
-    "ASL Developer",
-    "Vila Vitória Mauá",
-    "Luxury Apartments Mauá",
-    "ASL Development",
+    "Sunrise Property",
+    "Real Estate Greater Noida",
+    "Ashtech Presidential",
+    "Godrej Majesty",
+    "Grandthum Group 108",
+    "Interior Design Greater Noida",
+    "Turnkey Interiors",
   ],
   openGraph: {
-    title: "Azimute — Your Next Horizon | ASL",
+    title: "Sunrise Property | Real Estate & Interior Design",
     description:
-      "Discover Azimute Residences by ASL in Vila Vitória, Mauá. Apartments featuring 63 and 67 m², 2 bedrooms, 1 master suite, and private gourmet balconies.",
+      "Premier real estate brokerage and bespoke interior architecture in Greater Noida.",
     type: "website",
   },
 };
@@ -49,11 +51,10 @@ export default function RootLayout({
       lang="en"
       className={`${serifFont.variable} ${sansFont.variable} scroll-smooth antialiased`}
     >
-      <body className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#181716] font-sans selection:bg-[#E2D7C5]">
+      <body className="min-h-screen flex flex-col bg-[#211f1c] text-[#f3f0e9] font-sans selection:bg-[#c4a386] selection:text-[#211f1c]">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
-        <WhatsAppConcierge />
       </body>
     </html>
   );

@@ -1,13 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&family=Marcellus&display=swap');
 @import "tailwindcss";
 
-:root {
-  --paper: #f3f0e9;
-  --ink: #262825;
-  --muted: #68665e;
-  --copper: #87654c;
-  --line: #534d432d;
-  --gutter: 6.25vw;
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/assets/fonts/instrument-serif.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/assets/fonts/instrument-serif-italic.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Marcellus';
+  src: url('/assets/fonts/marcellus.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/assets/fonts/dm-sans.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 400;
 }
 
 @layer base {
@@ -15,9 +33,9 @@
     scroll-behavior: smooth;
   }
   body {
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: var(--ink);
-    background: var(--paper);
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    color: #f7f5f0;
+    background: #171d1c;
     margin: 0;
     overflow-x: hidden;
   }
@@ -29,4 +47,36 @@
 
 .font-marcellus {
   font-family: 'Marcellus', Georgia, serif;
+}
+
+.font-dm-sans {
+  font-family: 'DM Sans', sans-serif;
+}
+
+@keyframes scrollCue {
+  0% {
+    transform: translateY(-40px);
+  }
+  100% {
+    transform: translateY(65px);
+  }
+}
+
+.animate-scroll-cue {
+  animation: scrollCue 2s ease infinite;
+}
+
+/* Custom scrollbar for premium touch */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #171d1c;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a3432;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cbb18d;
 }

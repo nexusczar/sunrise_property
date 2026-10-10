@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 export default function WhatsAppConcierge() {
   const pathname = usePathname();
-  if (pathname === "/") return null;
+  if (!pathname || pathname === "/" || pathname === "") return null;
 
   const [hovered, setHovered] = useState(false);
   const phoneNumber = "919820001234";
