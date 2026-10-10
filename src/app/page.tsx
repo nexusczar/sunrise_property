@@ -16,7 +16,6 @@ import {
   MessageCircle, 
   Building2, 
   Paintbrush, 
-  Sparkles, 
   Check, 
   Copy, 
   X, 
@@ -197,7 +196,7 @@ function HomeHeroSection({ setShowAnimationsModal, simulateScroll }: HomeHeroSec
               onClick={(e) => { e.preventDefault(); simulateScroll(0.66); }}
             >
               <span className="tracking-wide">Explore Collection</span>
-              <span className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-white/50 flex items-center justify-center text-lg sm:text-xl group-hover:bg-[#c5a059] group-hover:text-[#0c0d0e] group-hover:border-[#c5a059] transition duration-300 bg-black/10">
+              <span className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl border border-white/50 flex items-center justify-center text-lg sm:text-xl group-hover:bg-[#c5a059] group-hover:text-[#0c0d0e] group-hover:border-[#c5a059] transition duration-300 bg-black/10">
                 ↓
               </span>
             </a>
@@ -306,7 +305,7 @@ function HomeHeroSection({ setShowAnimationsModal, simulateScroll }: HomeHeroSec
           <button
             type="button"
             onClick={() => setShowAnimationsModal(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#0c0d0e]/85 hover:bg-[#0c0d0e] backdrop-blur-md border border-white/20 text-[#faf8f5] text-xs tracking-wider transition shadow-2xl cursor-pointer hover:border-[#c5a059]"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0c0d0e]/85 hover:bg-[#0c0d0e] backdrop-blur-md border border-white/20 text-[#faf8f5] text-xs tracking-wider transition shadow-2xl cursor-pointer hover:border-[#c5a059]"
             aria-label="Open timeline controls"
           >
             <span className="font-mono text-[11px] text-[#c5a059]">||</span>
@@ -542,10 +541,10 @@ export default function App() {
       status: 'Under Construction',
       statusColor: 'bg-amber-500/10 text-amber-600 border-amber-500/30',
       location: 'Greater Noida, Sector 12',
-      price: '₹26.1 L – ₹48.5 L',
+      price: '₹26.1 L - ₹48.5 L',
       type: 'Residential Apartments',
       beds: '1, 2 & 3 BHK',
-      area: '650 – 1,450 SQ FT',
+      area: '650 - 1,450 SQ FT',
       image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
       description: 'Sophisticated multi-tier residential development with Olympic-grade clubhouse, private elevators, landscaped sky balconies, and supreme sector connectivity.',
       highlights: ['Prime Sector 12 Connectivity', 'Clubhouse & Gymnasium', 'Children Play Zone', '24x7 Tier-3 Security']
@@ -559,10 +558,10 @@ export default function App() {
       status: 'Ready to Move',
       statusColor: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30',
       location: 'Greater Noida, Sector 27',
-      price: '₹1.90 Cr – ₹4 Cr',
+      price: '₹1.90 Cr - ₹4 Cr',
       type: '2, 3 & 4 BHK Apartments',
       beds: '2, 3 & 4 BHK',
-      area: '1,950 – 3,800 SQ FT',
+      area: '1,950 - 3,800 SQ FT',
       image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
       description: 'Ultra-luxury high-rise sanctuary by Godrej Properties featuring Olympic-grade amenities, infinity pool, and panoramic forest corridor vistas.',
       highlights: ['Forest Views & Clean Air', 'Immediate Possession Available', 'Olympic Length Lap Pool', 'White-Glove Concierge']
@@ -576,10 +575,10 @@ export default function App() {
       status: 'Under Construction',
       statusColor: 'bg-amber-500/10 text-amber-600 border-amber-500/30',
       location: 'Techzone 4, Greater Noida West',
-      price: '₹50 L – ₹3 Cr',
+      price: '₹50 L - ₹3 Cr',
       type: 'Office Spaces, Studio Apartments & Retail Shops',
       beds: 'Studio, Retail & Office',
-      area: '550 – 4,800 SQ FT',
+      area: '550 - 4,800 SQ FT',
       image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
       description: 'Iconic twin-tower commercial and mixed-use landmark featuring an artificial water canal boulevard, dining decks, and retail high street.',
       highlights: ['Iconic Twin-Tower Landmark', 'Canal Dining Boulevard', 'High-Footfall Retail Street', 'Grade-A Corporate Offices']
@@ -811,7 +810,7 @@ export default function App() {
             {/* Skip Button */}
             <button
               onClick={() => setEntranceActive(false)}
-              className="absolute top-8 right-8 text-xs tracking-wider uppercase text-white/70 hover:text-white flex items-center gap-1.5 transition cursor-pointer px-4 py-2 rounded-full border border-white/15 hover:border-[#c5a059]/50"
+              className="absolute top-8 right-8 text-xs tracking-wider uppercase text-white/70 hover:text-white flex items-center gap-1.5 transition cursor-pointer px-4 py-2 rounded-xl border border-white/15 hover:border-[#c5a059]/50"
             >
               <span>Skip Intro</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -890,7 +889,7 @@ export default function App() {
           <button
             type="button"
             onClick={() => navigateTo('contact')}
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#c5a059]/40 hover:border-[#c5a059] bg-[#c5a059]/10 hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] text-xs uppercase tracking-widest font-medium transition cursor-pointer shadow-sm"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-xl border border-[#c5a059]/40 hover:border-[#c5a059] bg-[#c5a059]/10 hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] text-xs uppercase tracking-widest font-medium transition cursor-pointer shadow-sm"
           >
             <span>Enquire</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -945,9 +944,13 @@ export default function App() {
           {/* ============================================================ */}
           <section id="intro-services" className="bg-[#faf8f5] text-[#0f1115] py-24 sm:py-32 px-[6.25vw] relative z-40 shadow-[0_-35px_80px_rgba(0,0,0,0.7)]">
             <div className="max-w-[1500px] mx-auto">
-              <div className="flex items-center justify-between text-xs tracking-[0.2em] uppercase text-[#6e737c] border-b border-[#e2ded6] pb-5 mb-14">
-                <span className="font-semibold text-[#0f1115]">01 / ABOUT US</span>
-                <span>OFFICE A-722, GRANDTHUM · TECHZONE 4, GREATER NOIDA WEST</span>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs tracking-[0.2em] uppercase text-[#8a8f98] pb-4 mb-14 gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#c5a059]"></span>
+                  <span className="font-semibold text-[#0f1115]">Sunrise Property Atelier</span>
+                  <span className="text-[#c5a059]">· Real Estate &amp; Interior Architecture</span>
+                </div>
+                <span>OFFICE A-722, GRANDTHUM · GREATER NOIDA WEST</span>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
@@ -1007,7 +1010,7 @@ export default function App() {
               {/* ============================================================ */}
               {/* 3.2 HOME SECTION 02: OUR SERVICES                            */}
               {/* ============================================================ */}
-              <div className="border-t border-[#e2ded6] pt-20 mb-24">
+              <div className="pt-20 sm:pt-28 mb-24">
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-14">
                   <div>
                     <span className="text-xs tracking-widest uppercase text-[#c5a059] font-semibold">
@@ -1133,7 +1136,7 @@ export default function App() {
               {/* ============================================================ */}
               {/* 3.3 HOME SECTION 03: FEATURED PROPERTIES                     */}
               {/* ============================================================ */}
-              <div className="border-t border-[#e2ded6] pt-20">
+              <div className="pt-20 sm:pt-28">
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
                   <div>
                     <span className="text-xs tracking-widest uppercase text-[#c5a059] font-semibold">
@@ -1219,137 +1222,11 @@ export default function App() {
                 </div>
               </div>
 
-            </div>
-          </section>
-
-          {/* ============================================================ */}
-          {/* 3.4 HOME SECTION 04: INTERIOR PROJECTS / PORTFOLIO           */}
-          {/* ============================================================ */}
-          <section className="bg-[#0c0d0e] py-24 sm:py-32 px-[6.25vw] text-white border-t border-white/10">
-            <div className="max-w-[1500px] mx-auto">
-              
-              {/* Header and Narrative */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end mb-16">
-                <div className="lg:col-span-7 space-y-4">
-                  <span className="text-xs tracking-widest uppercase text-[#c5a059]">
-                    Bespoke Interior Architecture
-                  </span>
-                  <h3 className="font-serif-azimute text-4xl sm:text-6xl leading-tight">
-                    Interior Projects &amp; Portfolio
-                  </h3>
-                  <p className="text-sm sm:text-base text-white/70 leading-relaxed font-light max-w-2xl">
-                    Every project is conceived as an architectural monograph crafted to elevate daily existence. From tactile stone hearths to integrated fluted woodwork and museum-grade lighting.
-                  </p>
-                </div>
-                <div className="lg:col-span-5 flex lg:justify-end">
-                  <button 
-                    onClick={() => navigateTo('interior')}
-                    className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-[#c5a059] hover:bg-white text-[#0c0d0e] font-medium text-xs uppercase tracking-wider transition cursor-pointer shadow-lg"
-                  >
-                    <span>View All Interior Projects</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Interactive Before & After Comparison Slider */}
-              <div className="mb-20">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-white/10 gap-2">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-[#c5a059]" />
-                    <h4 className="font-serif-azimute text-2xl text-white">Spatial Transformation (Before &amp; After)</h4>
-                  </div>
-                  <span className="text-xs text-[#c5a059]">← Drag the center handle to compare →</span>
-                </div>
-                
-                <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden border border-white/15 select-none shadow-2xl">
-                  {/* After image (Underneath) */}
-                  <img 
-                    src="/images/travertine-living.jpg" 
-                    alt="Finished Luxury Travertine Interior" 
-                    className="absolute inset-0 w-full h-full object-cover" 
-                  />
-                  <div className="absolute top-4 right-4 bg-[#0c0d0e]/80 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs text-white border border-white/20">
-                    After (Turnkey Finished)
-                  </div>
-
-                  {/* Before image (Clipped) */}
-                  <div 
-                    className="absolute inset-0 overflow-hidden" 
-                    style={{ clipPath: `inset(0 ${100 - beforeAfterSlider}% 0 0)` }}
-                  >
-                    <img 
-                      src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1400&q=80" 
-                      alt="Raw Masonry Before Interior Design" 
-                      className="absolute inset-0 w-full h-full object-cover filter grayscale contrast-125 brightness-75" 
-                    />
-                    <div className="absolute top-4 left-4 bg-[#0c0d0e]/80 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs text-[#c5a059] border border-[#c5a059]/30">
-                      Before (Raw Shell Structure)
-                    </div>
-                  </div>
-
-                  {/* Slider Divider Bar */}
-                  <div 
-                    className="absolute top-0 bottom-0 w-1 bg-[#c5a059] shadow-[0_0_15px_#c5a059] pointer-events-none"
-                    style={{ left: `${beforeAfterSlider}%` }}
-                  >
-                    <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#c5a059] text-[#0c0d0e] flex items-center justify-center text-xs font-bold shadow-xl">
-                      ↔
-                    </div>
-                  </div>
-
-                  {/* Range input */}
-                  <input 
-                    type="range" 
-                    min={0} 
-                    max={100} 
-                    value={beforeAfterSlider} 
-                    onChange={(e) => setBeforeAfterSlider(Number(e.target.value))} 
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" 
-                    aria-label="Before and after slider"
-                  />
-                </div>
-              </div>
-
-              {/* Interior Portfolio 4-Card Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {interiorProjects.map((p) => (
-                  <div key={p.id} className="group overflow-hidden rounded-2xl bg-[#131518] border border-white/10 hover:border-[#c5a059]/40 transition duration-500 shadow-xl">
-                    <div className="relative aspect-[16/10] overflow-hidden">
-                      <img 
-                        src={p.image} 
-                        alt={p.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition duration-700" 
-                      />
-                      <div className="absolute top-4 left-4 bg-[#0c0d0e]/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] tracking-wider uppercase text-[#c5a059] border border-[#c5a059]/30">
-                        {p.category}
-                      </div>
-                      <div className="absolute top-4 right-4 bg-[#0c0d0e]/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] tracking-wider text-white/80 border border-white/10">
-                        {p.year}
-                      </div>
-                    </div>
-                    <div className="p-6 sm:p-8 space-y-3">
-                      <div className="flex items-center justify-between">
-                        <h4 className="font-serif-azimute text-2xl sm:text-3xl text-white">{p.title}</h4>
-                        <span className="text-xs text-[#c5a059]">{p.location}</span>
-                      </div>
-                      <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light">
-                        {p.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-            </div>
-          </section>
-
-          {/* ============================================================ */}
-          {/* 3.5 HOME SECTION 05: WHY CHOOSE US                           */}
-          {/* ============================================================ */}
-          <section className="bg-[#faf8f5] py-24 sm:py-32 px-[6.25vw] text-[#0f1115] border-t border-[#e2ded6]">
-            <div className="max-w-[1500px] mx-auto">
-              <div className="text-center max-w-3xl mx-auto mb-16">
+              {/* ============================================================ */}
+              {/* 3.4 HOME SECTION 04: WHY CHOOSE US                           */}
+              {/* ============================================================ */}
+              <div className="pt-24 sm:pt-32">
+                <div className="text-center max-w-3xl mx-auto mb-16">
                 <span className="text-xs tracking-widest uppercase text-[#c5a059] font-semibold">Our Distinctive Edge</span>
                 <h3 className="font-serif-azimute text-4xl sm:text-5xl text-[#0f1115] mt-2">
                   Why Choose Sunrise Property
@@ -1377,7 +1254,7 @@ export default function App() {
                 </div>
 
                 <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] group">
-                  <Sparkles className="w-8 h-8 text-[#c5a059] mb-4 group-hover:scale-110 transition" />
+                  <Paintbrush className="w-8 h-8 text-[#c5a059] mb-4 group-hover:scale-110 transition" />
                   <h4 className="font-serif-azimute text-xl mb-2 text-[#0f1115]">Quality Design</h4>
                   <p className="text-xs text-[#5a5f67] leading-relaxed">
                     Bespoke architectural space planning, photorealistic 3D visualization, superior material specifications, and uncompromising craftsmanship.
@@ -1393,13 +1270,18 @@ export default function App() {
                 </div>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
           {/* ============================================================ */}
-          {/* 3.6 HOME SECTION 06: ENQUIRY / CALL-TO-ACTION BANNER         */}
+          {/* 3.5 HOME SECTION 05: ENQUIRY / CALL-TO-ACTION BANNER         */}
           {/* ============================================================ */}
-          <section className="bg-[#0c0d0e] py-20 px-[6.25vw] text-white border-t border-b border-[#c5a059]/20">
-            <div className="max-w-[1500px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+          <section className="relative py-20 px-[6.25vw] text-white border-t border-b border-[#c5a059]/25 bg-[#07090e]/85 backdrop-blur-3xl overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]">
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              <div className="absolute -top-24 right-1/4 w-96 h-96 bg-[radial-gradient(circle,rgba(197,160,89,0.15),transparent_70%)] blur-2xl" />
+              <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] via-transparent to-black/40" />
+            </div>
+            <div className="relative z-10 max-w-[1500px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="max-w-2xl">
                 <span className="text-xs tracking-widest uppercase text-[#c5a059]">Private Concierge Desk</span>
                 <h3 className="font-serif-azimute text-3xl sm:text-5xl mt-2 text-white">
@@ -1414,14 +1296,14 @@ export default function App() {
                   href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20services."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white font-medium text-xs uppercase tracking-widest flex items-center gap-2 shadow-xl transition cursor-pointer"
+                  className="px-8 py-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-xs uppercase tracking-widest flex items-center gap-2 shadow-xl transition cursor-pointer"
                 >
                   <MessageCircle className="w-4 h-4 fill-current" />
                   <span>WhatsApp Concierge</span>
                 </a>
                 <button 
                   onClick={() => navigateTo('contact')}
-                  className="px-8 py-4 rounded-full bg-transparent hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] border border-[#c5a059]/50 hover:border-[#c5a059] text-xs uppercase tracking-widest font-medium transition cursor-pointer shadow-sm"
+                  className="px-8 py-4 rounded-xl bg-transparent hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] border border-[#c5a059]/50 hover:border-[#c5a059] text-xs uppercase tracking-widest font-semibold transition cursor-pointer shadow-sm"
                 >
                   Contact Form
                 </button>
@@ -1586,7 +1468,7 @@ export default function App() {
                       {idx === 1 && <Building2 className="w-5 h-5" />}
                       {idx === 2 && <Maximize className="w-5 h-5" />}
                       {idx === 3 && <Clock className="w-5 h-5" />}
-                      {idx === 4 && <Sparkles className="w-5 h-5" />}
+                      {idx === 4 && <Layers className="w-5 h-5" />}
                       {idx === 5 && <Award className="w-5 h-5" />}
                       {idx === 6 && <ShieldCheck className="w-5 h-5" />}
                     </div>
@@ -1630,7 +1512,7 @@ export default function App() {
                   <button
                     key={tab}
                     onClick={() => setRealEstateFilter(tab)}
-                    className={`px-4 py-1.5 rounded-full text-xs uppercase tracking-widest transition cursor-pointer ${
+                    className={`px-4 py-2 rounded-lg text-xs uppercase tracking-widest transition cursor-pointer ${
                       realEstateFilter === tab 
                         ? 'bg-[#0c0d0e] text-white font-semibold shadow-sm' 
                         : 'bg-white border border-[#e8e4dc] text-[#5a5f67] hover:text-[#0f1115] hover:border-[#c5a059]'
@@ -1746,7 +1628,7 @@ export default function App() {
                     href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20real%20estate%20projects."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
+                    className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
                   >
                     <MessageCircle className="w-4 h-4 fill-current" />
                     <span>Chat on WhatsApp Directly</span>
@@ -1765,7 +1647,7 @@ export default function App() {
                     </p>
                     <button 
                       onClick={() => setFormSubmitted(false)}
-                      className="mt-3 px-5 py-2 rounded-full bg-[#c5a059] text-[#0c0d0e] text-xs font-semibold uppercase tracking-wider hover:bg-white transition cursor-pointer"
+                      className="mt-3 px-5 py-2.5 rounded-xl bg-[#c5a059] text-[#0c0d0e] text-xs font-semibold uppercase tracking-wider hover:bg-white transition cursor-pointer"
                     >
                       Send Another Enquiry
                     </button>
@@ -2069,7 +1951,7 @@ export default function App() {
           </div>
 
           {/* 6.2 Project Enquiry Form / Get a Consultation CTA */}
-          <div id="interior-consultation-form" className="p-8 sm:p-12 rounded-3xl bg-[#0c0d0e] border border-[#c5a059]/30 text-white shadow-2xl">
+          <div id="interior-consultation-form" className="p-8 sm:p-12 rounded-3xl bg-[#07090e]/85 backdrop-blur-3xl border border-white/12 text-white shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
               <div className="lg:col-span-5 space-y-4">
                 <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Atelier Commission Desk</span>
@@ -2101,7 +1983,7 @@ export default function App() {
                     href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20discuss%20an%20interior%20design%20consultation."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
+                    className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
                   >
                     <MessageCircle className="w-4 h-4 fill-current" />
                     <span>Chat on WhatsApp Directly</span>
@@ -2110,7 +1992,7 @@ export default function App() {
               </div>
 
               {/* Interactive Interior Form */}
-              <div className="lg:col-span-7 bg-[#131518] p-6 sm:p-8 rounded-2xl border border-white/10">
+              <div className="lg:col-span-7 bg-white/[0.03] backdrop-blur-2xl p-6 sm:p-8 rounded-2xl border border-white/10 shadow-xl">
                 {formSubmitted ? (
                   <div className="p-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-2">
                     <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
@@ -2120,7 +2002,7 @@ export default function App() {
                     </p>
                     <button 
                       onClick={() => setFormSubmitted(false)}
-                      className="mt-3 px-5 py-2 rounded-full bg-[#c5a059] text-[#0c0d0e] text-xs font-semibold uppercase tracking-wider hover:bg-white transition cursor-pointer"
+                      className="mt-3 px-5 py-2.5 rounded-xl bg-[#c5a059] text-[#0c0d0e] text-xs font-semibold uppercase tracking-wider hover:bg-white transition cursor-pointer"
                     >
                       Submit Another Brief
                     </button>
@@ -2241,7 +2123,7 @@ export default function App() {
                     <a href="tel:+919870389489" className="text-base font-serif-azimute text-[#0f1115] hover:text-[#c5a059] transition">
                       +91 98703 89489
                     </a>
-                    <span className="block text-xs text-[#6e737c] mt-0.5">Concierge Desk (10:00 AM – 7:30 PM IST)</span>
+                    <span className="block text-xs text-[#6e737c] mt-0.5">Concierge Desk (10:00 AM - 7:30 PM IST)</span>
                   </div>
                 </div>
 
@@ -2342,7 +2224,7 @@ export default function App() {
                 <div className="p-3.5 sm:p-4 bg-[#faf8f5] border-t border-[#e8e4dc] flex items-center justify-between text-xs">
                   <span className="text-[#5a5f67] font-light flex items-center gap-1.5 text-[11px] sm:text-xs">
                     <Clock className="w-3.5 h-3.5 text-[#c5a059]" />
-                    Visits &amp; Consultations: 10:00 AM – 7:30 PM
+                    Visits &amp; Consultations: 10:00 AM - 7:30 PM
                   </span>
                   <a
                     href="https://www.google.com/maps/dir/?api=1&destination=Grandthum+by+Group+108+Techzone+4+Greater+Noida+West"
@@ -2376,7 +2258,7 @@ export default function App() {
                     </p>
                     <button 
                       onClick={() => setFormSubmitted(false)}
-                      className="mt-4 px-6 py-2 rounded-full bg-[#0c0d0e] text-xs text-white hover:bg-[#c5a059] hover:text-[#0c0d0e] cursor-pointer transition font-medium"
+                      className="mt-4 px-6 py-2.5 rounded-xl bg-[#0c0d0e] text-xs text-white hover:bg-[#c5a059] hover:text-[#0c0d0e] cursor-pointer transition font-semibold"
                     >
                       Send Another Inquiry
                     </button>
@@ -2480,11 +2362,11 @@ export default function App() {
 
                 <div className="relative z-10 pt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
                   <div className="flex flex-wrap items-center gap-3 text-[11px] text-white/70">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
                       <Clock className="w-3.5 h-3.5 text-[#25D366]" />
                       Replies in under 15 mins
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
                       <ShieldCheck className="w-3.5 h-3.5 text-[#c5a059]" />
                       Strict Bilateral Privacy
                     </span>
@@ -2556,6 +2438,15 @@ export default function App() {
 
           <div className="flex flex-col sm:flex-row items-center justify-between pt-8 text-xs text-white/40 gap-4">
             <p>© 2026 Sunrise Property. All rights reserved.</p>
+            <div className="flex items-center gap-6 text-[11px] text-white/60">
+              <a href="/privacy-policy" className="hover:text-[#c5a059] transition">
+                Privacy Policy
+              </a>
+              <span>·</span>
+              <a href="/terms-and-conditions" className="hover:text-[#c5a059] transition">
+                Terms &amp; Conditions
+              </a>
+            </div>
             <button 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
               className="text-[#c5a059] hover:text-white uppercase tracking-wider text-[11px] transition cursor-pointer"
@@ -2567,20 +2458,20 @@ export default function App() {
       </footer>
 
       {/* Floating WhatsApp Quick Action Button (Bottom Right) */}
-      {currentPage !== 'home' && (
+      {!entranceActive && (
         <a
           href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20services."
           target="_blank"
           rel="noopener noreferrer"
           aria-label="WhatsApp Concierge"
-          className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white font-medium text-xs tracking-wider shadow-2xl shadow-[#25D366]/30 transition hover:scale-105 ring-4 ring-[#25D366]/20 cursor-pointer"
+          className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4.5 py-3 rounded-2xl bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-xs tracking-wider shadow-2xl shadow-[#25D366]/30 transition hover:scale-105 ring-4 ring-[#25D366]/20 cursor-pointer"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
           </span>
           <MessageCircle className="w-5 h-5 fill-current" />
-          <span className="hidden sm:inline">WhatsApp Concierge</span>
+          <span>WhatsApp Concierge</span>
         </a>
       )}
 
@@ -2588,27 +2479,28 @@ export default function App() {
       {/* 8.5 SELECTED PROJECT DETAILS MODAL                               */}
       {/* ================================================================ */}
       {selectedProjectModal && (
-        <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
-          <div className="bg-[#0c0d0e] border border-[#c5a059]/30 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl text-slate-100 flex flex-col max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-4 border-b border-white/10">
+        <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fadeIn">
+          <div className="bg-white/95 backdrop-blur-2xl border border-[#c5a059]/35 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] text-[#0c0d0e] flex flex-col max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-4 border-b border-[#0c0d0e]/10">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border bg-[#c5a059]/15 text-[#c5a059] border-[#c5a059]/40 font-semibold">
+                <span className="text-[10px] uppercase tracking-wider px-3 py-1 rounded-md border bg-[#c5a059]/15 text-[#9a7830] border-[#c5a059]/40 font-semibold">
                   {selectedProjectModal.badge || 'PROJECT MONOGRAPH'}
                 </span>
-                <span className={`text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border font-medium ${selectedProjectModal.statusColor || 'bg-white/10 text-white'}`}>
+                <span className={`text-[10px] uppercase tracking-wider px-3 py-1 rounded-md border font-medium ${selectedProjectModal.statusColor || 'bg-black/5 text-[#0c0d0e]'}`}>
                   {selectedProjectModal.status}
                 </span>
               </div>
               <button 
                 onClick={() => setSelectedProjectModal(null)} 
-                className="text-white/60 hover:text-white p-1 rounded-full bg-white/5 hover:bg-white/10 transition cursor-pointer"
+                className="text-[#0c0d0e]/60 hover:text-[#0c0d0e] p-1.5 rounded-lg bg-black/5 hover:bg-black/10 transition cursor-pointer"
+                aria-label="Close project modal"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <div className="py-6 space-y-6">
-              <div className="relative aspect-[16/9] rounded-xl overflow-hidden border border-white/10">
+              <div className="relative aspect-[16/9] rounded-xl overflow-hidden border border-[#c5a059]/20 shadow-md">
                 <img 
                   src={selectedProjectModal.image} 
                   alt={selectedProjectModal.title} 
@@ -2617,42 +2509,42 @@ export default function App() {
               </div>
 
               <div>
-                <span className="text-xs uppercase tracking-wider text-[#c5a059] font-semibold">
+                <span className="text-xs uppercase tracking-wider text-[#9a7830] font-bold">
                   Developer: {selectedProjectModal.developer}
                 </span>
-                <h3 className="font-serif-azimute text-3xl sm:text-4xl text-white mt-1">
+                <h3 className="font-serif-azimute text-3xl sm:text-4xl text-[#0c0d0e] mt-1">
                   {selectedProjectModal.title}
                 </h3>
-                <p className="text-xs text-white/70 flex items-center gap-1.5 mt-2">
+                <p className="text-xs text-[#555b66] flex items-center gap-1.5 mt-2 font-medium">
                   <MapPin className="w-3.5 h-3.5 text-[#c5a059] shrink-0" />
                   <span>{selectedProjectModal.location}</span>
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 bg-[#131518] p-4 rounded-xl border border-white/10 text-xs">
+              <div className="grid grid-cols-2 gap-3 bg-[#f8f6f0] p-4 rounded-xl border border-[#e8e2d5] text-xs shadow-inner">
                 <div>
-                  <span className="text-white/50 block text-[10px] uppercase tracking-wider">Property Type</span>
-                  <span className="text-white font-medium">{selectedProjectModal.type}</span>
+                  <span className="text-[#717680] block text-[10px] uppercase tracking-wider font-medium">Property Type</span>
+                  <span className="text-[#0c0d0e] font-semibold text-sm">{selectedProjectModal.type}</span>
                 </div>
                 <div>
-                  <span className="text-white/50 block text-[10px] uppercase tracking-wider">Price Range</span>
-                  <span className="text-[#c5a059] font-bold text-sm">{selectedProjectModal.price}</span>
+                  <span className="text-[#717680] block text-[10px] uppercase tracking-wider font-medium">Price Range</span>
+                  <span className="text-[#9a7830] font-bold text-base">{selectedProjectModal.price}</span>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <span className="text-xs uppercase tracking-wider text-white/50 font-medium">Architectural Narrative</span>
-                <p className="text-xs text-white/80 leading-relaxed font-light">
+                <span className="text-xs uppercase tracking-wider text-[#717680] font-semibold">Architectural Narrative</span>
+                <p className="text-xs text-[#373b42] leading-relaxed font-normal">
                   {selectedProjectModal.description}
                 </p>
               </div>
 
               {selectedProjectModal.highlights && (
                 <div className="space-y-2.5 pt-2">
-                  <span className="text-xs uppercase tracking-wider text-[#c5a059] font-medium">Key Highlights &amp; Amenities</span>
+                  <span className="text-xs uppercase tracking-wider text-[#9a7830] font-bold">Key Highlights &amp; Amenities</span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                     {selectedProjectModal.highlights.map((h: string, i: number) => (
-                      <div key={i} className="flex items-center gap-2 text-white/80">
+                      <div key={i} className="flex items-center gap-2 text-[#2d3138] font-medium bg-black/[0.02] p-2 rounded-lg border border-black/[0.04]">
                         <Check className="w-3.5 h-3.5 text-[#c5a059] shrink-0" />
                         <span>{h}</span>
                       </div>
@@ -2662,12 +2554,12 @@ export default function App() {
               )}
             </div>
 
-            <div className="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="pt-4 border-t border-[#0c0d0e]/10 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <a
                 href={`https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20am%20interested%20in%20${encodeURIComponent(selectedProjectModal.title)}%20(${encodeURIComponent(selectedProjectModal.developer)}).`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition cursor-pointer text-center"
+                className="py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition cursor-pointer text-center shadow-sm"
               >
                 <MessageCircle className="w-4 h-4 fill-current" />
                 <span>WhatsApp Brochure</span>
@@ -2678,7 +2570,7 @@ export default function App() {
                   setSelectedProjectModal(null);
                   navigateTo('contact');
                 }}
-                className="py-3 px-4 rounded-xl bg-[#c5a059] hover:bg-white text-[#0c0d0e] text-xs uppercase tracking-wider font-semibold transition cursor-pointer text-center"
+                className="py-3 px-4 rounded-xl bg-[#0c0d0e] hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] text-xs uppercase tracking-wider font-semibold transition cursor-pointer text-center shadow-sm"
               >
                 Contact Advisory Desk
               </button>

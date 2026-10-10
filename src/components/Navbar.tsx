@@ -90,7 +90,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
         <div className="hidden sm:flex items-center gap-3.5">
           <Link
             href="/contact"
-            className="text-[11px] tracking-[0.2em] uppercase px-6 py-2.5 rounded-full font-medium transition-all duration-300 border border-[#c5a059]/40 hover:border-[#c5a059] bg-[#c5a059]/10 hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] shadow-sm"
+            className="text-[11px] tracking-[0.2em] uppercase px-6 py-2.5 rounded-xl font-medium transition-all duration-300 border border-[#c5a059]/40 hover:border-[#c5a059] bg-[#c5a059]/10 hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] shadow-sm"
           >
             ENQUIRE NOW
           </Link>
@@ -100,7 +100,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
         <div className="flex items-center gap-2 lg:hidden">
           <Link
             href="/contact"
-            className="text-[10px] tracking-[0.16em] uppercase px-3.5 py-1.5 rounded-full font-medium sm:hidden bg-white/10 text-white border border-white/20"
+            className="text-[10px] tracking-[0.16em] uppercase px-3.5 py-1.5 rounded-lg font-medium sm:hidden bg-white/10 text-white border border-white/20"
           >
             ENQUIRE
           </Link>
@@ -143,7 +143,7 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full block bg-[#c5a059] text-[#0c0d0e] text-xs tracking-[0.2em] uppercase py-3 rounded-full text-center font-semibold shadow-md"
+                className="w-full block bg-[#c5a059] text-[#0c0d0e] text-xs tracking-[0.2em] uppercase py-3 rounded-xl text-center font-semibold shadow-md"
               >
                 ENQUIRE NOW
               </Link>

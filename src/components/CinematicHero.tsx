@@ -111,7 +111,7 @@ export default function CinematicHero() {
         {/* Left-Aligned Headline Block */}
         <div className="max-w-3xl my-auto text-left">
           {/* Subtle Tag with gold marker */}
-          <div className="inline-flex items-center gap-2 mb-6 border border-white/20 px-4 py-1.5 rounded-full bg-black/25 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 mb-6 border border-white/20 px-4 py-1.5 rounded-lg bg-black/25 backdrop-blur-md">
             <span className="w-1.5 h-1.5 rounded-full bg-[#C29246]"></span>
             <span className="text-[10px] sm:text-[11px] tracking-[0.28em] uppercase text-[#E5E0D4] font-light">
               01/03 • REAL ESTATE &amp; BESPOKE INTERIOR DESIGN
@@ -136,13 +136,13 @@ export default function CinematicHero() {
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5 w-full sm:w-auto">
             <Link
               href="/real-estate"
-              className="w-full sm:w-auto bg-[#FAF8F5] text-[#141A23] hover:bg-white text-xs tracking-[0.22em] uppercase px-8 py-4 rounded-full font-medium transition-all duration-300 text-center"
+              className="w-full sm:w-auto bg-[#FAF8F5] text-[#141A23] hover:bg-white text-xs tracking-[0.22em] uppercase px-8 py-4 rounded-xl font-medium transition-all duration-300 text-center"
             >
               EXPLORE PROPERTIES
             </Link>
             <Link
               href="/interior-design"
-              className="w-full sm:w-auto border border-white/50 hover:border-white text-white hover:bg-white/10 text-xs tracking-[0.22em] uppercase px-8 py-4 rounded-full font-light transition-all duration-300 backdrop-blur-xs text-center"
+              className="w-full sm:w-auto border border-white/50 hover:border-white text-white hover:bg-white/10 text-xs tracking-[0.22em] uppercase px-8 py-4 rounded-xl font-light transition-all duration-300 backdrop-blur-xs text-center"
             >
               EXPERIENCE STUDIO
             </Link>
@@ -205,13 +205,13 @@ export default function CinematicHero() {
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-5">
             <button
               onClick={scrollToContent}
-              className="bg-[#FAF8F5] hover:bg-white text-[#141A23] text-xs tracking-[0.24em] uppercase px-9 py-4 rounded-full font-medium transition-all shadow-xl cursor-pointer"
+              className="bg-[#FAF8F5] hover:bg-white text-[#141A23] text-xs tracking-[0.24em] uppercase px-9 py-4 rounded-xl font-medium transition-all shadow-xl cursor-pointer"
             >
               ENTER MONOGRAPH
             </button>
             <button
               onClick={resetToHero}
-              className="border border-white/40 hover:border-white text-white hover:bg-white/10 text-xs tracking-[0.24em] uppercase px-8 py-4 rounded-full font-light transition-all cursor-pointer backdrop-blur-xs flex items-center gap-2"
+              className="border border-white/40 hover:border-white text-white hover:bg-white/10 text-xs tracking-[0.24em] uppercase px-8 py-4 rounded-xl font-light transition-all cursor-pointer backdrop-blur-xs flex items-center gap-2"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>RETURN TO HERO VIEW</span>

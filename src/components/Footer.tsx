@@ -144,19 +144,15 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#8F8B83] tracking-[0.08em] font-light">
           <div>
-            © 2024 Sunrise Property (sunriseproperty.in). All rights reserved.
+            © 2026 Sunrise Property (sunriseproperty.in). All rights reserved.
           </div>
           <div className="flex items-center gap-6">
-            <Link href="/contact" className="hover:text-[#141A23] transition-colors">
+            <Link href="/privacy-policy" className="hover:text-[#141A23] transition-colors">
               Privacy Policy
             </Link>
             <span>•</span>
-            <Link href="/contact" className="hover:text-[#141A23] transition-colors">
-              Terms of Atelier
-            </Link>
-            <span>•</span>
-            <Link href="/contact" className="hover:text-[#141A23] transition-colors">
-              Spatial Index
+            <Link href="/terms-and-conditions" className="hover:text-[#141A23] transition-colors">
+              Terms &amp; Conditions
             </Link>
           </div>
         </div>

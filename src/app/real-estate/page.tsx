@@ -7,7 +7,7 @@ import {
   Home, 
   Maximize, 
   Clock, 
-  Sparkles, 
+  Layers, 
   Award, 
   ShieldCheck, 
   MapPin, 
@@ -42,10 +42,10 @@ export default function RealEstatePage() {
       status: "Under Construction",
       statusColor: "bg-amber-500/10 text-amber-600 border-amber-500/30",
       location: "Greater Noida, Sector 12",
-      price: "₹26.1 L – ₹48.5 L",
+      price: "₹26.1 L - ₹48.5 L",
       type: "Residential Apartments",
       beds: "1, 2 & 3 BHK",
-      area: "650 – 1,450 SQ FT",
+      area: "650 - 1,450 SQ FT",
       image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
       description: "Sophisticated multi-tier residential development with Olympic-grade clubhouse, private elevators, landscaped sky balconies, and supreme sector connectivity.",
       highlights: ["Prime Sector 12 Connectivity", "Clubhouse & Gymnasium", "Children Play Zone", "24x7 Tier-3 Security"]
@@ -59,10 +59,10 @@ export default function RealEstatePage() {
       status: "Ready to Move",
       statusColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/30",
       location: "Greater Noida, Sector 27",
-      price: "₹1.90 Cr – ₹4 Cr",
+      price: "₹1.90 Cr - ₹4 Cr",
       type: "2, 3 & 4 BHK Apartments",
       beds: "2, 3 & 4 BHK",
-      area: "1,950 – 3,800 SQ FT",
+      area: "1,950 - 3,800 SQ FT",
       image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
       description: "Ultra-luxury high-rise sanctuary by Godrej Properties featuring Olympic-grade amenities, infinity pool, and panoramic forest corridor vistas.",
       highlights: ["Forest Views & Clean Air", "Immediate Possession Available", "Olympic Length Lap Pool", "White-Glove Concierge"]
@@ -76,10 +76,10 @@ export default function RealEstatePage() {
       status: "Under Construction",
       statusColor: "bg-amber-500/10 text-amber-600 border-amber-500/30",
       location: "Techzone 4, Greater Noida West",
-      price: "₹50 L – ₹3 Cr",
+      price: "₹50 L - ₹3 Cr",
       type: "Office Spaces, Studio Apartments & Retail Shops",
       beds: "Studio, Retail & Office",
-      area: "550 – 4,800 SQ FT",
+      area: "550 - 4,800 SQ FT",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
       description: "Iconic twin-tower commercial and mixed-use landmark featuring an artificial water canal boulevard, dining decks, and retail high street.",
       highlights: ["Iconic Twin-Tower Landmark", "Canal Dining Boulevard", "High-Footfall Retail Street", "Grade-A Corporate Offices"]
@@ -196,7 +196,7 @@ export default function RealEstatePage() {
                     {idx === 1 && <Building2 className="w-5 h-5" />}
                     {idx === 2 && <Maximize className="w-5 h-5" />}
                     {idx === 3 && <Clock className="w-5 h-5" />}
-                    {idx === 4 && <Sparkles className="w-5 h-5" />}
+                    {idx === 4 && <Layers className="w-5 h-5" />}
                     {idx === 5 && <Award className="w-5 h-5" />}
                     {idx === 6 && <ShieldCheck className="w-5 h-5" />}
                   </div>
@@ -238,7 +238,7 @@ export default function RealEstatePage() {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-1.5 rounded-full text-xs uppercase tracking-widest transition cursor-pointer ${
+                  className={`px-4 py-1.5 rounded-xl text-xs uppercase tracking-widest transition cursor-pointer ${
                     activeTab === tab 
                       ? "bg-[#0c0d0e] text-white font-semibold shadow-sm" 
                       : "bg-white border border-[#e8e4dc] text-[#5a5f67] hover:text-[#0f1115] hover:border-[#c5a059]"
@@ -352,7 +352,7 @@ export default function RealEstatePage() {
                   href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20real%20estate%20projects."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
+                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
                 >
                   <MessageCircle className="w-4 h-4 fill-current" />
                   <span>Chat on WhatsApp Directly</span>
@@ -371,7 +371,7 @@ export default function RealEstatePage() {
                   </p>
                   <button 
                     onClick={() => setFormSubmitted(false)}
-                    className="mt-3 px-5 py-2 rounded-full bg-[#c5a059] text-[#0c0d0e] text-xs font-semibold uppercase tracking-wider hover:bg-white transition cursor-pointer"
+                    className="mt-3 px-5 py-2 rounded-xl bg-[#c5a059] text-[#0c0d0e] text-xs font-semibold uppercase tracking-wider hover:bg-white transition cursor-pointer"
                   >
                     Send Another Enquiry
                   </button>
@@ -462,27 +462,28 @@ export default function RealEstatePage() {
 
       {/* Project Details Modal */}
       {selectedProjectModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
-          <div className="bg-[#0c0d0e] border border-[#c5a059]/30 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl text-slate-100 flex flex-col max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-4 border-b border-white/10">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fadeIn">
+          <div className="bg-white/95 backdrop-blur-2xl border border-[#c5a059]/35 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] text-[#0c0d0e] flex flex-col max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-4 border-b border-[#0c0d0e]/10">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border bg-[#c5a059]/15 text-[#c5a059] border-[#c5a059]/40 font-semibold">
+                <span className="text-[10px] uppercase tracking-wider px-3 py-1 rounded-md border bg-[#c5a059]/15 text-[#9a7830] border-[#c5a059]/40 font-semibold">
                   {selectedProjectModal.badge}
                 </span>
-                <span className={`text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border font-medium ${selectedProjectModal.statusColor}`}>
+                <span className={`text-[10px] uppercase tracking-wider px-3 py-1 rounded-md border font-medium ${selectedProjectModal.statusColor || 'bg-black/5 text-[#0c0d0e]'}`}>
                   {selectedProjectModal.status}
                 </span>
               </div>
               <button 
                 onClick={() => setSelectedProjectModal(null)} 
-                className="text-white/60 hover:text-white p-1 rounded-full bg-white/5 hover:bg-white/10 transition cursor-pointer"
+                className="text-[#0c0d0e]/60 hover:text-[#0c0d0e] p-1.5 rounded-lg bg-black/5 hover:bg-black/10 transition cursor-pointer"
+                aria-label="Close project modal"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <div className="py-6 space-y-6">
-              <div className="relative aspect-[16/9] rounded-xl overflow-hidden border border-white/10">
+              <div className="relative aspect-[16/9] rounded-xl overflow-hidden border border-[#c5a059]/20 shadow-md">
                 <img 
                   src={selectedProjectModal.image} 
                   alt={selectedProjectModal.title} 
@@ -491,42 +492,42 @@ export default function RealEstatePage() {
               </div>
 
               <div>
-                <span className="text-xs uppercase tracking-wider text-[#c5a059] font-semibold">
+                <span className="text-xs uppercase tracking-wider text-[#9a7830] font-bold">
                   Developer: {selectedProjectModal.developer}
                 </span>
-                <h3 className="font-serif-azimute text-3xl sm:text-4xl text-white mt-1">
+                <h3 className="font-serif-azimute text-3xl sm:text-4xl text-[#0c0d0e] mt-1">
                   {selectedProjectModal.title}
                 </h3>
-                <p className="text-xs text-white/70 flex items-center gap-1.5 mt-2">
+                <p className="text-xs text-[#555b66] flex items-center gap-1.5 mt-2 font-medium">
                   <MapPin className="w-3.5 h-3.5 text-[#c5a059] shrink-0" />
                   <span>{selectedProjectModal.location}</span>
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 bg-[#131518] p-4 rounded-xl border border-white/10 text-xs">
+              <div className="grid grid-cols-2 gap-3 bg-[#f8f6f0] p-4 rounded-xl border border-[#e8e2d5] text-xs shadow-inner">
                 <div>
-                  <span className="text-white/50 block text-[10px] uppercase tracking-wider">Property Type</span>
-                  <span className="text-white font-medium">{selectedProjectModal.type}</span>
+                  <span className="text-[#717680] block text-[10px] uppercase tracking-wider font-medium">Property Type</span>
+                  <span className="text-[#0c0d0e] font-semibold text-sm">{selectedProjectModal.type}</span>
                 </div>
                 <div>
-                  <span className="text-white/50 block text-[10px] uppercase tracking-wider">Price Range</span>
-                  <span className="text-[#c5a059] font-bold text-sm">{selectedProjectModal.price}</span>
+                  <span className="text-[#717680] block text-[10px] uppercase tracking-wider font-medium">Price Range</span>
+                  <span className="text-[#9a7830] font-bold text-base">{selectedProjectModal.price}</span>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <span className="text-xs uppercase tracking-wider text-white/50 font-medium">Architectural Narrative</span>
-                <p className="text-xs text-white/80 leading-relaxed font-light">
+                <span className="text-xs uppercase tracking-wider text-[#717680] font-semibold">Architectural Narrative</span>
+                <p className="text-xs text-[#373b42] leading-relaxed font-normal">
                   {selectedProjectModal.description}
                 </p>
               </div>
 
               {selectedProjectModal.highlights && (
                 <div className="space-y-2.5 pt-2">
-                  <span className="text-xs uppercase tracking-wider text-[#c5a059] font-medium">Key Highlights &amp; Amenities</span>
+                  <span className="text-xs uppercase tracking-wider text-[#9a7830] font-bold">Key Highlights &amp; Amenities</span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                     {selectedProjectModal.highlights.map((h: string, i: number) => (
-                      <div key={i} className="flex items-center gap-2 text-white/80">
+                      <div key={i} className="flex items-center gap-2 text-[#2d3138] font-medium bg-black/[0.02] p-2 rounded-lg border border-black/[0.04]">
                         <Check className="w-3.5 h-3.5 text-[#c5a059] shrink-0" />
                         <span>{h}</span>
                       </div>
@@ -536,12 +537,12 @@ export default function RealEstatePage() {
               )}
             </div>
 
-            <div className="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="pt-4 border-t border-[#0c0d0e]/10 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <a
                 href={`https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20am%20interested%20in%20${encodeURIComponent(selectedProjectModal.title)}%20(${encodeURIComponent(selectedProjectModal.developer)}).`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition cursor-pointer text-center"
+                className="py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition cursor-pointer text-center shadow-sm"
               >
                 <MessageCircle className="w-4 h-4 fill-current" />
                 <span>WhatsApp Brochure</span>
@@ -551,7 +552,7 @@ export default function RealEstatePage() {
                   setSelectedProjectModal(null);
                   scrollToEnquiry(`Enquiry: ${selectedProjectModal.title} (${selectedProjectModal.developer})`);
                 }}
-                className="py-3 px-4 rounded-xl bg-[#c5a059] hover:bg-white text-[#0c0d0e] text-xs uppercase tracking-wider font-semibold transition cursor-pointer text-center"
+                className="py-3 px-4 rounded-xl bg-[#0c0d0e] hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] text-xs uppercase tracking-wider font-semibold transition cursor-pointer text-center shadow-sm"
               >
                 Contact Advisory Desk
               </button>

@@ -162,7 +162,7 @@ export default function ProjectSection() {
                 key={space.title}
                 type="button"
                 onClick={() => setActivePhoto(idx)}
-                className={`px-4 py-2 rounded-full border transition-all cursor-pointer ${
+                className={`px-4 py-2 rounded-xl border transition-all cursor-pointer ${
                   activePhoto === idx
                     ? "bg-[#262825] text-[#f3f0e9] border-[#262825]"
                     : "border-[#534d432d] text-[#69655d] hover:border-[#262825] hover:text-[#262825]"
@@ -220,9 +220,9 @@ export default function ProjectSection() {
               A preserved residential neighborhood that elevates your everyday routine.
             </p>
             <div className="flex flex-wrap gap-4 text-xs font-dm-sans text-[#262825]">
-              <span className="px-4 py-2 bg-[#eae5dc] rounded-full">Near Mauá Plaza Shopping</span>
-              <span className="px-4 py-2 bg-[#eae5dc] rounded-full">Direct access to Rodoanel</span>
-              <span className="px-4 py-2 bg-[#eae5dc] rounded-full">Established tree-lined enclave</span>
+              <span className="px-4 py-2 bg-[#eae5dc] rounded-lg">Near Mauá Plaza Shopping</span>
+              <span className="px-4 py-2 bg-[#eae5dc] rounded-lg">Direct access to Rodoanel</span>
+              <span className="px-4 py-2 bg-[#eae5dc] rounded-lg">Established tree-lined enclave</span>
             </div>
           </div>
 

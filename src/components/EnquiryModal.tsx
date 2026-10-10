@@ -23,7 +23,7 @@ export default function EnquiryModal({
     phone: "",
     email: "",
     timeline: "1 - 3 Months (Standard)",
-    budget: "₹25 Cr – ₹50 Cr ($3M – $6M)",
+    budget: "₹25 Cr - ₹50 Cr ($3M - $6M)",
     notes: propertyTitle ? `Inquiring about ${propertyTitle}. ` : "",
   });
 
@@ -40,7 +40,7 @@ export default function EnquiryModal({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 text-[#63615C] hover:text-[#141A23] rounded-full hover:bg-[#EAE5DC]/50 transition-colors cursor-pointer"
+          className="absolute top-5 right-5 p-2 text-[#63615C] hover:text-[#141A23] rounded-lg hover:bg-[#EAE5DC]/50 transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
@@ -62,7 +62,7 @@ export default function EnquiryModal({
                     setSubmitted(false);
                     onClose();
                   }}
-                  className="bg-[#141A23] text-[#FAF8F5] text-xs tracking-[0.2em] uppercase px-8 py-3.5 rounded-full font-medium hover:bg-[#202836] transition-colors cursor-pointer"
+                  className="bg-[#141A23] text-[#FAF8F5] text-xs tracking-[0.2em] uppercase px-8 py-3.5 rounded-xl font-medium hover:bg-[#202836] transition-colors cursor-pointer"
                 >
                   RETURN TO SANCTUARY
                 </button>
@@ -180,8 +180,8 @@ export default function EnquiryModal({
                       onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                       className="w-full bg-white border border-[#EAE6DF] focus:border-[#C29246] px-3.5 py-2.5 rounded-lg text-xs text-[#141A23] focus:outline-none transition-colors"
                     >
-                      <option>₹25 Cr – ₹50 Cr ($3M – $6M)</option>
-                      <option>₹50 Cr – ₹100 Cr ($6M – $12M)</option>
+                      <option>₹25 Cr - ₹50 Cr ($3M - $6M)</option>
+                      <option>₹50 Cr - ₹100 Cr ($6M - $12M)</option>
                       <option>₹100 Cr+ ($12M+)</option>
                       <option>Bespoke Architecture Fee</option>
                     </select>

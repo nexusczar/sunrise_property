@@ -21,6 +21,7 @@ const sansFont = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sunriseproperty.in"),
   title: "Sunrise Property | Real Estate & Interior Design",
   description:
     "Sunrise Property unites prime real estate advisory with bespoke architectural interior design. Featured developments in Greater Noida including Ashtech Presidential, Godrej Majesty, and Grandthum.",
@@ -33,10 +34,17 @@ export const metadata: Metadata = {
     "Interior Design Greater Noida",
     "Turnkey Interiors",
   ],
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/images/logo-light.png",
+  },
   openGraph: {
     title: "Sunrise Property | Real Estate & Interior Design",
     description:
       "Premier real estate brokerage and bespoke interior architecture in Greater Noida.",
+    url: "https://sunriseproperty.in",
+    siteName: "Sunrise Property",
     type: "website",
   },
 };

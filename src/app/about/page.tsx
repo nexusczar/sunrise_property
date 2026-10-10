@@ -117,34 +117,34 @@ export default function AboutPage() {
               Our dual mandate begins with spatial diagnosis: before recommending a plot or
               acquisition, we analyze light ingress, acoustic isolation, view corridors, and
               structural authenticity. Once an address is secured, our interior atelier shapes the
-              living volume — installing hand-honed travertine, grain-matched oak joinery, and
+              living volume, installing hand-honed travertine, grain-matched oak joinery, and
               artisanal bronze accents that deepen in patina over time.
             </p>
 
-            {/* Stats matching Image 4 */}
+            {/* Core Capability Pillars (No fake metrics) */}
             <div className="grid grid-cols-3 gap-6 pt-6 border-t border-[#EAE6DF]">
               <div>
-                <p className="font-serif-luxury text-3xl sm:text-4xl text-[#141A23] font-normal">
-                  14
+                <p className="font-serif-luxury text-2xl sm:text-3xl text-[#141A23] font-normal">
+                  Greater Noida
                 </p>
                 <p className="text-[10px] tracking-[0.18em] uppercase text-[#8F8B83] mt-1 font-light">
-                  YEARS OF MONOGRAPH ARCHIVE
+                  Core Advisory Geography
                 </p>
               </div>
               <div>
-                <p className="font-serif-luxury text-3xl sm:text-4xl text-[#141A23] font-normal">
-                  $420M+
+                <p className="font-serif-luxury text-2xl sm:text-3xl text-[#141A23] font-normal">
+                  Dual Atelier
                 </p>
                 <p className="text-[10px] tracking-[0.18em] uppercase text-[#8F8B83] mt-1 font-light">
-                  VALUE OF STEWARDED ASSETS
+                  Real Estate &amp; Interior Design
                 </p>
               </div>
               <div>
-                <p className="font-serif-luxury text-3xl sm:text-4xl text-[#141A23] font-normal">
-                  100%
+                <p className="font-serif-luxury text-2xl sm:text-3xl text-[#141A23] font-normal">
+                  Turnkey
                 </p>
                 <p className="text-[10px] tracking-[0.18em] uppercase text-[#8F8B83] mt-1 font-light">
-                  DISCRETION STANDARD
+                  Single-Point Custody
                 </p>
               </div>
             </div>

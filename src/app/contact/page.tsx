@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { MapPin, Clock, Plus, Minus } from "lucide-react";
 import EnquiryModal from "@/components/EnquiryModal";
 
 export default function ContactPage() {
@@ -15,7 +16,7 @@ export default function ContactPage() {
     phone: "",
     email: "",
     timeline: "1 - 3 Months (Standard)",
-    budget: "₹25 Cr – ₹50 Cr ($3M – $6M)",
+    budget: "₹25 Cr - ₹50 Cr ($3M - $6M)",
     brief: "",
   });
 
@@ -125,7 +126,7 @@ export default function ContactPage() {
                   STUDIO OPERATING HOURS
                 </span>
                 <p className="text-xs text-[#141A23] font-normal">
-                  Monday – Saturday: 10:00 AM – 7:00 PM IST
+                  Monday - Saturday: 10:00 AM - 7:00 PM IST
                 </p>
                 <p className="text-xs text-[#8F8B83] font-light">
                   Sunday site visits &amp; consultations by appointment
@@ -139,7 +140,7 @@ export default function ContactPage() {
               <div className="p-4 sm:p-5 bg-gradient-to-r from-white via-[#FAF8F5] to-amber-50/40 border-b border-[#EAE6DF] flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-amber-500 flex items-center justify-center text-white shrink-0 shadow-md shadow-rose-500/25">
-                    <span className="text-base font-bold">📍</span>
+                    <MapPin className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5">
@@ -184,8 +185,8 @@ export default function ContactPage() {
               {/* Colorful Bottom Navigation Strip */}
               <div className="p-3.5 sm:p-4 bg-[#FAF8F5] border-t border-[#EAE6DF] flex items-center justify-between text-xs">
                 <span className="text-[#8F8B83] font-light flex items-center gap-1.5 text-[11px] sm:text-xs">
-                  <span>🕒</span>
-                  Visiting Hours: 10:00 AM – 7:30 PM IST
+                  <Clock className="w-3.5 h-3.5 text-[#c5a059]" />
+                  Visiting Hours: 10:00 AM - 7:30 PM IST
                 </span>
                 <a
                   href="https://www.google.com/maps/dir/?api=1&destination=Grandthum+by+Group+108+Techzone+4+Greater+Noida+West"
@@ -330,8 +331,8 @@ export default function ContactPage() {
                           onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                           className="w-full bg-[#FAF8F5] border border-[#EAE6DF] focus:border-[#C29246] px-3.5 py-3 rounded-lg text-xs text-[#141A23] focus:outline-none"
                         >
-                          <option>₹25 Cr – ₹50 Cr ($3M – $6M)</option>
-                          <option>₹50 Cr – ₹100 Cr ($6M – $12M)</option>
+                          <option>₹25 Cr - ₹50 Cr ($3M - $6M)</option>
+                          <option>₹50 Cr - ₹100 Cr ($6M - $12M)</option>
                           <option>₹100 Cr+ ($12M+)</option>
                           <option>Bespoke Architecture Fee</option>
                         </select>
@@ -434,7 +435,7 @@ export default function ContactPage() {
                   Discreet Preliminary Discovery Call
                 </h3>
               </div>
-              <span className="text-sm text-[#8F8B83]">{openPhase === 1 ? "—" : "+"}</span>
+              <span className="text-[#8F8B83]">{openPhase === 1 ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}</span>
             </button>
 
             {openPhase === 1 && (
@@ -474,7 +475,7 @@ export default function ContactPage() {
                   Private In-Person or Digital Dossier Review
                 </h3>
               </div>
-              <span className="text-sm text-[#8F8B83]">{openPhase === 2 ? "—" : "+"}</span>
+              <span className="text-[#8F8B83]">{openPhase === 2 ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}</span>
             </button>
 
             {openPhase === 2 && (
@@ -513,7 +514,7 @@ export default function ContactPage() {
                   Tailored Acquisition or Architectural Blueprint Proposal
                 </h3>
               </div>
-              <span className="text-sm text-[#8F8B83]">{openPhase === 3 ? "—" : "+"}</span>
+              <span className="text-[#8F8B83]">{openPhase === 3 ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}</span>
             </button>
 
             {openPhase === 3 && (

@@ -7,7 +7,6 @@ import {
   Compass, 
   Wrench, 
   Layers, 
-  Sparkles, 
   Check, 
   CheckCircle2, 
   MessageCircle, 
@@ -283,7 +282,7 @@ export default function InteriorDesignPage() {
         {/* =========================================================================
             6.2 PROJECT ENQUIRY FORM / GET A CONSULTATION CTA
            ========================================================================= */}
-        <div id="interior-consultation-form" className="p-8 sm:p-12 rounded-3xl bg-[#0c0d0e] border border-[#c5a059]/30 text-white shadow-2xl">
+        <div id="interior-consultation-form" className="p-8 sm:p-12 rounded-3xl bg-[#07090e]/85 backdrop-blur-3xl border border-white/12 text-white shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-5 space-y-4">
               <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Atelier Commission Desk</span>
@@ -315,7 +314,7 @@ export default function InteriorDesignPage() {
                   href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20discuss%20an%20interior%20design%20consultation."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
+                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
                 >
                   <MessageCircle className="w-4 h-4 fill-current" />
                   <span>Chat on WhatsApp Directly</span>
@@ -324,7 +323,7 @@ export default function InteriorDesignPage() {
             </div>
 
             {/* Interactive Interior Form */}
-            <div className="lg:col-span-7 bg-[#131518] p-6 sm:p-8 rounded-2xl border border-white/10">
+            <div className="lg:col-span-7 bg-white/[0.03] backdrop-blur-2xl p-6 sm:p-8 rounded-2xl border border-white/10 shadow-xl">
               {formSubmitted ? (
                 <div className="p-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-2">
                   <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
@@ -334,7 +333,7 @@ export default function InteriorDesignPage() {
                   </p>
                   <button 
                     onClick={() => setFormSubmitted(false)}
-                    className="mt-3 px-5 py-2 rounded-full bg-[#c5a059] text-[#0c0d0e] text-xs font-semibold uppercase tracking-wider hover:bg-white transition cursor-pointer"
+                    className="mt-3 px-5 py-2 rounded-xl bg-[#c5a059] text-[#0c0d0e] text-xs font-semibold uppercase tracking-wider hover:bg-white transition cursor-pointer"
                   >
                     Submit Another Brief
                   </button>
