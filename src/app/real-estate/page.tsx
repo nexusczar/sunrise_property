@@ -493,7 +493,7 @@ export default function RealEstatePage() {
               {/* Direct WhatsApp CTA */}
               <div className="pt-6">
                 <a
-                  href="https://wa.me/919820001234?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20real%20estate%20projects."
+                  href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20real%20estate%20projects."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
@@ -555,7 +555,7 @@ export default function RealEstatePage() {
                         required 
                         value={contactForm.phone} 
                         onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })} 
-                        placeholder="+91 98200 00000"
+                        placeholder="+91 98703 89489"
                         className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
                       />
                     </div>
@@ -682,7 +682,7 @@ export default function RealEstatePage() {
 
             <div className="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <a
-                href={`https://wa.me/919820001234?text=Hello%20Sunrise%20Property,%20I%20am%20interested%20in%20${encodeURIComponent(selectedProjectModal.title)}%20(${encodeURIComponent(selectedProjectModal.developer)}).`}
+                href={`https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20am%20interested%20in%20${encodeURIComponent(selectedProjectModal.title)}%20(${encodeURIComponent(selectedProjectModal.developer)}).`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition cursor-pointer text-center"

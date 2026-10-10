@@ -40,7 +40,15 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
         {/* Brand / Logo */}
-        <Link href="/" className="flex items-center gap-3.5 group">
+        <Link 
+          href="/" 
+          onClick={() => {
+            if (typeof window !== "undefined") {
+              window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+            }
+          }}
+          className="flex items-center gap-3.5 group"
+        >
           <div className="relative h-14 w-48 sm:h-16 sm:w-56 transition-opacity group-hover:opacity-90">
             <Image
               src="/images/logo-light.png"
@@ -60,6 +68,12 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
               <Link
                 key={link.href}
                 href={link.href}
+                scroll={true}
+                onClick={() => {
+                  if (link.href === "/" && typeof window !== "undefined") {
+                    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+                  }
+                }}
                 className={`text-[11px] tracking-[0.24em] uppercase transition-colors duration-200 ${
                   isActive
                     ? "text-white font-semibold border-b-2 border-[#c5a059] pb-0.5"
@@ -110,7 +124,13 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  scroll={true}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    if (link.href === "/" && typeof window !== "undefined") {
+                      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+                    }
+                  }}
                   className={`text-xs tracking-[0.2em] uppercase py-2.5 border-b border-white/10 ${
                     isActive ? "text-[#c5a059] font-semibold" : "text-white/75"
                   }`}

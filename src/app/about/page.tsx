@@ -35,28 +35,26 @@ export default function AboutPage() {
             </span>
 
             <h1 className="font-serif-luxury text-4xl sm:text-6xl lg:text-7xl font-normal leading-[1.08] text-[#141A23]">
-              Built Around Places. <br />
-              <span className="italic font-light text-[#A87A36]">Focused on People.</span>
+              Find Your Property. <br />
+              <span className="italic font-light text-[#A87A36]">Design Your Space. Live Better.</span>
             </h1>
 
             <p className="text-sm sm:text-base leading-relaxed text-[#63615C] font-light">
-              Sunrise Property operates at the fertile intersection of living spaces and interior
-              architecture. We curate properties who demand custody between exterior monolith and
-              internal stillness.
+              Sunrise Property delivers end-to-end expertise across prime real estate discovery and bespoke interior design. We help you find your ideal residential or commercial property, thoughtfully design your spaces, and execute turnkey interior solutions that elevate your lifestyle.
             </p>
 
             <ul className="space-y-3 pt-4 text-xs tracking-wide text-[#4D4B46]">
               <li className="flex items-center gap-3">
                 <span className="w-1 h-1 rounded-full bg-[#C29246]"></span>
-                <span>Architectural Pedigree Advisory</span>
+                <span>Residential &amp; Commercial Real Estate</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="w-1 h-1 rounded-full bg-[#C29246]"></span>
-                <span>Curated Interior Architecture &amp; Millwork</span>
+                <span>Property Consultation &amp; Valuation</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="w-1 h-1 rounded-full bg-[#C29246]"></span>
-                <span>Waterfront &amp; Hillside Sanctums</span>
+                <span>Bespoke Interior Design &amp; Turnkey Execution</span>
               </li>
             </ul>
           </div>
@@ -260,28 +258,28 @@ export default function AboutPage() {
           <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
               {
-                num: "01 / DESIGN CURATION",
-                title: "Design-First Filter",
-                desc: "Every property is evaluated through the rigorous lens of interior architecture. We look beyond surface finish to layout efficiency, daylight path, acoustic comfort, and true structural integrity.",
-                badge: "Spatial Architecture",
+                num: "01 / GUIDANCE",
+                title: "Professional Guidance",
+                desc: "Experienced property advisors and interior architects providing expert market insights, zoning checks, and tailored spatial recommendations.",
+                badge: "Expert Advisory",
               },
               {
-                num: "02 / ATTENTION TO DETAIL",
-                title: "Microscopic Precision",
-                desc: "We obsess over shadow gaps, floor-to-ceiling alignment, hidden air circulation, and tactile materiality that rewards touch. No detail is too subtle for scrutiny.",
-                badge: "Tactile Finish & Lighting",
+                num: "02 / INTEGRITY",
+                title: "Transparent Dealings",
+                desc: "Complete pricing transparency, verified legal titles, clear documentation, and ethical advisory with zero hidden charges or surprises.",
+                badge: "100% Transparency",
               },
               {
-                num: "03 / DISCRETION",
-                title: "Transparent Advisory",
-                desc: "No aggressive marketing hype or third-party interference. Strict client confidentiality and transparent appraisals guarantee your investment and domestic peace.",
-                badge: "Bilateral NDA Standard",
+                num: "03 / ATELIER CRAFT",
+                title: "Quality Design",
+                desc: "Bespoke architectural space planning, photorealistic 3D visualization, superior material specifications, and uncompromising craftsmanship.",
+                badge: "Premium Craftsmanship",
               },
               {
-                num: "04 / END-TO-END",
-                title: "Architectural Provenance",
-                desc: "Curated provenance ensuring enduring asset appreciation, seamless acquisition, and timeless bespoke finish that transcends seasonal trends.",
-                badge: "Enduring Value Delivery",
+                num: "04 / SINGLE WINDOW",
+                title: "End-to-End Support",
+                desc: "Comprehensive single-point stewardship from property search and transaction to turnkey civil execution, interior fit-outs, and handover.",
+                badge: "Turnkey Custody",
               },
             ].map((card, idx) => (
               <div
@@ -446,11 +444,11 @@ export default function AboutPage() {
           </div>
 
           <div className="pt-12 border-t border-[#262624] flex flex-wrap items-center justify-center gap-8 text-[11px] tracking-[0.2em] uppercase text-[#7D786F] font-light">
-            <span>LONDON • GENEVA • MUMBAI</span>
+            <span>OFFICE A-722, GRANDTHUM · TECHZONE 4, GREATER NOIDA WEST</span>
             <span>•</span>
-            <span>STRICT BILATERAL DISCRETION</span>
+            <span>TRANSPARENT DEALINGS</span>
             <span>•</span>
-            <span>CONFIDENTIAL GUARANTEED</span>
+            <span>END-TO-END TURNKEY SUPPORT</span>
           </div>
         </div>
       </section>

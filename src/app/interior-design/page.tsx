@@ -395,7 +395,7 @@ export default function InteriorDesignPage() {
               {/* Direct WhatsApp CTA */}
               <div className="pt-6">
                 <a
-                  href="https://wa.me/919820001234?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20discuss%20an%20interior%20design%20consultation."
+                  href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20discuss%20an%20interior%20design%20consultation."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
@@ -457,7 +457,7 @@ export default function InteriorDesignPage() {
                         required 
                         value={contactForm.phone} 
                         onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })} 
-                        placeholder="+91 98200 00000"
+                        placeholder="+91 98703 89489"
                         className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
                       />
                     </div>

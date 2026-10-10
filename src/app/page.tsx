@@ -42,73 +42,12 @@ import {
 
 type Page = 'home' | 'about' | 'real-estate' | 'interior' | 'contact';
 
-export default function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('home');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showAnimationsModal, setShowAnimationsModal] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [beforeAfterSlider, setBeforeAfterSlider] = useState<number>(50);
-  const [realEstateFilter, setRealEstateFilter] = useState<string>('ALL');
-  const [selectedProjectModal, setSelectedProjectModal] = useState<any | null>(null);
-  
-  // Entrance Opening Animation state
-  const [entranceActive, setEntranceActive] = useState<boolean>(true);
+interface HomeHeroSectionProps {
+  setShowAnimationsModal: (show: boolean) => void;
+  simulateScroll: (targetRatio: number) => void;
+}
 
-  // Contact form state
-  const [contactForm, setContactForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: 'General Advisory & Acquisition',
-    message: ''
-  });
-
-  // Handle URL hash on initial load
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const hash = window.location.hash.replace('#', '');
-      if (['home', 'about', 'real-estate', 'interior', 'contact'].includes(hash)) {
-        setCurrentPage(hash as Page);
-      }
-    }
-  }, []);
-
-  // Automatically conclude opening entrance after 2.8s
-  useEffect(() => {
-    if (entranceActive) {
-      const timer = setTimeout(() => {
-        setEntranceActive(false);
-      }, 2800);
-      return () => clearTimeout(timer);
-    }
-  }, [entranceActive]);
-
-  // Scroll detection: activates navbar background color from the second page / section onward
-  const [isScrolledPastHero, setIsScrolledPastHero] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (currentPage !== 'home') {
-        setIsScrolledPastHero(true);
-        return;
-      }
-      if (containerRef.current) {
-        const heroHeight = containerRef.current.offsetHeight;
-        // Section 01 (the second page/section) slides up when scroll reaches ~78% of the hero track
-        const threshold = heroHeight - window.innerHeight * 0.9;
-        setIsScrolledPastHero(window.scrollY >= threshold);
-      } else {
-        setIsScrolledPastHero(window.scrollY > 80);
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [currentPage]);
-
-  const showNavbarBg = currentPage !== 'home' || isScrolledPastHero;
-
+function HomeHeroSection({ setShowAnimationsModal, simulateScroll }: HomeHeroSectionProps) {
   // Scroll tracking for Home hero animation
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -155,26 +94,425 @@ export default function App() {
   // 6. Section 01 Closing Handoff (1st page ending animation curtain)
   const endClosingDarkness = useTransform(smoothProgress, [0.78, 0.96], [0, 0.72]);
 
+  // On mount, guarantee spring is reset to 0
+  useEffect(() => {
+    try {
+      smoothProgress.jump(0);
+    } catch {
+      smoothProgress.set(0);
+    }
+  }, [smoothProgress]);
+
+  return (
+    <section ref={containerRef} className="relative h-[380svh] bg-[#0c0d0e]" id="inicio">
+      <div className="sticky top-0 h-[100svh] min-h-[620px] overflow-hidden text-[#faf8f5]">
+        
+        {/* -------------------------------------------------------- */}
+        {/* STAGE A: BUILDING ARCHITECTURAL RENDER (Day & Night)    */}
+        {/* -------------------------------------------------------- */}
+        <motion.div 
+          style={{ opacity: heroBuildingPresence }}
+          className="absolute inset-0 w-full h-full"
+        >
+          {/* Day Facade */}
+          <img 
+            className="w-full h-full object-cover object-[58%_48%]"
+            src="https://azimuteresidencial.com.br/assets/images/fachada-azimute-1920.webp"
+            alt="Sunrise Property Architecture - Day"
+          />
+
+          {/* Night Facade */}
+          <motion.img 
+            style={{ opacity: heroNightOpacity }}
+            className="absolute inset-0 w-full h-full object-cover object-[58%_48%] pointer-events-none"
+            src="https://azimuteresidencial.com.br/assets/images/fachada-azimute-noite-1920.webp"
+            alt="Sunrise Property Architecture - Night"
+            aria-hidden="true"
+          />
+
+          {/* Dual Ambient Shade */}
+          <div 
+            className="absolute inset-0 pointer-events-none" 
+            style={{
+              background: 'linear-gradient(90deg, rgba(12,13,14,0.45), transparent 60%), linear-gradient(0deg, rgba(12,13,14,0.7), transparent 58%, rgba(12,13,14,0.25))'
+            }}
+          />
+
+          <div className="absolute right-[6.25vw] bottom-[76px] text-[0.75rem] text-[#faf8f5]/70 pointer-events-none">
+            Architectural Rendering
+          </div>
+        </motion.div>
+
+        {/* Side text: ARCHITECTURE · LIGHT · LIVING (Vertical) */}
+        <motion.div 
+          style={{ opacity: heroSideOpacity }}
+          className="hidden md:block absolute right-[2.7vw] top-[42%] text-[0.75rem] tracking-[0.2em] text-[#faf8f5]/60 pointer-events-none [writing-mode:vertical-rl]"
+        >
+          ARCHITECTURE · LIGHT · LIVING
+        </motion.div>
+
+        {/* Bottom scroll indicator: EXPLORE */}
+        <motion.div 
+          style={{ opacity: heroSideOpacity }}
+          className="absolute bottom-6 left-[6.25vw] flex items-center gap-[18px] pointer-events-none"
+          aria-hidden="true"
+        >
+          <span className="text-[0.625rem] tracking-[0.2em] text-[#faf8f5]/75 uppercase">EXPLORE</span>
+          <div className="h-[58px] w-[1px] bg-white/25 overflow-hidden relative">
+            <div className="w-full h-8 bg-[#c5a059] animate-scroll-cue" />
+          </div>
+        </motion.div>
+
+        {/* Initial Left Hero Content (Calibrated size & position from reference image) */}
+        <motion.div 
+          style={{ 
+            opacity: heroContentOpacity,
+            y: heroContentY 
+          }}
+          className="absolute left-[6.25vw] bottom-[15%] max-w-[580px] z-20 pointer-events-auto"
+        >
+          <p className="flex items-center gap-4 text-[#c5a059] text-[0.75rem] tracking-[0.15em] uppercase mb-5 sm:mb-[25px]">
+            <span className="w-8 h-[1px] bg-[#c5a059] inline-block" />
+            SUNRISE PROPERTY • REAL ESTATE &amp; INTERIOR
+          </p>
+
+          <h1 className="font-serif-azimute mb-6 sm:mb-[34px] text-white drop-shadow-xl">
+            <span className="block text-[clamp(2.35rem,3.8vw,4.5rem)] leading-[0.94] tracking-[-0.015em]">
+              FIND YOUR PROPERTY.
+            </span>
+            <em className="block italic font-serif-azimute text-[clamp(3.35rem,5.6vw,6.5rem)] leading-[0.86] mt-1 ml-[3vw] sm:ml-[5vw] text-[#faf8f5]">
+              Design Your Space.
+            </em>
+          </h1>
+
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-[50px] sm:items-end">
+            <p className="text-[0.9375rem] sm:text-[1rem] leading-[1.65] text-[#e2ded7] font-sans drop-shadow max-w-[320px]">
+              Live Better.<br />
+              Residential &amp; Commercial Real Estate, Property Consultation &amp; Turnkey Interiors.
+            </p>
+
+            <a 
+              className="inline-flex items-center gap-4 sm:gap-5 text-sm sm:text-base text-white hover:text-[#c5a059] group cursor-pointer drop-shadow transition"
+              href="#intro-services"
+              onClick={(e) => { e.preventDefault(); simulateScroll(0.66); }}
+            >
+              <span className="tracking-wide">Explore Collection</span>
+              <span className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-white/50 flex items-center justify-center text-lg sm:text-xl group-hover:bg-[#c5a059] group-hover:text-[#0c0d0e] group-hover:border-[#c5a059] transition duration-300 bg-black/10">
+                ↓
+              </span>
+            </a>
+          </div>
+        </motion.div>
+
+        {/* -------------------------------------------------------- */}
+        {/* STAGE B: 3D CRYSTAL UNIVERSE ATMOSPHERE                  */}
+        {/* -------------------------------------------------------- */}
+        <motion.div 
+          style={{ 
+            opacity: crystalAtmosphereOpacity,
+            scale: crystalAtmosphereScale 
+          }}
+          className="absolute inset-0 w-full h-full pointer-events-none z-15 overflow-hidden"
+        >
+          {/* Background asset */}
+          <div 
+            className="absolute inset-[-10%] bg-cover bg-center brightness-[0.72] contrast-[1.15]"
+            style={{
+              backgroundImage: `url('https://azimuteresidencial.com.br/assets/crystal/azimute-crystal-universe.webp')`,
+              backgroundPosition: '52% 48%'
+            }}
+          />
+
+          {/* Veils of liquid crystal light & organic reflection */}
+          <div 
+            className="absolute inset-[-15%] pointer-events-none"
+            style={{
+              background: 'linear-gradient(117deg, rgba(12,13,14,.65) 5%, transparent 38%, rgba(197,160,89,.18) 57%, rgba(12,13,14,.55) 86%)',
+              mixBlendMode: 'screen',
+              opacity: 0.65
+            }}
+          />
+
+          <div 
+            className="absolute inset-[-20%] pointer-events-none"
+            style={{
+              background: 'linear-gradient(109deg, transparent 18%, rgba(197,160,89,0) 35%, rgba(197,160,89,.22) 48%, rgba(180,185,190,.09) 61%, transparent 77%)',
+              opacity: 0.5
+            }}
+          />
+        </motion.div>
+
+        {/* -------------------------------------------------------- */}
+        {/* STAGE C: FULL-PAGE LOGO & NAME PRESENTATION (KEY STAGE)   */}
+        {/* Stays pinned at 100% opacity from 0.54 to 0.82!          */}
+        {/* -------------------------------------------------------- */}
+        <motion.div 
+          style={{ 
+            opacity: reframeOpacity,
+            scale: reframeScale,
+            y: reframeY
+          }}
+          className="absolute inset-0 flex flex-col items-center justify-center text-center text-[#faf8f5] pointer-events-none z-30 px-6"
+          aria-hidden="true"
+        >
+          {/* 1. Centered Official Sunrise Property Brand Logo */}
+          <motion.div 
+            style={{ scale: reframeSymbolScale }}
+            className="mb-6 sm:mb-8 relative"
+          >
+            <div className="absolute inset-0 bg-[#c5a059]/20 blur-3xl rounded-full scale-125 pointer-events-none" />
+            <img 
+              src="/images/logo-light.png" 
+              alt="Sunrise Property - Properties & Interior Design" 
+              className="w-48 sm:w-64 md:w-80 h-auto object-contain mx-auto drop-shadow-[0_0_50px_rgba(197,160,89,0.45)] relative z-10" 
+            />
+          </motion.div>
+
+          {/* 2. Top Eyebrow */}
+          <span className="block text-[#c5a059] tracking-[0.3em] text-[11px] sm:text-xs uppercase font-light mb-3 drop-shadow">
+            SUNRISE PROPERTY
+          </span>
+          
+          {/* 3. MONUMENTAL SUNRISE SERIF */}
+          <motion.h2 
+            style={{ letterSpacing: reframeLetterSpacing }}
+            className="font-serif-azimute text-[clamp(4.5rem,13vw,15rem)] leading-[0.9] text-[#faf8f5] drop-shadow-[0_20px_50px_rgba(0,0,0,0.95)]"
+          >
+            SUNRISE
+          </motion.h2>
+          
+          {/* 4. Subtitle */}
+          <span className="block text-[10px] sm:text-xs tracking-[0.25em] text-[#c5a059] uppercase font-light mt-4 drop-shadow">
+            FIND YOUR PROPERTY. DESIGN YOUR SPACE. LIVE BETTER.
+          </span>
+
+          {/* 5. Scroll invitation prompt */}
+          <div className="mt-8 flex flex-col items-center text-[#c5a059]/80 text-[10px] tracking-widest uppercase">
+            <span>Scroll to explore portfolio</span>
+            <span className="text-xs animate-bounce mt-1 text-[#c5a059]">↓</span>
+          </div>
+        </motion.div>
+
+        {/* -------------------------------------------------------- */}
+        {/* STAGE D: 1st PAGE CLOSING CURTAIN OVERLAY                */}
+        {/* -------------------------------------------------------- */}
+        <motion.div 
+          style={{ opacity: endClosingDarkness }}
+          className="absolute inset-0 bg-[#0c0d0e] pointer-events-none z-35"
+        />
+
+        {/* Exact "|| Animations" Button */}
+        <div className="absolute right-[6.25vw] bottom-6 z-40 pointer-events-auto">
+          <button
+            type="button"
+            onClick={() => setShowAnimationsModal(true)}
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#0c0d0e]/85 hover:bg-[#0c0d0e] backdrop-blur-md border border-white/20 text-[#faf8f5] text-xs tracking-wider transition shadow-2xl cursor-pointer hover:border-[#c5a059]"
+            aria-label="Open timeline controls"
+          >
+            <span className="font-mono text-[11px] text-[#c5a059]">||</span>
+            <span className="font-sans">Animations</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+export default function App() {
+  const [currentPage, setCurrentPage] = useState<Page>('home');
+  const [homeKey, setHomeKey] = useState<number>(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showAnimationsModal, setShowAnimationsModal] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [beforeAfterSlider, setBeforeAfterSlider] = useState<number>(50);
+  const [realEstateFilter, setRealEstateFilter] = useState<string>('ALL');
+  const [selectedProjectModal, setSelectedProjectModal] = useState<any | null>(null);
+  
+  // Entrance Opening Animation state (plays on every reload / visit)
+  const [entranceActive, setEntranceActive] = useState<boolean>(true);
+
+  // Contact form state
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    service: 'General Advisory & Acquisition',
+    message: ''
+  });
+
+  // Handle URL hash on initial load & hash changes
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleHashSync = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash === '' || hash === 'home') {
+        if (typeof window !== 'undefined') {
+          const html = document.documentElement;
+          const prevScrollBehavior = html.style.scrollBehavior;
+          html.style.scrollBehavior = 'auto';
+          window.scrollTo(0, 0);
+          document.body.scrollTop = 0;
+          html.scrollTop = 0;
+          html.style.scrollBehavior = prevScrollBehavior;
+        }
+        setHomeKey(prev => prev + 1);
+        setCurrentPage('home');
+      } else if (['about', 'real-estate', 'interior', 'contact'].includes(hash)) {
+        setCurrentPage(hash as Page);
+      }
+    };
+
+    handleHashSync();
+    window.addEventListener('hashchange', handleHashSync);
+    return () => window.removeEventListener('hashchange', handleHashSync);
+  }, []);
+
+  // Automatically conclude opening entrance after 1.4s (reduced to half) if active
+  useEffect(() => {
+    if (entranceActive) {
+      const timer = setTimeout(() => {
+        setEntranceActive(false);
+      }, 1400);
+      return () => clearTimeout(timer);
+    }
+  }, [entranceActive]);
+
+  // Scroll detection: activates navbar background color from the second page / section onward
+  const [isScrolledPastHero, setIsScrolledPastHero] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (currentPage !== 'home') {
+        setIsScrolledPastHero(true);
+        return;
+      }
+      const heroElem = document.getElementById('inicio');
+      if (heroElem) {
+        const heroHeight = heroElem.offsetHeight;
+        // Section 01 (the second page/section) slides up when scroll reaches ~78% of the hero track
+        const threshold = heroHeight - window.innerHeight * 0.9;
+        setIsScrolledPastHero(window.scrollY >= threshold);
+      } else {
+        setIsScrolledPastHero(window.scrollY > 80);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [currentPage]);
+
+  const showNavbarBg = currentPage !== 'home' || isScrolledPastHero;
+
+  // Robust navigation handler with guaranteed top scroll
   const navigateTo = (page: Page) => {
-    setCurrentPage(page);
     setMobileMenuOpen(false);
+    setEntranceActive(false);
+
+    if (page === 'home') {
+      const wasAlreadyHome = currentPage === 'home';
+      setHomeKey(prev => prev + 1);
+      setCurrentPage('home');
+      
+      if (typeof window !== 'undefined') {
+        // Remove hash from URL without triggering fragment navigation abort
+        if (window.location.hash) {
+          window.history.replaceState(null, '', '/');
+        }
+
+        // Disable CSS smooth scrolling temporarily for deterministic, instantaneous reset
+        const html = document.documentElement;
+        const prevScrollBehavior = html.style.scrollBehavior;
+        html.style.scrollBehavior = 'auto';
+        window.scrollTo(0, 0);
+        document.body.scrollTop = 0;
+        html.scrollTop = 0;
+        html.style.scrollBehavior = prevScrollBehavior;
+
+        if (wasAlreadyHome) {
+          // If already on Home, smooth scroll to the very top hero
+          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          const inicioElem = document.getElementById('inicio');
+          if (inicioElem) {
+            inicioElem.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
+      return;
+    }
+
+    // Navigating to other pages (about, real-estate, interior, contact)
+    setCurrentPage(page);
     if (typeof window !== 'undefined') {
-      window.location.hash = page === 'home' ? '' : page;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.history.replaceState(null, '', `#${page}`);
+      const html = document.documentElement;
+      const prevScrollBehavior = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      html.scrollTop = 0;
+      html.style.scrollBehavior = prevScrollBehavior;
     }
   };
 
+  // Guaranteed scroll-to-top reset on page transitions (especially returning to Home after scrolling on other pages)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const performScrollReset = () => {
+      const html = document.documentElement;
+      const prevScrollBehavior = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      html.scrollTop = 0;
+      html.style.scrollBehavior = prevScrollBehavior;
+    };
+
+    // Execute immediately on state change
+    performScrollReset();
+
+    // Re-verify on animation frames to defeat browser scroll restoration
+    const r1 = requestAnimationFrame(performScrollReset);
+    const r2 = requestAnimationFrame(() => requestAnimationFrame(performScrollReset));
+    const timer1 = setTimeout(performScrollReset, 20);
+    const timer2 = setTimeout(performScrollReset, 80);
+    const timer3 = setTimeout(performScrollReset, 200);
+
+    return () => {
+      cancelAnimationFrame(r1);
+      cancelAnimationFrame(r2);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
+  }, [currentPage]);
+
   const simulateScroll = (targetRatio: number) => {
-    if (!containerRef.current) return;
-    const totalHeight = containerRef.current.scrollHeight;
-    window.scrollTo({
-      top: totalHeight * targetRatio,
-      behavior: 'smooth'
-    });
+    if (typeof window === 'undefined') return;
+    const doScroll = () => {
+      const heroElem = document.getElementById('inicio');
+      if (!heroElem) return;
+      const totalHeight = heroElem.scrollHeight;
+      window.scrollTo({
+        top: totalHeight * targetRatio,
+        behavior: 'smooth'
+      });
+    };
+    if (!document.getElementById('inicio')) {
+      setTimeout(doScroll, 120);
+    } else {
+      doScroll();
+    }
   };
 
   const runFullScrubDemo = () => {
-    if (currentPage !== 'home') setCurrentPage('home');
+    if (currentPage !== 'home') {
+      setHomeKey(prev => prev + 1);
+      setCurrentPage('home');
+    }
     setShowAnimationsModal(false);
     setTimeout(() => simulateScroll(0), 100);
     setTimeout(() => simulateScroll(0.28), 1000);
@@ -185,7 +523,10 @@ export default function App() {
 
   const replayEntranceIntro = () => {
     setShowAnimationsModal(false);
-    if (currentPage !== 'home') setCurrentPage('home');
+    if (currentPage !== 'home') {
+      setHomeKey(prev => prev + 1);
+      setCurrentPage('home');
+    }
     window.scrollTo({ top: 0, behavior: 'instant' });
     setEntranceActive(true);
   };
@@ -490,9 +831,9 @@ export default function App() {
             initial={{ opacity: 1 }}
             exit={{ 
               clipPath: 'inset(0% 0% 100% 0%)',
-              transition: { duration: 1.1, ease: [0.77, 0, 0.175, 1] }
+              transition: { duration: 0.55, ease: [0.77, 0, 0.175, 1] }
             }}
-            className="fixed inset-0 z-50 bg-[#0c0d0e] flex flex-col items-center justify-center text-center text-[#faf8f5] select-none"
+            className="fixed inset-0 z-[100] bg-[#0c0d0e] flex flex-col items-center justify-center text-center text-[#faf8f5] select-none"
           >
             {/* Background Ambient Glows */}
             <div className="absolute inset-0 bg-radial from-[#c5a059]/15 via-transparent to-transparent pointer-events-none" />
@@ -501,7 +842,7 @@ export default function App() {
             <motion.div 
               initial={{ x: '-100%', opacity: 0 }}
               animate={{ x: '100%', opacity: [0, 0.7, 0] }}
-              transition={{ duration: 2.2, ease: 'easeInOut' }}
+              transition={{ duration: 1.1, ease: 'easeInOut' }}
               className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-[#faf8f5]/20 to-transparent pointer-events-none -skew-x-12"
             />
 
@@ -512,7 +853,7 @@ export default function App() {
               <motion.span 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+                transition={{ duration: 0.4, delay: 0.15 }}
                 className="text-[11px] sm:text-xs tracking-[0.3em] uppercase text-[#c5a059] font-light mb-6"
               >
                 SUNRISE PROPERTY PRESENTS
@@ -522,7 +863,7 @@ export default function App() {
               <motion.div 
                 initial={{ opacity: 0, scale: 0.9, filter: 'blur(6px)' }}
                 animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                transition={{ duration: 1.1, delay: 0.25, ease: 'easeOut' }}
+                transition={{ duration: 0.55, delay: 0.12, ease: 'easeOut' }}
                 className="mb-8 relative"
               >
                 <div className="absolute inset-0 bg-[#c5a059]/20 blur-3xl rounded-full scale-125 pointer-events-none" />
@@ -537,7 +878,7 @@ export default function App() {
               <motion.h1 
                 initial={{ opacity: 0, y: 15, letterSpacing: '0.04em' }}
                 animate={{ opacity: 1, y: 0, letterSpacing: '0.12em' }}
-                transition={{ duration: 1.2, delay: 0.6, ease: 'easeOut' }}
+                transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
                 className="font-serif-azimute text-5xl sm:text-7xl md:text-8xl leading-none text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]"
               >
                 SUNRISE
@@ -547,10 +888,10 @@ export default function App() {
               <motion.span 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.9 }}
-                className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-[#c5a059] font-light mt-4"
+                transition={{ duration: 0.4, delay: 0.45 }}
+                className="text-[10px] sm:text-xs tracking-[0.25em] uppercase text-[#c5a059] font-light mt-4"
               >
-                PROPERTIES &amp; BESPOKE INTERIOR ATELIER
+                Find Your Property. Design Your Space. Live Better.
               </motion.span>
             </div>
 
@@ -569,13 +910,18 @@ export default function App() {
       {/* ================================================================ */}
       {/* 1. EXACT FIXED NAVBAR: STRICT 5 MENU PAGES & BRAND LOGO        */}
       {/* ================================================================ */}
-      <header className={`fixed top-0 inset-x-0 z-40 flex items-center justify-between px-[6.25vw] transition-all duration-300 pointer-events-auto ${
+      <header className={`fixed top-0 inset-x-0 z-50 flex items-center justify-between px-[6.25vw] transition-all duration-500 pointer-events-auto ${
+        entranceActive
+          ? 'opacity-0 pointer-events-none -translate-y-8 invisible'
+          : 'opacity-100 translate-y-0 visible'
+      } ${
         showNavbarBg 
           ? 'bg-[#0c0d0e]/95 backdrop-blur-md border-b border-[#c5a059]/25 shadow-2xl py-3.5 sm:py-4' 
           : 'bg-transparent border-transparent py-4 sm:py-5'
       }`}>
         {/* Brand Logo from public/images/logo-light.png */}
         <button 
+          type="button"
           onClick={() => navigateTo('home')} 
           className="flex items-center gap-3.5 group cursor-pointer transition text-left"
           aria-label="Sunrise Property Home"
@@ -590,30 +936,35 @@ export default function App() {
         {/* Navigation Menu: EXACTLY 5 REQUIRED PAGES */}
         <nav className="hidden lg:flex items-center gap-7 xl:gap-9 text-[12px] xl:text-[13px] tracking-[0.16em] uppercase font-sans">
           <button 
+            type="button"
             onClick={() => navigateTo('home')}
             className={`py-1.5 transition cursor-pointer drop-shadow ${currentPage === 'home' ? 'text-white border-b-2 border-[#c5a059] font-semibold' : 'text-[#faf8f5]/75 hover:text-[#c5a059]'}`}
           >
             Home
           </button>
           <button 
+            type="button"
             onClick={() => navigateTo('about')}
             className={`py-1.5 transition cursor-pointer drop-shadow ${currentPage === 'about' ? 'text-white border-b-2 border-[#c5a059] font-semibold' : 'text-[#faf8f5]/75 hover:text-[#c5a059]'}`}
           >
             About Us
           </button>
           <button 
+            type="button"
             onClick={() => navigateTo('real-estate')}
             className={`py-1.5 transition cursor-pointer drop-shadow ${currentPage === 'real-estate' ? 'text-white border-b-2 border-[#c5a059] font-semibold' : 'text-[#faf8f5]/75 hover:text-[#c5a059]'}`}
           >
             Real Estate
           </button>
           <button 
+            type="button"
             onClick={() => navigateTo('interior')}
             className={`py-1.5 transition cursor-pointer drop-shadow ${currentPage === 'interior' ? 'text-white border-b-2 border-[#c5a059] font-semibold' : 'text-[#faf8f5]/75 hover:text-[#c5a059]'}`}
           >
             Interior Design
           </button>
           <button 
+            type="button"
             onClick={() => navigateTo('contact')}
             className={`py-1.5 transition cursor-pointer drop-shadow ${currentPage === 'contact' ? 'text-white border-b-2 border-[#c5a059] font-semibold' : 'text-[#faf8f5]/75 hover:text-[#c5a059]'}`}
           >
@@ -624,6 +975,7 @@ export default function App() {
         {/* Right Section: Enquire CTA & Mobile Toggle */}
         <div className="flex items-center gap-3.5">
           <button
+            type="button"
             onClick={() => navigateTo('contact')}
             className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#c5a059]/40 hover:border-[#c5a059] bg-[#c5a059]/10 hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] text-xs uppercase tracking-widest font-medium transition cursor-pointer shadow-sm"
           >
@@ -632,6 +984,7 @@ export default function App() {
           </button>
 
           <button 
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-2 text-white/90 hover:text-white cursor-pointer"
             aria-label="Toggle navigation"
@@ -643,18 +996,18 @@ export default function App() {
 
       {/* Mobile Navigation Drawer: EXACTLY 5 REQUIRED PAGES */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {!entranceActive && mobileMenuOpen && (
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-0 top-[65px] z-35 bg-[#0c0d0e]/98 backdrop-blur-xl border-b border-[#c5a059]/25 p-6 flex flex-col gap-4 text-xs uppercase tracking-widest lg:hidden shadow-2xl"
+            className="fixed inset-x-0 top-[65px] z-50 bg-[#0c0d0e]/98 backdrop-blur-xl border-b border-[#c5a059]/25 p-6 flex flex-col gap-4 text-xs uppercase tracking-widest lg:hidden shadow-2xl"
           >
-            <button onClick={() => navigateTo('home')} className={`text-left py-2.5 transition ${currentPage === 'home' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>Home</button>
-            <button onClick={() => navigateTo('about')} className={`text-left py-2.5 transition ${currentPage === 'about' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>About Us</button>
-            <button onClick={() => navigateTo('real-estate')} className={`text-left py-2.5 transition ${currentPage === 'real-estate' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>Real Estate</button>
-            <button onClick={() => navigateTo('interior')} className={`text-left py-2.5 transition ${currentPage === 'interior' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>Interior Design</button>
-            <button onClick={() => navigateTo('contact')} className={`text-left py-2.5 transition ${currentPage === 'contact' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>Contact Us</button>
+            <button type="button" onClick={() => navigateTo('home')} className={`text-left py-2.5 transition cursor-pointer ${currentPage === 'home' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>Home</button>
+            <button type="button" onClick={() => navigateTo('about')} className={`text-left py-2.5 transition cursor-pointer ${currentPage === 'about' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>About Us</button>
+            <button type="button" onClick={() => navigateTo('real-estate')} className={`text-left py-2.5 transition cursor-pointer ${currentPage === 'real-estate' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>Real Estate</button>
+            <button type="button" onClick={() => navigateTo('interior')} className={`text-left py-2.5 transition cursor-pointer ${currentPage === 'interior' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>Interior Design</button>
+            <button type="button" onClick={() => navigateTo('contact')} className={`text-left py-2.5 transition cursor-pointer ${currentPage === 'contact' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>Contact Us</button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -665,218 +1018,11 @@ export default function App() {
       {currentPage === 'home' && (
         <main>
           {/* HERO SECTION WITH EXTENDED TRACK (height: 380svh) */}
-          <section ref={containerRef} className="relative h-[380svh] bg-[#0c0d0e]" id="inicio">
-            <div className="sticky top-0 h-[100svh] min-h-[620px] overflow-hidden text-[#faf8f5]">
-              
-              {/* -------------------------------------------------------- */}
-              {/* STAGE A: BUILDING ARCHITECTURAL RENDER (Day & Night)    */}
-              {/* -------------------------------------------------------- */}
-              <motion.div 
-                style={{ opacity: heroBuildingPresence }}
-                className="absolute inset-0 w-full h-full"
-              >
-                {/* Day Facade */}
-                <img 
-                  className="w-full h-full object-cover object-[58%_48%]"
-                  src="https://azimuteresidencial.com.br/assets/images/fachada-azimute-1920.webp"
-                  alt="Sunrise Property Architecture - Day"
-                />
-
-                {/* Night Facade */}
-                <motion.img 
-                  style={{ opacity: heroNightOpacity }}
-                  className="absolute inset-0 w-full h-full object-cover object-[58%_48%] pointer-events-none"
-                  src="https://azimuteresidencial.com.br/assets/images/fachada-azimute-noite-1920.webp"
-                  alt="Sunrise Property Architecture - Night"
-                  aria-hidden="true"
-                />
-
-                {/* Dual Ambient Shade */}
-                <div 
-                  className="absolute inset-0 pointer-events-none" 
-                  style={{
-                    background: 'linear-gradient(90deg, rgba(12,13,14,0.45), transparent 60%), linear-gradient(0deg, rgba(12,13,14,0.7), transparent 58%, rgba(12,13,14,0.25))'
-                  }}
-                />
-
-                <div className="absolute right-[6.25vw] bottom-[76px] text-[0.75rem] text-[#faf8f5]/70 pointer-events-none">
-                  Architectural Rendering
-                </div>
-              </motion.div>
-
-              {/* Side text: ARCHITECTURE · LIGHT · LIVING (Vertical) */}
-              <motion.div 
-                style={{ opacity: heroSideOpacity }}
-                className="hidden md:block absolute right-[2.7vw] top-[42%] text-[0.75rem] tracking-[0.2em] text-[#faf8f5]/60 pointer-events-none [writing-mode:vertical-rl]"
-              >
-                ARCHITECTURE · LIGHT · LIVING
-              </motion.div>
-
-              {/* Bottom scroll indicator: EXPLORE */}
-              <motion.div 
-                style={{ opacity: heroSideOpacity }}
-                className="absolute bottom-6 left-[6.25vw] flex items-center gap-[18px] pointer-events-none"
-                aria-hidden="true"
-              >
-                <span className="text-[0.625rem] tracking-[0.2em] text-[#faf8f5]/75 uppercase">EXPLORE</span>
-                <div className="h-[58px] w-[1px] bg-white/25 overflow-hidden relative">
-                  <div className="w-full h-8 bg-[#c5a059] animate-scroll-cue" />
-                </div>
-              </motion.div>
-
-              {/* Initial Left Hero Content (Calibrated size & position from reference image) */}
-              <motion.div 
-                style={{ 
-                  opacity: heroContentOpacity,
-                  y: heroContentY 
-                }}
-                className="absolute left-[6.25vw] bottom-[15%] max-w-[580px] z-20 pointer-events-auto"
-              >
-                <p className="flex items-center gap-4 text-[#c5a059] text-[0.75rem] tracking-[0.15em] uppercase mb-5 sm:mb-[25px]">
-                  <span className="w-8 h-[1px] bg-[#c5a059] inline-block" />
-                  SUNRISE PROPERTY • ARCHITECTURAL DISCOVERY
-                </p>
-
-                <h1 className="font-serif-azimute mb-6 sm:mb-[34px] text-white drop-shadow-xl">
-                  <span className="block text-[clamp(2.35rem,3.8vw,4.5rem)] leading-[0.94] tracking-[-0.015em]">
-                    YOUR NEXT
-                  </span>
-                  <em className="block italic font-serif-azimute text-[clamp(3.35rem,5.6vw,6.5rem)] leading-[0.86] mt-1 ml-[4vw] sm:ml-[6.5vw] text-[#faf8f5]">
-                    horizon.
-                  </em>
-                </h1>
-
-                <div className="flex flex-col sm:flex-row gap-6 sm:gap-[50px] sm:items-end">
-                  <p className="text-[0.9375rem] sm:text-[1rem] leading-[1.65] text-[#e2ded7] font-sans drop-shadow max-w-[280px]">
-                    A bespoke direction for living.<br />
-                    Real Estate &amp; Interior Atelier.
-                  </p>
-
-                  <a 
-                    className="inline-flex items-center gap-4 sm:gap-5 text-sm sm:text-base text-white hover:text-[#c5a059] group cursor-pointer drop-shadow transition"
-                    href="#intro-services"
-                    onClick={(e) => { e.preventDefault(); simulateScroll(0.66); }}
-                  >
-                    <span className="tracking-wide">Explore Collection</span>
-                    <span className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-white/50 flex items-center justify-center text-lg sm:text-xl group-hover:bg-[#c5a059] group-hover:text-[#0c0d0e] group-hover:border-[#c5a059] transition duration-300 bg-black/10">
-                      ↓
-                    </span>
-                  </a>
-                </div>
-              </motion.div>
-
-              {/* -------------------------------------------------------- */}
-              {/* STAGE B: 3D CRYSTAL UNIVERSE ATMOSPHERE                  */}
-              {/* -------------------------------------------------------- */}
-              <motion.div 
-                style={{ 
-                  opacity: crystalAtmosphereOpacity,
-                  scale: crystalAtmosphereScale 
-                }}
-                className="absolute inset-0 w-full h-full pointer-events-none z-15 overflow-hidden"
-              >
-                {/* Background asset */}
-                <div 
-                  className="absolute inset-[-10%] bg-cover bg-center brightness-[0.72] contrast-[1.15]"
-                  style={{
-                    backgroundImage: `url('https://azimuteresidencial.com.br/assets/crystal/azimute-crystal-universe.webp')`,
-                    backgroundPosition: '52% 48%'
-                  }}
-                />
-
-                {/* Veils of liquid crystal light & organic reflection */}
-                <div 
-                  className="absolute inset-[-15%] pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(117deg, rgba(12,13,14,.65) 5%, transparent 38%, rgba(197,160,89,.18) 57%, rgba(12,13,14,.55) 86%)',
-                    mixBlendMode: 'screen',
-                    opacity: 0.65
-                  }}
-                />
-
-                <div 
-                  className="absolute inset-[-20%] pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(109deg, transparent 18%, rgba(197,160,89,0) 35%, rgba(197,160,89,.22) 48%, rgba(180,185,190,.09) 61%, transparent 77%)',
-                    opacity: 0.5
-                  }}
-                />
-              </motion.div>
-
-              {/* -------------------------------------------------------- */}
-              {/* STAGE C: FULL-PAGE LOGO & NAME PRESENTATION (KEY STAGE)   */}
-              {/* Stays pinned at 100% opacity from 0.54 to 0.82!          */}
-              {/* -------------------------------------------------------- */}
-              <motion.div 
-                style={{ 
-                  opacity: reframeOpacity,
-                  scale: reframeScale,
-                  y: reframeY
-                }}
-                className="absolute inset-0 flex flex-col items-center justify-center text-center text-[#faf8f5] pointer-events-none z-30 px-6"
-                aria-hidden="true"
-              >
-                {/* 1. Centered Official Sunrise Property Brand Logo */}
-                <motion.div 
-                  style={{ scale: reframeSymbolScale }}
-                  className="mb-6 sm:mb-8 relative"
-                >
-                  <div className="absolute inset-0 bg-[#c5a059]/20 blur-3xl rounded-full scale-125 pointer-events-none" />
-                  <img 
-                    src="/images/logo-light.png" 
-                    alt="Sunrise Property - Properties & Interior Design" 
-                    className="w-48 sm:w-64 md:w-80 h-auto object-contain mx-auto drop-shadow-[0_0_50px_rgba(197,160,89,0.45)] relative z-10" 
-                  />
-                </motion.div>
-
-                {/* 2. Top Eyebrow */}
-                <span className="block text-[#c5a059] tracking-[0.3em] text-[11px] sm:text-xs uppercase font-light mb-3 drop-shadow">
-                  ATELIER MONOGRAPH
-                </span>
-                
-                {/* 3. MONUMENTAL SUNRISE SERIF */}
-                <motion.h2 
-                  style={{ letterSpacing: reframeLetterSpacing }}
-                  className="font-serif-azimute text-[clamp(4.5rem,13vw,15rem)] leading-[0.9] text-[#faf8f5] drop-shadow-[0_20px_50px_rgba(0,0,0,0.95)]"
-                >
-                  SUNRISE
-                </motion.h2>
-                
-                {/* 4. Subtitle */}
-                <span className="block text-[10px] sm:text-xs tracking-[0.3em] text-[#c5a059] uppercase font-light mt-4 drop-shadow">
-                  PROPERTIES &amp; BESPOKE INTERIOR ATELIER
-                </span>
-
-                {/* 5. Scroll invitation prompt */}
-                <div className="mt-8 flex flex-col items-center text-[#c5a059]/80 text-[10px] tracking-widest uppercase">
-                  <span>Scroll to explore portfolio</span>
-                  <span className="text-xs animate-bounce mt-1 text-[#c5a059]">↓</span>
-                </div>
-              </motion.div>
-
-              {/* -------------------------------------------------------- */}
-              {/* STAGE D: 1st PAGE CLOSING CURTAIN OVERLAY                */}
-              {/* -------------------------------------------------------- */}
-              <motion.div 
-                style={{ opacity: endClosingDarkness }}
-                className="absolute inset-0 bg-[#0c0d0e] pointer-events-none z-35"
-              />
-
-              {/* Exact "|| Animations" Button */}
-              <div className="absolute right-[6.25vw] bottom-6 z-40 pointer-events-auto">
-                <button
-                  type="button"
-                  onClick={() => setShowAnimationsModal(true)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#0c0d0e]/85 hover:bg-[#0c0d0e] backdrop-blur-md border border-white/20 text-[#faf8f5] text-xs tracking-wider transition shadow-2xl cursor-pointer hover:border-[#c5a059]"
-                  aria-label="Open timeline controls"
-                >
-                  <span className="font-mono text-[11px] text-[#c5a059]">||</span>
-                  <span className="font-sans">Animations</span>
-                </button>
-              </div>
-
-            </div>
-          </section>
+          <HomeHeroSection
+            key={homeKey}
+            setShowAnimationsModal={setShowAnimationsModal}
+            simulateScroll={simulateScroll}
+          />
 
           {/* ============================================================ */}
           {/* 3.1 HOME SECTION 01: REAL ESTATE + INTERIOR INTRODUCTION     */}
@@ -887,30 +1033,29 @@ export default function App() {
           <section id="intro-services" className="bg-[#faf8f5] text-[#0f1115] py-24 sm:py-32 px-[6.25vw] relative z-40 shadow-[0_-35px_80px_rgba(0,0,0,0.7)]">
             <div className="max-w-[1500px] mx-auto">
               <div className="flex items-center justify-between text-xs tracking-[0.2em] uppercase text-[#6e737c] border-b border-[#e2ded6] pb-5 mb-14">
-                <span className="font-semibold text-[#0f1115]">01 / THE ATELIER</span>
-                <span>MUMBAI · ALIBAUG · GREATER NOIDA</span>
+                <span className="font-semibold text-[#0f1115]">01 / ABOUT US</span>
+                <span>OFFICE A-722, GRANDTHUM · TECHZONE 4, GREATER NOIDA WEST</span>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
                 <div className="lg:col-span-7">
                   <h2 className="font-serif-azimute text-[clamp(3.8rem,7.5vw,8.5rem)] leading-[0.92] tracking-[-0.025em] text-[#0f1115]">
-                    <span className="block text-[0.72em]">LIVING IN</span>
+                    <span className="block text-[0.72em]">FIND YOUR PROPERTY.</span>
                     <em className="block font-serif-azimute not-italic text-[#c5a059] text-[1.15em] ml-6">
-                      fine direction.
+                      design your space.
                     </em>
                   </h2>
                 </div>
 
                 <div className="lg:col-span-5 text-[#5a5f67] space-y-6 pt-4 text-base leading-relaxed">
                   <p className="text-xl text-[#0f1115] font-light">
-                    Spaces that connect.<br />
-                    Volumes to gather, repose, and reside.
+                    Find Your Property. Design Your Space. Live Better.
                   </p>
                   <p className="text-[#454950]">
-                    Sunrise Property operates at the fertile intersection of prime real estate discovery and bespoke interior architecture. We curate architectural properties for discerning patrons who demand harmony between exterior monolith and internal stillness.
+                    Sunrise Property delivers end-to-end expertise across prime real estate discovery and bespoke interior design. We help you find your ideal residential or commercial property, thoughtfully design your spaces, and execute turnkey interior solutions that elevate your lifestyle.
                   </p>
                   <span className="block text-xs font-mono tracking-widest uppercase text-[#a6833d] pt-2">
-                    EST. 2006 · ARCHITECTURAL ADVISORY &amp; INTERIOR ATELIER
+                    OFFICE A-722, GRANDTHUM, TECHZONE 4, GREATER NOIDA WEST
                   </span>
                 </div>
               </div>
@@ -953,36 +1098,36 @@ export default function App() {
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-14">
                   <div>
                     <span className="text-xs tracking-widest uppercase text-[#c5a059] font-semibold">
-                      Disciplines
+                      Disciplines &amp; Expertise
                     </span>
                     <h3 className="font-serif-azimute text-4xl sm:text-5xl text-[#0f1115] mt-2">
-                      Our Core Services
+                      Our Services
                     </h3>
                   </div>
                   <p className="mt-4 md:mt-0 text-sm text-[#5a5f67] max-w-md">
-                    End-to-end custody spanning private property acquisition, architectural interior design, and turnkey handover.
+                    End-to-end real estate advisory and interior craftsmanship delivered with professional guidance and turnkey accountability.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {/* Service 1 */}
                   <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] flex flex-col justify-between">
                     <div>
                       <div className="w-12 h-12 rounded-full bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6 shadow-sm">
                         <Building2 className="w-6 h-6" />
                       </div>
-                      <span className="text-[10px] tracking-widest uppercase text-[#c5a059] font-bold">01 / ADVISORY</span>
+                      <span className="text-[10px] tracking-widest uppercase text-[#c5a059] font-bold">01 / REAL ESTATE</span>
                       <h4 className="font-serif-azimute text-2xl sm:text-3xl text-[#0f1115] mt-1 mb-3">
-                        Real Estate Advisory
+                        Residential &amp; Commercial Real Estate
                       </h4>
                       <p className="text-sm text-[#5a5f67] leading-relaxed mb-6">
-                        Private acquisition, off-market coastal estates, penthouses, and strategic developments in Greater Noida with rigorous spatial and legal due diligence.
+                        Prime residential apartments, luxury villas, studio apartments, Grade-A commercial office suites, and high-footfall retail destinations across Greater Noida and prime corridors.
                       </p>
                     </div>
                     <ul className="text-xs text-[#454950] space-y-2.5 pt-4 border-t border-[#f0ece3]">
-                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Prime Residential Estates</li>
-                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> High-Rise Penthouses &amp; Studios</li>
-                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Confidential Off-Market Advisory</li>
+                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Residential Apartments &amp; Villas</li>
+                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Commercial Offices &amp; Retail Shops</li>
+                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Studio Apartments &amp; New Launches</li>
                     </ul>
                   </div>
 
@@ -990,20 +1135,20 @@ export default function App() {
                   <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] flex flex-col justify-between">
                     <div>
                       <div className="w-12 h-12 rounded-full bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6 shadow-sm">
-                        <Paintbrush className="w-6 h-6" />
+                        <Compass className="w-6 h-6" />
                       </div>
-                      <span className="text-[10px] tracking-widest uppercase text-[#c5a059] font-bold">02 / ATELIER</span>
+                      <span className="text-[10px] tracking-widest uppercase text-[#c5a059] font-bold">02 / CONSULTATION</span>
                       <h4 className="font-serif-azimute text-2xl sm:text-3xl text-[#0f1115] mt-1 mb-3">
-                        Bespoke Interior Design
+                        Property Consultation
                       </h4>
                       <p className="text-sm text-[#5a5f67] leading-relaxed mb-6">
-                        Space planning, moodboards, 3D photorealistic renderings, material specification, and bespoke cabinetry crafted to elevate residential living.
+                        Professional real estate guidance, valuation analysis, developer credibility checks, legal verification, and end-to-end buying, selling, and leasing advisory.
                       </p>
                     </div>
                     <ul className="text-xs text-[#454950] space-y-2.5 pt-4 border-t border-[#f0ece3]">
-                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> 3D Spatial Modeling &amp; Renders</li>
-                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Marble &amp; Hardwood Curations</li>
-                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Architectural Lighting Schemes</li>
+                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Professional Buying &amp; Selling Guidance</li>
+                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Valuation &amp; Legal Verification</li>
+                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Rental &amp; Leasing Advisory</li>
                     </ul>
                   </div>
 
@@ -1011,21 +1156,63 @@ export default function App() {
                   <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] flex flex-col justify-between">
                     <div>
                       <div className="w-12 h-12 rounded-full bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6 shadow-sm">
-                        <Wrench className="w-6 h-6" />
+                        <Paintbrush className="w-6 h-6" />
                       </div>
-                      <span className="text-[10px] tracking-widest uppercase text-[#c5a059] font-bold">03 / EXECUTION</span>
+                      <span className="text-[10px] tracking-widest uppercase text-[#c5a059] font-bold">03 / INTERIOR ATELIER</span>
                       <h4 className="font-serif-azimute text-2xl sm:text-3xl text-[#0f1115] mt-1 mb-3">
-                        Turnkey Fit-Out &amp; Execution
+                        Interior Design
                       </h4>
                       <p className="text-sm text-[#5a5f67] leading-relaxed mb-6">
-                        Single point of accountability from civil modifications, custom carpentry and home automation to final white-glove furnishing handover.
+                        Bespoke architectural interior design from concept design and ergonomic space planning to detailed 2D drawings, 3D visualization, and refined material selection.
                       </p>
                     </div>
                     <ul className="text-xs text-[#454950] space-y-2.5 pt-4 border-t border-[#f0ece3]">
-                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Civil &amp; Structural Modifications</li>
-                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Custom Architectural Millwork</li>
-                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> White-Glove Handover &amp; Warranty</li>
+                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Concept Design &amp; Space Planning</li>
+                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> 2D Working Drawings &amp; Layouts</li>
+                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Photorealistic 3D Visualization</li>
                     </ul>
+                  </div>
+
+                  {/* Service 4 */}
+                  <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] flex flex-col justify-between">
+                    <div>
+                      <div className="w-12 h-12 rounded-full bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6 shadow-sm">
+                        <SlidersHorizontal className="w-6 h-6" />
+                      </div>
+                      <span className="text-[10px] tracking-widest uppercase text-[#c5a059] font-bold">04 / COMMERCIAL ATELIER</span>
+                      <h4 className="font-serif-azimute text-2xl sm:text-3xl text-[#0f1115] mt-1 mb-3">
+                        Office Interiors
+                      </h4>
+                      <p className="text-sm text-[#5a5f67] leading-relaxed mb-6">
+                        Tailored commercial workspace transformations engineered for collaboration, brand aesthetics, executive cabins, modern conference rooms, and acoustic comfort.
+                      </p>
+                    </div>
+                    <ul className="text-xs text-[#454950] space-y-2.5 pt-4 border-t border-[#f0ece3]">
+                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Corporate Cabins &amp; Workstations</li>
+                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Conference &amp; Meeting Rooms</li>
+                      <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Acoustic &amp; Ambient Lighting Schemes</li>
+                    </ul>
+                  </div>
+
+                  {/* Service 5 */}
+                  <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] flex flex-col justify-between md:col-span-2 lg:col-span-2">
+                    <div>
+                      <div className="w-12 h-12 rounded-full bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6 shadow-sm">
+                        <Wrench className="w-6 h-6" />
+                      </div>
+                      <span className="text-[10px] tracking-widest uppercase text-[#c5a059] font-bold">05 / TURNKEY EXECUTION</span>
+                      <h4 className="font-serif-azimute text-2xl sm:text-3xl text-[#0f1115] mt-1 mb-3">
+                        Turnkey Interior Solutions
+                      </h4>
+                      <p className="text-sm text-[#5a5f67] leading-relaxed mb-6">
+                        Single point of custody and complete peace of mind. We manage civil work, custom carpentry, false ceilings, electrical, plumbing, flooring, painting, and white-glove handover with guaranteed timelines.
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-[#f0ece3] text-xs text-[#454950]">
+                      <div className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> Civil, Carpentry &amp; Electrical</div>
+                      <div className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> False Ceiling, Flooring &amp; Paint</div>
+                      <div className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-[#c5a059]" /> On-Time Handover &amp; Warranty</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1252,43 +1439,43 @@ export default function App() {
               <div className="text-center max-w-3xl mx-auto mb-16">
                 <span className="text-xs tracking-widest uppercase text-[#c5a059] font-semibold">Our Distinctive Edge</span>
                 <h3 className="font-serif-azimute text-4xl sm:text-5xl text-[#0f1115] mt-2">
-                  Why Discerning Patrons Choose Sunrise Property
+                  Why Choose Sunrise Property
                 </h3>
                 <p className="text-sm text-[#5a5f67] mt-3 font-light">
-                  Decades of curated curation, architectural rigor, and unwavering commitment to spatial excellence.
+                  Professional guidance, transparent dealings, quality design, and end-to-end support for all your property and interior needs.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] group">
                   <ShieldCheck className="w-8 h-8 text-[#c5a059] mb-4 group-hover:scale-110 transition" />
-                  <h4 className="font-serif-azimute text-xl mb-2 text-[#0f1115]">Architectural Pedigree</h4>
+                  <h4 className="font-serif-azimute text-xl mb-2 text-[#0f1115]">Professional Guidance</h4>
                   <p className="text-xs text-[#5a5f67] leading-relaxed">
-                    Over 18 years of curated discovery, safeguarding architectural integrity and long-term asset value.
+                    Experienced property advisors and interior architects offering expert market insights, zoning checks, and tailored spatial recommendations.
                   </p>
                 </div>
 
                 <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] group">
                   <Award className="w-8 h-8 text-[#c5a059] mb-4 group-hover:scale-110 transition" />
-                  <h4 className="font-serif-azimute text-xl mb-2 text-[#0f1115]">Dual-Discipline Custody</h4>
+                  <h4 className="font-serif-azimute text-xl mb-2 text-[#0f1115]">Transparent Dealings</h4>
                   <p className="text-xs text-[#5a5f67] leading-relaxed">
-                    Seamless synthesis bridging property acquisition with bespoke interior design and turnkey civil execution.
+                    Complete pricing transparency, verified legal titles, clear documentation, and ethical advisory with zero hidden charges or surprises.
                   </p>
                 </div>
 
                 <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] group">
-                  <Users className="w-8 h-8 text-[#c5a059] mb-4 group-hover:scale-110 transition" />
-                  <h4 className="font-serif-azimute text-xl mb-2 text-[#0f1115]">Confidential Advisory</h4>
+                  <Sparkles className="w-8 h-8 text-[#c5a059] mb-4 group-hover:scale-110 transition" />
+                  <h4 className="font-serif-azimute text-xl mb-2 text-[#0f1115]">Quality Design</h4>
                   <p className="text-xs text-[#5a5f67] leading-relaxed">
-                    100% discretion standard for high-net-worth acquisitions, private tenders, and off-market sanctuaries.
+                    Bespoke architectural space planning, photorealistic 3D visualization, superior material specifications, and uncompromising craftsmanship.
                   </p>
                 </div>
 
                 <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] group">
                   <Clock className="w-8 h-8 text-[#c5a059] mb-4 group-hover:scale-110 transition" />
-                  <h4 className="font-serif-azimute text-xl mb-2 text-[#0f1115]">Guaranteed Delivery</h4>
+                  <h4 className="font-serif-azimute text-xl mb-2 text-[#0f1115]">End-to-End Support</h4>
                   <p className="text-xs text-[#5a5f67] leading-relaxed">
-                    Strict adherence to engineering timelines, transparent milestone auditing, and white-glove turnkey handover.
+                    Comprehensive single-point stewardship from property search and transaction to turnkey civil execution, interior fit-outs, and handover.
                   </p>
                 </div>
               </div>
@@ -1303,15 +1490,15 @@ export default function App() {
               <div className="max-w-2xl">
                 <span className="text-xs tracking-widest uppercase text-[#c5a059]">Private Concierge Desk</span>
                 <h3 className="font-serif-azimute text-3xl sm:text-5xl mt-2 text-white">
-                  Ready to Discuss Your Next Sanctuary?
+                  Ready to Discuss Your Next Property or Interior Space?
                 </h3>
                 <p className="text-sm text-white/70 mt-2 font-light">
-                  Speak directly with our architectural advisors regarding private property viewings or custom interior commissions.
+                  Speak directly with our advisors regarding residential &amp; commercial properties or custom turnkey interior projects.
                 </p>
               </div>
               <div className="flex flex-wrap gap-4">
                 <a 
-                  href="https://wa.me/919820001234?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20portfolio."
+                  href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20services."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white font-medium text-xs uppercase tracking-widest flex items-center gap-2 shadow-xl transition cursor-pointer"
@@ -1339,36 +1526,36 @@ export default function App() {
           <div className="border-b border-[#e2ded6] pb-8 mb-16">
             <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Atelier Monograph · Profile</span>
             <h1 className="font-serif-azimute text-5xl sm:text-7xl mt-2 text-[#0f1115]">
-              Built Around Places. Focused on People.
+              Find Your Property. Design Your Space. Live Better.
             </h1>
             <p className="text-lg text-[#5a5f67] max-w-3xl mt-4 font-light">
-              Sunrise Property operates at the fertile intersection of living spaces and interior architecture. We curate properties for patrons who demand custody between exterior monolith and internal stillness.
+              Sunrise Property delivers end-to-end expertise across prime real estate discovery and bespoke interior design. We help you find your ideal residential or commercial property, thoughtfully design your spaces, and execute turnkey interior solutions that elevate your lifestyle.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
             <div className="lg:col-span-6 space-y-6 text-sm text-[#5a5f67] leading-relaxed font-light">
               <h3 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115]">
-                The Intersection of Living Spaces
+                Real Estate &amp; Interior Design in Perfect Harmony
               </h3>
               <p className="text-[#454950]">
-                Founded in 2006 with the conviction that luxury residential development is too often fractured between cold transaction and superficial decoration, Sunrise Property bridges the void. We are a dual-discipline atelier of curators, architects, and artisans who view living spaces as enduring instruments of human rest.
+                Sunrise Property was founded with the conviction that real estate acquisition and interior design should never be disconnected. We bridge the gap between finding the right address and crafting an inspiring space to live and work.
               </p>
               <p className="text-[#454950]">
-                Our dual mandate begins with spatial diagnosis: before recommending a plot or acquisition, we analyze natural light ingress, acoustic isolation, view corridors, and structural authenticity. Once an address is secured, our interior atelier shapes the living volume — installing hand-honed travertine, grain-matched oak joinery, and artisanal bronze accents that deepen in patina over time.
+                Whether you are searching for premium residential apartments, villas, studio apartments, commercial offices, or turnkey interior fit-outs, our team offers professional guidance, transparent dealings, quality design, and end-to-end support from discovery to handover.
               </p>
               <div className="pt-6 border-t border-[#e2ded6] grid grid-cols-3 gap-6">
                 <div>
-                  <span className="block font-serif-azimute text-4xl text-[#c5a059]">18+</span>
-                  <span className="text-[10px] uppercase tracking-wider text-[#6e737c]">Years Monograph Archive</span>
-                </div>
-                <div>
-                  <span className="block font-serif-azimute text-4xl text-[#c5a059]">$420M+</span>
-                  <span className="text-[10px] uppercase tracking-wider text-[#6e737c]">Stewarded Assets</span>
-                </div>
-                <div>
                   <span className="block font-serif-azimute text-4xl text-[#c5a059]">100%</span>
-                  <span className="text-[10px] uppercase tracking-wider text-[#6e737c]">Discretion Standard</span>
+                  <span className="text-[10px] uppercase tracking-wider text-[#6e737c]">Transparent Dealings</span>
+                </div>
+                <div>
+                  <span className="block font-serif-azimute text-4xl text-[#c5a059]">5+</span>
+                  <span className="text-[10px] uppercase tracking-wider text-[#6e737c]">Core Services</span>
+                </div>
+                <div>
+                  <span className="block font-serif-azimute text-4xl text-[#c5a059]">End-to-End</span>
+                  <span className="text-[10px] uppercase tracking-wider text-[#6e737c]">Turnkey Support</span>
                 </div>
               </div>
             </div>
@@ -1377,12 +1564,12 @@ export default function App() {
               <div className="rounded-2xl overflow-hidden aspect-[4/3] border border-[#e2ded6] shadow-2xl relative">
                 <img 
                   src="/images/hero-villa.jpg" 
-                  alt="Sunrise Property Coastal Sanctuary" 
+                  alt="Sunrise Property Grandthum Atelier" 
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-4 left-4 right-4 bg-[#0c0d0e]/85 backdrop-blur-md p-4 rounded-xl text-xs border border-white/15">
-                  <span className="text-white font-medium">Private Villa 8, Reflection Lagoon</span>
-                  <span className="text-[#c5a059] block text-[11px] mt-0.5">Alibaug Coastline · Completed 2024</span>
+                  <span className="text-white font-medium">Office A-722, Grandthum</span>
+                  <span className="text-[#c5a059] block text-[11px] mt-0.5">Techzone 4, Greater Noida West, Uttar Pradesh</span>
                 </div>
               </div>
             </div>
@@ -1394,14 +1581,14 @@ export default function App() {
               <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Our Mission</span>
               <h4 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115]">Develop Spaces That Transform</h4>
               <p className="text-sm text-[#5a5f67] leading-relaxed font-light">
-                To deliver enduring residential sanctums that unite engineering perfection, sculptural aesthetics, and lifelong asset preservation for our clients and future generations.
+                To deliver enduring residential and commercial spaces that unite engineering precision, refined aesthetics, and seamless turnkey execution for our clients.
               </p>
             </div>
             <div className="p-8 sm:p-12 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_24px_rgba(0,0,0,0.03)] space-y-4">
               <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Our Vision</span>
-              <h4 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115]">Benchmark in Life &amp; Architecture</h4>
+              <h4 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115]">Benchmark in Real Estate &amp; Interiors</h4>
               <p className="text-sm text-[#5a5f67] leading-relaxed font-light">
-                To be India’s premier dual-discipline atelier for architectural property discovery and bespoke interior design, recognized for timeless restraint, craft integrity, and unwavering discretion.
+                To be the most trusted dual-discipline partner for real estate advisory and interior design, recognized for professional guidance, transparent dealings, and superior design quality.
               </p>
             </div>
           </div>
@@ -1409,29 +1596,36 @@ export default function App() {
           {/* Why Sunrise Property */}
           <div className="border-t border-[#e2ded6] pt-16">
             <div className="text-center max-w-2xl mx-auto mb-14">
-              <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Atelier Principles</span>
-              <h3 className="font-serif-azimute text-4xl text-[#0f1115] mt-1">Why Sunrise Property</h3>
+              <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Why Choose Us</span>
+              <h3 className="font-serif-azimute text-4xl text-[#0f1115] mt-1">Our Core Pillars</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-3">
                 <span className="text-[#c5a059] font-serif-azimute text-3xl">01</span>
-                <h4 className="font-serif-azimute text-2xl text-[#0f1115]">Spatial Diagnosis</h4>
+                <h4 className="font-serif-azimute text-2xl text-[#0f1115]">Professional Guidance</h4>
                 <p className="text-xs text-[#5a5f67] leading-relaxed">
-                  Every acquisition is analyzed for solar geometry, cross-ventilation, acoustic privacy, and surrounding green buffers prior to client presentation.
+                  Expert real estate and interior advisors providing verified project insights, spatial analysis, and tailored recommendations.
                 </p>
               </div>
               <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-3">
                 <span className="text-[#c5a059] font-serif-azimute text-3xl">02</span>
-                <h4 className="font-serif-azimute text-2xl text-[#0f1115]">Material Honesty</h4>
+                <h4 className="font-serif-azimute text-2xl text-[#0f1115]">Transparent Dealings</h4>
                 <p className="text-xs text-[#5a5f67] leading-relaxed">
-                  We reject synthetic veneers in favor of tactile stone, solid European hardwood, architectural bronze, and breathable natural lime washes.
+                  Honest guidance, clear paperwork, transparent pricing structures, and zero hidden costs at every milestone.
                 </p>
               </div>
               <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-3">
                 <span className="text-[#c5a059] font-serif-azimute text-3xl">03</span>
-                <h4 className="font-serif-azimute text-2xl text-[#0f1115]">Turnkey Accountability</h4>
+                <h4 className="font-serif-azimute text-2xl text-[#0f1115]">Quality Design</h4>
                 <p className="text-xs text-[#5a5f67] leading-relaxed">
-                  We eliminate coordination friction between brokers, contractors, and designers by providing a single point of custody from purchase to keys.
+                  Custom space planning, photorealistic 3D visualization, premium material curation, and flawless execution.
+                </p>
+              </div>
+              <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-3">
+                <span className="text-[#c5a059] font-serif-azimute text-3xl">04</span>
+                <h4 className="font-serif-azimute text-2xl text-[#0f1115]">End-to-End Support</h4>
+                <p className="text-xs text-[#5a5f67] leading-relaxed">
+                  A seamless single window covering property search, buying, design drawings, civil execution, and final turnkey handover.
                 </p>
               </div>
             </div>
@@ -1702,7 +1896,7 @@ export default function App() {
                 {/* Direct WhatsApp CTA */}
                 <div className="pt-6">
                   <a
-                    href="https://wa.me/919820001234?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20real%20estate%20projects."
+                    href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20real%20estate%20projects."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
@@ -1764,7 +1958,7 @@ export default function App() {
                           required 
                           value={contactForm.phone} 
                           onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })} 
-                          placeholder="+91 98200 00000"
+                          placeholder="+91 98703 89489"
                           className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
                         />
                       </div>
@@ -2099,7 +2293,7 @@ export default function App() {
                 {/* Direct WhatsApp CTA */}
                 <div className="pt-6">
                   <a
-                    href="https://wa.me/919820001234?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20discuss%20an%20interior%20design%20consultation."
+                    href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20discuss%20an%20interior%20design%20consultation."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
@@ -2161,7 +2355,7 @@ export default function App() {
                           required 
                           value={contactForm.phone} 
                           onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })} 
-                          placeholder="+91 98200 00000"
+                          placeholder="+91 98703 89489"
                           className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
                         />
                       </div>
@@ -2239,8 +2433,8 @@ export default function App() {
                   </div>
                   <div>
                     <span className="block text-[10px] uppercase tracking-wider text-[#8a8f98]">Telephone Advisory</span>
-                    <a href="tel:+9102284920100" className="text-base font-serif-azimute text-[#0f1115] hover:text-[#c5a059] transition">
-                      +91 (022) 8492-0100
+                    <a href="tel:+919870389489" className="text-base font-serif-azimute text-[#0f1115] hover:text-[#c5a059] transition">
+                      +91 98703 89489
                     </a>
                     <span className="block text-xs text-[#6e737c] mt-0.5">Concierge Desk (10:00 AM – 7:30 PM IST)</span>
                   </div>
@@ -2254,14 +2448,14 @@ export default function App() {
                   <div>
                     <span className="block text-[10px] uppercase tracking-wider text-[#8a8f98]">WhatsApp Concierge</span>
                     <a 
-                      href="https://wa.me/919820001234?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20portfolio." 
+                      href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20services." 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="text-base font-serif-azimute text-[#0f1115] hover:text-[#25D366] transition"
                     >
-                      +91 98200 01234
+                      +91 78359 71222
                     </a>
-                    <span className="block text-xs text-[#6e737c] mt-0.5">Instant coordination &amp; brochures</span>
+                    <span className="block text-xs text-[#6e737c] mt-0.5">Instant coordination &amp; project brochures</span>
                   </div>
                 </div>
 
@@ -2272,10 +2466,10 @@ export default function App() {
                   </div>
                   <div>
                     <span className="block text-[10px] uppercase tracking-wider text-[#8a8f98]">Electronic Correspondence</span>
-                    <a href="mailto:hello@sunriseproperty.in" className="text-sm font-medium text-[#0f1115] hover:text-[#c5a059] transition">
-                      hello@sunriseproperty.in
+                    <a href="mailto:info@advikacreation.in" className="text-sm font-medium text-[#0f1115] hover:text-[#c5a059] transition">
+                      info@advikacreation.in
                     </a>
-                    <span className="block text-xs text-[#6e737c] mt-0.5">Official monographs &amp; tender submissions</span>
+                    <span className="block text-xs text-[#6e737c] mt-0.5">Official enquiries &amp; project briefs</span>
                   </div>
                 </div>
 
@@ -2284,36 +2478,82 @@ export default function App() {
                   <div className="w-10 h-10 rounded-full bg-[#c5a059]/10 flex items-center justify-center text-[#c5a059] shrink-0 mt-0.5">
                     <MapPin className="w-5 h-5" />
                   </div>
-                  <div className="space-y-3">
-                    <div>
-                      <span className="block text-[10px] uppercase tracking-wider text-[#8a8f98] font-medium">Headquarters (Mumbai)</span>
-                      <p className="text-xs text-[#454950] leading-relaxed mt-0.5">
-                        Pavilion Suite 37, BKC Waterfront, Bandra Kurla Complex, Mumbai 400051, Maharashtra.
-                      </p>
-                    </div>
-                    <div>
-                      <span className="block text-[10px] uppercase tracking-wider text-[#8a8f98] font-medium">NCR Representative Office</span>
-                      <p className="text-xs text-[#454950] leading-relaxed mt-0.5">
-                        Sector 12, Greater Noida, Uttar Pradesh 201306.
-                      </p>
-                    </div>
+                  <div>
+                    <span className="block text-[10px] uppercase tracking-wider text-[#8a8f98] font-medium">Head Office &amp; Atelier</span>
+                    <p className="text-sm text-[#0f1115] font-serif-azimute leading-relaxed mt-0.5">
+                      Office A-722, Grandthum
+                    </p>
+                    <p className="text-xs text-[#454950] leading-relaxed mt-0.5">
+                      Techzone 4, Greater Noida West, Uttar Pradesh, India.
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Responsive Google Map Embed */}
-              <div className="rounded-2xl overflow-hidden aspect-[16/10] border border-[#e8e4dc] relative bg-white shadow-md">
-                <iframe 
-                  title="Sunrise Property Headquarters Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.793739763784!2d72.8687317760927!3d19.072828652077976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8e312642a8b%3A0x6b8ef27419137452!2sBandra%20Kurla%20Complex%2C%20Bandra%20East%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                  className="w-full h-full border-0 grayscale contrast-125 brightness-95"
-                  loading="lazy"
-                />
+              {/* Responsive Google Map Embed with Full Colors & Interactive Accents */}
+              <div className="rounded-2xl overflow-hidden border-2 border-[#e8e4dc] hover:border-[#c5a059]/50 transition-all bg-white shadow-xl flex flex-col">
+                {/* Colorful Top Banner */}
+                <div className="p-4 sm:p-5 bg-gradient-to-r from-white via-[#faf8f5] to-amber-50/40 border-b border-[#e8e4dc] flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-amber-500 flex items-center justify-center text-white shrink-0 shadow-md shadow-rose-500/25">
+                      <MapPin className="w-5 h-5 fill-white text-rose-600" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span className="text-[10px] uppercase tracking-wider font-semibold text-emerald-700">Official Atelier &amp; Desk</span>
+                      </div>
+                      <h4 className="font-serif-azimute text-lg sm:text-xl text-[#0f1115] leading-tight mt-0.5">
+                        Sunrise Property @ Grandthum
+                      </h4>
+                      <p className="text-xs text-[#5a5f67] font-light">
+                        Office A-722, Techzone 4, Greater Noida West
+                      </p>
+                    </div>
+                  </div>
+
+                  <a 
+                    href="https://maps.google.com/?q=Grandthum+by+Group+108+Techzone+4+Greater+Noida+West" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="shrink-0 px-3 py-1.5 rounded-lg bg-[#1a73e8] hover:bg-[#1557b0] text-white text-[11px] font-semibold tracking-wide flex items-center gap-1.5 shadow-sm transition hover:scale-105 cursor-pointer"
+                  >
+                    <span>Open Maps</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                {/* Google Map Full-Color Viewport (No grayscale filter) */}
+                <div className="relative aspect-[16/10] sm:aspect-[16/11] w-full bg-[#f0eee9]">
+                  <iframe 
+                    title="Sunrise Property Grandthum Location"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.7383236961474!2d77.44747757620242!3d28.577626986716035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cef6f04cbb451%3A0xc391cb44eb89e6eb!2sGrandthum%20by%20Group%20108!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                    className="w-full h-full border-0"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Colorful Bottom Navigation Strip */}
+                <div className="p-3.5 sm:p-4 bg-[#faf8f5] border-t border-[#e8e4dc] flex items-center justify-between text-xs">
+                  <span className="text-[#5a5f67] font-light flex items-center gap-1.5 text-[11px] sm:text-xs">
+                    <Clock className="w-3.5 h-3.5 text-[#c5a059]" />
+                    Visits &amp; Consultations: 10:00 AM – 7:30 PM
+                  </span>
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=Grandthum+by+Group+108+Techzone+4+Greater+Noida+West"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1a73e8] hover:text-[#1557b0] font-semibold text-xs flex items-center gap-1 transition hover:underline"
+                  >
+                    <span>Get Directions</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* Right Column: Interactive Contact Form */}
-            <div className="lg:col-span-7">
+            {/* Right Column: Interactive Contact Form & WhatsApp Concierge Section */}
+            <div className="lg:col-span-7 space-y-8">
               <div className="p-8 sm:p-12 rounded-2xl bg-white border border-[#e8e4dc] shadow-xl">
                 <h3 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mb-2">
                   Initiate a Confidential Inquiry
@@ -2368,7 +2608,7 @@ export default function App() {
                           required 
                           value={contactForm.phone} 
                           onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })} 
-                          placeholder="+91 98200 00000"
+                          placeholder="+91 98703 89489"
                           className="w-full px-4 py-3 rounded-xl bg-[#faf8f5] border border-[#e2ded6] text-[#0f1115] placeholder:text-[#9aa0a6] text-sm focus:border-[#c5a059] focus:bg-white outline-none transition" 
                         />
                       </div>
@@ -2401,6 +2641,62 @@ export default function App() {
                   </form>
                 )}
               </div>
+
+              {/* Dedicated WhatsApp Concierge Section (Bottom Right) */}
+              <div className="p-7 sm:p-9 rounded-2xl bg-[#0c0d0e] border-2 border-[#25D366]/40 text-white shadow-2xl relative overflow-hidden">
+                {/* Emerald ambient backlight glow */}
+                <div className="absolute -top-16 -right-16 w-56 h-56 bg-[#25D366]/15 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-[#c5a059]/10 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-6 border-b border-white/10">
+                  <div className="flex items-start gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-[#25D366] text-white flex items-center justify-center shrink-0 shadow-lg shadow-[#25D366]/30">
+                      <MessageCircle className="w-8 h-8 fill-current" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span className="relative flex h-2.5 w-2.5">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#25D366]"></span>
+                        </span>
+                        <span className="text-[10px] tracking-[0.2em] uppercase text-[#25D366] font-semibold">
+                          Direct WhatsApp Concierge · Active Desk
+                        </span>
+                      </div>
+                      <h4 className="font-serif-azimute text-2xl sm:text-3xl text-white">
+                        Connect Directly on WhatsApp
+                      </h4>
+                      <p className="text-xs text-white/70 max-w-lg mt-1 font-light leading-relaxed">
+                        Prefer rapid coordination? Message directly at <strong className="text-white font-medium">+91 78359 71222</strong> for verified brochures, floor plans, pricing sheets, or instant site visit bookings.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="relative z-10 pt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+                  <div className="flex flex-wrap items-center gap-3 text-[11px] text-white/70">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+                      <Clock className="w-3.5 h-3.5 text-[#25D366]" />
+                      Replies in under 15 mins
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#c5a059]" />
+                      Strict Bilateral Privacy
+                    </span>
+                  </div>
+
+                  <a
+                    href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20services."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-xs tracking-wider uppercase transition shadow-lg shadow-[#25D366]/30 hover:scale-[1.02] cursor-pointer"
+                  >
+                    <MessageCircle className="w-4 h-4 fill-current" />
+                    <span>Chat on WhatsApp (+91 78359 71222)</span>
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </main>
@@ -2420,10 +2716,11 @@ export default function App() {
                 className="h-16 sm:h-20 w-auto object-contain drop-shadow" 
               />
               <p className="text-xs text-white/60 leading-relaxed max-w-sm font-light">
-                Curating high-arch architectural residences and bespoke interior pavilions. Where classical proportion and modern stillness converge for discerning patrons.
+                Find Your Property. Design Your Space. Live Better.<br />
+                Residential &amp; Commercial Real Estate, Property Consultation, Interior Design, Office Interiors and Turnkey Solutions.
               </p>
               <div className="text-[11px] text-[#c5a059] tracking-wider font-mono pt-2">
-                EST. 2006 · MUMBAI · GREATER NOIDA
+                OFFICE A-722, GRANDTHUM · TECHZONE 4, GREATER NOIDA WEST
               </div>
             </div>
 
@@ -2431,22 +2728,23 @@ export default function App() {
             <div className="md:col-span-3 space-y-3">
               <span className="block text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Navigation</span>
               <ul className="text-xs text-white/70 space-y-2">
-                <li><button onClick={() => navigateTo('home')} className="hover:text-[#c5a059] transition cursor-pointer">Home</button></li>
-                <li><button onClick={() => navigateTo('about')} className="hover:text-[#c5a059] transition cursor-pointer">About Us</button></li>
-                <li><button onClick={() => navigateTo('real-estate')} className="hover:text-[#c5a059] transition cursor-pointer">Real Estate</button></li>
-                <li><button onClick={() => navigateTo('interior')} className="hover:text-[#c5a059] transition cursor-pointer">Interior Design</button></li>
-                <li><button onClick={() => navigateTo('contact')} className="hover:text-[#c5a059] transition cursor-pointer">Contact Us</button></li>
+                <li><button type="button" onClick={() => navigateTo('home')} className="hover:text-[#c5a059] transition cursor-pointer">Home</button></li>
+                <li><button type="button" onClick={() => navigateTo('about')} className="hover:text-[#c5a059] transition cursor-pointer">About Us</button></li>
+                <li><button type="button" onClick={() => navigateTo('real-estate')} className="hover:text-[#c5a059] transition cursor-pointer">Real Estate</button></li>
+                <li><button type="button" onClick={() => navigateTo('interior')} className="hover:text-[#c5a059] transition cursor-pointer">Interior Design</button></li>
+                <li><button type="button" onClick={() => navigateTo('contact')} className="hover:text-[#c5a059] transition cursor-pointer">Contact Us</button></li>
               </ul>
             </div>
 
             {/* Contact Coordinates */}
             <div className="md:col-span-4 space-y-3">
-              <span className="block text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Headquarters</span>
+              <span className="block text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Head Office</span>
               <p className="text-xs text-white/60 leading-relaxed font-light">
-                Pavilion Suite 37, BKC Waterfront, Bandra Kurla Complex, Mumbai 400051<br />
-                Telephone: +91 (022) 8492-0100<br />
-                WhatsApp: +91 98200 01234<br />
-                Email: hello@sunriseproperty.in
+                Office A-722, Grandthum, Techzone 4,<br />
+                Greater Noida West, Uttar Pradesh, India.<br />
+                Telephone: <a href="tel:+919870389489" className="text-[#c5a059] hover:underline">+91 98703 89489</a><br />
+                WhatsApp: <a href="https://wa.me/917835971222" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:underline">+91 78359 71222</a><br />
+                Email: <a href="mailto:info@advikacreation.in" className="text-[#c5a059] hover:underline">info@advikacreation.in</a>
               </p>
             </div>
           </div>
@@ -2463,15 +2761,19 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Floating WhatsApp Quick Action Button on Sub-pages */}
+      {/* Floating WhatsApp Quick Action Button (Bottom Right) */}
       {currentPage !== 'home' && (
         <a
-          href="https://wa.me/919820001234?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20portfolio."
+          href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20services."
           target="_blank"
           rel="noopener noreferrer"
           aria-label="WhatsApp Concierge"
-          className="fixed bottom-6 left-6 z-40 flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white font-medium text-xs tracking-wider shadow-2xl transition hover:scale-105"
+          className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white font-medium text-xs tracking-wider shadow-2xl shadow-[#25D366]/30 transition hover:scale-105 ring-4 ring-[#25D366]/20 cursor-pointer"
         >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+          </span>
           <MessageCircle className="w-5 h-5 fill-current" />
           <span className="hidden sm:inline">WhatsApp Concierge</span>
         </a>
@@ -2481,7 +2783,7 @@ export default function App() {
       {/* 8.5 SELECTED PROJECT DETAILS MODAL                               */}
       {/* ================================================================ */}
       {selectedProjectModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+        <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
           <div className="bg-[#0c0d0e] border border-[#c5a059]/30 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl text-slate-100 flex flex-col max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-4 border-b border-white/10">
               <div className="flex items-center gap-2">
@@ -2557,7 +2859,7 @@ export default function App() {
 
             <div className="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <a
-                href={`https://wa.me/919820001234?text=Hello%20Sunrise%20Property,%20I%20am%20interested%20in%20${encodeURIComponent(selectedProjectModal.title)}%20(${encodeURIComponent(selectedProjectModal.developer)}).`}
+                href={`https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20am%20interested%20in%20${encodeURIComponent(selectedProjectModal.title)}%20(${encodeURIComponent(selectedProjectModal.developer)}).`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition cursor-pointer text-center"
@@ -2584,7 +2886,7 @@ export default function App() {
       {/* 9. ANIMATIONS & TIMELINE CONTROLS MODAL                          */}
       {/* ================================================================ */}
       {showAnimationsModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+        <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
           <div className="bg-[#0c0d0e] border border-[#c5a059]/30 rounded-2xl max-w-xl w-full p-6 shadow-2xl text-slate-100 flex flex-col max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-4 border-b border-white/10">
               <div className="flex items-center gap-2">
@@ -2606,28 +2908,28 @@ export default function App() {
               
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <button
-                  onClick={() => { setShowAnimationsModal(false); if (currentPage !== 'home') setCurrentPage('home'); setTimeout(() => simulateScroll(0), 100); }}
+                  onClick={() => { setShowAnimationsModal(false); if (currentPage !== 'home') navigateTo('home'); setTimeout(() => simulateScroll(0), 100); }}
                   className="p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-left border border-white/10 text-white cursor-pointer"
                 >
                   <span className="block text-[#c5a059] font-semibold text-[10px]">STAGE 1</span>
                   <span>01. Day Hero (YOUR NEXT)</span>
                 </button>
                 <button
-                  onClick={() => { setShowAnimationsModal(false); if (currentPage !== 'home') setCurrentPage('home'); setTimeout(() => simulateScroll(0.32), 100); }}
+                  onClick={() => { setShowAnimationsModal(false); if (currentPage !== 'home') navigateTo('home'); setTimeout(() => simulateScroll(0.32), 100); }}
                   className="p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-left border border-white/10 text-white cursor-pointer"
                 >
                   <span className="block text-[#c5a059] font-semibold text-[10px]">STAGE 2</span>
                   <span>02. Night Facade Crossfade</span>
                 </button>
                 <button
-                  onClick={() => { setShowAnimationsModal(false); if (currentPage !== 'home') setCurrentPage('home'); setTimeout(() => simulateScroll(0.66), 100); }}
+                  onClick={() => { setShowAnimationsModal(false); if (currentPage !== 'home') navigateTo('home'); setTimeout(() => simulateScroll(0.66), 100); }}
                   className="p-2.5 rounded-lg bg-[#c5a059]/15 hover:bg-[#c5a059]/25 text-left border border-[#c5a059]/40 text-[#faf8f5] cursor-pointer"
                 >
                   <span className="block text-[#c5a059] font-semibold text-[10px]">STAGE 3 (PINNED FULL-PAGE)</span>
                   <span>03. Logo &amp; Name Reveal</span>
                 </button>
                 <button
-                  onClick={() => { setShowAnimationsModal(false); if (currentPage !== 'home') setCurrentPage('home'); setTimeout(() => simulateScroll(1.0), 100); }}
+                  onClick={() => { setShowAnimationsModal(false); if (currentPage !== 'home') navigateTo('home'); setTimeout(() => simulateScroll(1.0), 100); }}
                   className="p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-left border border-white/10 text-white cursor-pointer"
                 >
                   <span className="block text-[#c5a059] font-semibold text-[10px]">STAGE 4</span>

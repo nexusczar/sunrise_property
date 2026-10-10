@@ -30,9 +30,9 @@ export default function ContactPage() {
 
   const handleWhatsApp = () => {
     const msg = encodeURIComponent(
-      "Hello Sunrise Property Desk, I would like to arrange confidential coordination regarding your architectural portfolio."
+      "Hello Sunrise Property Desk, I would like to arrange confidential coordination regarding your real estate and interior services."
     );
-    window.open(`https://wa.me/919820001234?text=${msg}`, "_blank");
+    window.open(`https://wa.me/917835971222?text=${msg}`, "_blank");
   };
 
   return (
@@ -50,8 +50,7 @@ export default function ContactPage() {
             <span className="italic font-light text-[#A87A36]">Your Next Space.</span>
           </h1>
           <p className="text-sm sm:text-base leading-relaxed text-[#63615C] max-w-2xl pt-2 font-light">
-            Whether acquiring an architectural sanctuary or commissioning a bespoke interior
-            pavilion, our partners provide discreet, end-to-end stewardship.
+            Find Your Property. Design Your Space. Live Better. Whether acquiring an architectural residence or commissioning turnkey interiors, our advisors provide end-to-end guidance.
           </p>
         </div>
       </section>
@@ -80,13 +79,13 @@ export default function ContactPage() {
                   TELEPHONE ADVISORY
                 </span>
                 <a
-                  href="tel:+9102284920100"
+                  href="tel:+919870389489"
                   className="font-serif-luxury text-xl font-normal text-[#141A23] hover:text-[#A87A36] transition-colors block"
                 >
-                  +91 (022) 8492-0100
+                  +91 98703 89489
                 </a>
                 <p className="text-xs text-[#8F8B83] font-light">
-                  Direct concierge line for verified listings
+                  Direct advisory line for real estate &amp; interior consultations
                 </p>
               </div>
 
@@ -96,27 +95,28 @@ export default function ContactPage() {
                   ELECTRONIC CORRESPONDENCE
                 </span>
                 <a
-                  href="mailto:hello@sunriseproperty.in"
+                  href="mailto:info@advikacreation.in"
                   className="font-serif-luxury text-xl font-normal text-[#141A23] hover:text-[#A87A36] transition-colors block"
                 >
-                  hello@sunriseproperty.in
+                  info@advikacreation.in
                 </a>
                 <p className="text-xs text-[#8F8B83] font-light">
-                  Average dispatch response under 2 business hours
+                  Official correspondence &amp; project submissions
                 </p>
               </div>
 
               {/* Address */}
               <div className="space-y-1 pt-4 border-t border-[#EAE5DC]">
                 <span className="text-[10px] tracking-[0.2em] uppercase text-[#8F8B83] block font-medium">
-                  ATELIER &amp; PRIVATE SALON
+                  HEAD OFFICE &amp; ATELIER
                 </span>
-                <p className="text-xs text-[#141A23] leading-relaxed font-normal">
-                  Pavilion Suite 37, Horizon Promenade,
-                  <br />
-                  BKC Waterfront, Mumbai, 400051
+                <p className="text-xs text-[#141A23] leading-relaxed font-semibold">
+                  Office A-722, Grandthum
                 </p>
-                <p className="text-xs text-[#8F8B83] font-light">Private valet entry via Gate 4</p>
+                <p className="text-xs text-[#63615C] leading-relaxed font-normal">
+                  Techzone 4, Greater Noida West, Uttar Pradesh, India.
+                </p>
+                <p className="text-xs text-[#8F8B83] font-light">Visitor parking and concierge at Tower A</p>
               </div>
 
               {/* Hours */}
@@ -128,64 +128,79 @@ export default function ContactPage() {
                   Monday – Saturday: 10:00 AM – 7:00 PM IST
                 </p>
                 <p className="text-xs text-[#8F8B83] font-light">
-                  Sunday viewings by prior written appointment
+                  Sunday site visits &amp; consultations by appointment
                 </p>
               </div>
             </div>
 
-            {/* WhatsApp Concierge Desk Box */}
-            <div className="bg-[#141413] text-white p-8 rounded-2xl border border-[#2E2E2A] space-y-4">
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#25D366]"></span>
-                <span className="text-[10px] tracking-[0.2em] uppercase text-[#25D366] font-medium">
-                  DIRECT CHAT AVAILABLE
-                </span>
-              </div>
-              <h3 className="font-serif-luxury text-2xl font-normal">WhatsApp Concierge Desk</h3>
-              <p className="text-xs leading-relaxed text-[#C8C4B8] font-light">
-                Prefer direct, encrypted coordination? Connect directly with our Senior Portfolio
-                Director for private brochures, floor plans, and rapid viewing calendars.
-              </p>
-              <button
-                onClick={handleWhatsApp}
-                className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white text-xs tracking-[0.2em] uppercase py-3.5 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>INITIATE WHATSAPP CHAT</span>
-                <span>→</span>
-              </button>
-            </div>
+            {/* Responsive Google Map Section with Full Colors & Accents */}
+            <div className="bg-white rounded-2xl overflow-hidden border-2 border-[#EAE6DF] shadow-md flex flex-col">
+              {/* Colorful Top Banner */}
+              <div className="p-4 sm:p-5 bg-gradient-to-r from-white via-[#FAF8F5] to-amber-50/40 border-b border-[#EAE6DF] flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-amber-500 flex items-center justify-center text-white shrink-0 shadow-md shadow-rose-500/25">
+                    <span className="text-base font-bold">📍</span>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                      <span className="text-[10px] uppercase tracking-wider font-semibold text-emerald-700">Official Atelier &amp; Desk</span>
+                    </div>
+                    <h4 className="font-serif-luxury text-lg sm:text-xl text-[#141A23] leading-tight mt-0.5">
+                      Sunrise Property @ Grandthum
+                    </h4>
+                    <p className="text-xs text-[#8F8B83] font-light">
+                      Office A-722, Techzone 4, Greater Noida West
+                    </p>
+                  </div>
+                </div>
 
-            {/* Google Map Section matching Requirement #7 */}
-            <div className="bg-white rounded-2xl overflow-hidden border border-[#EAE6DF]">
-              <div className="relative h-60 w-full overflow-hidden bg-[#F0EEEA]">
+                <a
+                  href="https://maps.google.com/?q=Grandthum+by+Group+108+Techzone+4+Greater+Noida+West"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 px-3 py-1.5 rounded-lg bg-[#1a73e8] hover:bg-[#1557b0] text-white text-[11px] font-semibold tracking-wide flex items-center gap-1 shadow-sm transition hover:scale-105 cursor-pointer"
+                >
+                  <span>Open Maps</span>
+                  <span>↗</span>
+                </a>
+              </div>
+
+              {/* Native Full-Color Google Map (No grayscale) */}
+              <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#F0EEEA]">
                 <iframe
-                  title="Sunrise Property Mumbai Studio Map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15082.775836066228!2d72.85966085!3d19.0661642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8e123f6e1f3%3A0x6b30f30c6a8b1c4!2sBandra%20Kurla%20Complex%2C%20Bandra%20East%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  title="Sunrise Property Grandthum Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.7383236961474!2d77.44747757620242!3d28.577626986716035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cef6f04cbb451%3A0xc391cb44eb89e6eb!2sGrandthum%20by%20Group%20108!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
-                  style={{ border: 0, filter: "grayscale(20%) contrast(95%)" }}
+                  style={{ border: 0 }}
                   allowFullScreen={false}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="w-full h-full"
                 />
               </div>
-              <div className="p-4 bg-[#FAF8F5] border-t border-[#EAE6DF] flex items-center justify-between text-[11px] text-[#8F8B83] font-light">
-                <span>Latitude 19.0600° N, Longitude 72.8700° E</span>
+
+              {/* Colorful Bottom Navigation Strip */}
+              <div className="p-3.5 sm:p-4 bg-[#FAF8F5] border-t border-[#EAE6DF] flex items-center justify-between text-xs">
+                <span className="text-[#8F8B83] font-light flex items-center gap-1.5 text-[11px] sm:text-xs">
+                  <span>🕒</span>
+                  Visiting Hours: 10:00 AM – 7:30 PM IST
+                </span>
                 <a
-                  href="https://maps.google.com/?q=Bandra+Kurla+Complex+Mumbai"
+                  href="https://www.google.com/maps/dir/?api=1&destination=Grandthum+by+Group+108+Techzone+4+Greater+Noida+West"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#141A23] font-medium hover:text-[#A87A36] transition-colors"
+                  className="text-[#1a73e8] hover:text-[#1557b0] font-semibold text-xs flex items-center gap-1 transition hover:underline"
                 >
-                  Open in Maps →
+                  <span>Get Directions →</span>
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Right Column (7 cols): Request Consultation Form matching Image 3 */}
-          <div className="lg:col-span-7">
+          {/* Right Column (7 cols): Request Consultation Form & WhatsApp Section (Bottom Right) */}
+          <div className="lg:col-span-7 space-y-8">
             <div className="bg-white p-8 sm:p-12 rounded-2xl border border-[#EAE6DF]">
               {formSubmitted ? (
                 <div className="py-16 text-center space-y-4">
@@ -268,7 +283,7 @@ export default function ContactPage() {
                         <input
                           type="tel"
                           required
-                          placeholder="+91 (0) 98200 01234"
+                          placeholder="+91 98703 89489"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           className="w-full bg-[#FAF8F5] border border-[#EAE6DF] focus:border-[#C29246] px-4 py-3 rounded-lg text-xs sm:text-sm text-[#141A23] focus:outline-none"
@@ -281,7 +296,7 @@ export default function ContactPage() {
                         <input
                           type="email"
                           required
-                          placeholder="name@domain.com"
+                          placeholder="info@advikacreation.in"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           className="w-full bg-[#FAF8F5] border border-[#EAE6DF] focus:border-[#C29246] px-4 py-3 rounded-lg text-xs sm:text-sm text-[#141A23] focus:outline-none"
@@ -352,6 +367,34 @@ export default function ContactPage() {
                   </form>
                 </div>
               )}
+            </div>
+
+            {/* Dedicated WhatsApp Concierge Section - Bottom Right */}
+            <div className="bg-[#0c0d0e] text-white p-7 sm:p-9 rounded-2xl border-2 border-[#25D366]/40 shadow-xl space-y-4 relative overflow-hidden">
+              <div className="absolute -top-16 -right-16 w-48 h-48 bg-[#25D366]/15 rounded-full blur-3xl pointer-events-none" />
+              <div className="relative z-10 flex items-center justify-between pb-4 border-b border-white/10">
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#25D366]"></span>
+                  </span>
+                  <span className="text-[10px] tracking-[0.2em] uppercase text-[#25D366] font-semibold">
+                    DIRECT CHAT AVAILABLE · ACTIVE NOW
+                  </span>
+                </div>
+                <span className="text-[10px] tracking-wider uppercase text-[#c5a059] font-medium">Under 15 Mins Response</span>
+              </div>
+              <h3 className="relative z-10 font-serif-luxury text-2xl sm:text-3xl font-normal text-white">WhatsApp Concierge Desk</h3>
+              <p className="relative z-10 text-xs leading-relaxed text-[#C8C4B8] font-light">
+                Prefer direct WhatsApp coordination? Connect directly at <strong className="text-white font-medium">+91 78359 71222</strong> for project brochures, floor plans, and rapid consultations.
+              </p>
+              <button
+                onClick={handleWhatsApp}
+                className="relative z-10 w-full bg-[#25D366] hover:bg-[#20BA5A] text-white text-xs tracking-[0.2em] uppercase py-3.5 rounded-xl font-medium transition-all shadow-lg shadow-[#25D366]/20 flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.01]"
+              >
+                <span>INITIATE WHATSAPP CHAT (+91 78359 71222)</span>
+                <span>→</span>
+              </button>
             </div>
           </div>
         </div>

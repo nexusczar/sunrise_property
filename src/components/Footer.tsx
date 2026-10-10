@@ -28,15 +28,16 @@ export default function Footer() {
                 </div>
               </div>
               <p className="text-sm leading-relaxed text-[#646A74] max-w-md font-sans font-light">
-                Curating high-arch architectural residences and bespoke interior pavilions. Where
-                classical proportion and modern stillness converge for discerning patrons
-                worldwide.
+                Find Your Property. Design Your Space. Live Better.
+              </p>
+              <p className="text-xs text-[#8F8B83] mt-2 font-light">
+                Premier real estate discovery and bespoke interior design solutions.
               </p>
             </div>
 
             <div className="mt-8 pt-6 border-t border-[#EAE5DC]/80 flex flex-wrap items-center gap-4">
               <span className="text-[11px] tracking-[0.2em] uppercase text-[#8F8B83] font-light">
-                sunriseproperty.in • Edition 2024
+                Greater Noida West • Uttar Pradesh
               </span>
             </div>
           </div>
@@ -48,23 +49,23 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-xs tracking-[0.08em] text-[#646A74] font-light">
               <li>
-                <Link href="/real-estate?type=prime" className="hover:text-[#141A23] transition-colors">
-                  Prime Estates
+                <Link href="/real-estate" className="hover:text-[#141A23] transition-colors">
+                  Residential Real Estate
                 </Link>
               </li>
               <li>
-                <Link href="/real-estate?type=residences" className="hover:text-[#141A23] transition-colors">
-                  Private Residences
+                <Link href="/real-estate" className="hover:text-[#141A23] transition-colors">
+                  Commercial Real Estate
                 </Link>
               </li>
               <li>
-                <Link href="/real-estate?type=waterfront" className="hover:text-[#141A23] transition-colors">
-                  Waterfront Villas
+                <Link href="/real-estate" className="hover:text-[#141A23] transition-colors">
+                  Property Consultation
                 </Link>
               </li>
               <li>
-                <Link href="/real-estate?type=monoliths" className="hover:text-[#141A23] transition-colors">
-                  Architectural Monoliths
+                <Link href="/real-estate" className="hover:text-[#141A23] transition-colors">
+                  Featured Top Picks
                 </Link>
               </li>
             </ul>
@@ -77,23 +78,23 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-xs tracking-[0.08em] text-[#646A74] font-light">
               <li>
-                <Link href="/interior-design#disciplines" className="hover:text-[#141A23] transition-colors">
-                  Bespoke Interiors
+                <Link href="/interior-design" className="hover:text-[#141A23] transition-colors">
+                  Interior Design
                 </Link>
               </li>
               <li>
-                <Link href="/interior-design#disciplines" className="hover:text-[#141A23] transition-colors">
-                  Material Consultation
+                <Link href="/interior-design" className="hover:text-[#141A23] transition-colors">
+                  Office Interiors
                 </Link>
               </li>
               <li>
-                <Link href="/interior-design#disciplines" className="hover:text-[#141A23] transition-colors">
-                  Spatial Architecture
+                <Link href="/interior-design" className="hover:text-[#141A23] transition-colors">
+                  Turnkey Solutions
                 </Link>
               </li>
               <li>
-                <Link href="/interior-design#commissions" className="hover:text-[#141A23] transition-colors">
-                  Custom Millwork
+                <Link href="/interior-design" className="hover:text-[#141A23] transition-colors">
+                  Space Planning
                 </Link>
               </li>
             </ul>
@@ -102,54 +103,38 @@ export default function Footer() {
           {/* Studio & Salon Column (3 cols) */}
           <div className="lg:col-span-3">
             <h4 className="text-[11px] font-medium tracking-[0.24em] uppercase text-[#141A23] mb-5">
-              STUDIO &amp; SALON
+              OFFICE LOCATION
             </h4>
             <div className="space-y-3 text-xs leading-relaxed text-[#646A74] font-light">
               <p>
-                Pavilion Suite 37, Horizon Promenade,
+                Office A-722, Grandthum,
                 <br />
-                BKC Waterfront, Mumbai, 400051
+                Techzone 4, Greater Noida West,
+                <br />
+                Uttar Pradesh, India.
               </p>
               <p>
                 <a
-                  href="mailto:hello@sunriseproperty.in"
+                  href="mailto:info@advikacreation.in"
                   className="hover:text-[#141A23] transition-colors block"
                 >
-                  hello@sunriseproperty.in
+                  info@advikacreation.in
                 </a>
                 <a
-                  href="tel:+9102284920100"
-                  className="hover:text-[#141A23] transition-colors block mt-0.5"
+                  href="tel:+919870389489"
+                  className="hover:text-[#141A23] transition-colors block mt-0.5 font-medium text-[#141A23]"
                 >
-                  +91 (022) 8492-0100
+                  +91 98703 89489
                 </a>
               </p>
               <div className="pt-2 flex items-center gap-4 text-[10px] tracking-wider uppercase text-[#8F8B83]">
                 <a
-                  href="https://instagram.com"
+                  href="https://wa.me/917835971222"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#141A23] transition-colors"
+                  className="text-emerald-600 hover:text-emerald-700 font-medium transition-colors"
                 >
-                  Instagram
-                </a>
-                <span>•</span>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#141A23] transition-colors"
-                >
-                  LinkedIn
-                </a>
-                <span>•</span>
-                <a
-                  href="https://wa.me/919820001234"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#141A23] transition-colors"
-                >
-                  WhatsApp
+                  WhatsApp: +91 78359 71222
                 </a>
               </div>
             </div>

@@ -8,7 +8,7 @@ export default function WhatsAppConcierge() {
   if (!pathname || pathname === "/" || pathname === "") return null;
 
   const [hovered, setHovered] = useState(false);
-  const phoneNumber = "919820001234";
+  const phoneNumber = "917835971222";
 
   const handleClick = () => {
     const message = encodeURIComponent(

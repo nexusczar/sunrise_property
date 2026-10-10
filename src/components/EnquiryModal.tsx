@@ -133,7 +133,7 @@ export default function EnquiryModal({
                     <input
                       type="tel"
                       required
-                      placeholder="+91 (0) 98200 01234"
+                      placeholder="+91 98703 89489"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full bg-white border border-[#EAE6DF] focus:border-[#C29246] px-4 py-2.5 rounded-lg text-sm text-[#141A23] focus:outline-none transition-colors"
@@ -146,7 +146,7 @@ export default function EnquiryModal({
                     <input
                       type="email"
                       required
-                      placeholder="name@domain.com"
+                      placeholder="info@advikacreation.in"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full bg-white border border-[#EAE6DF] focus:border-[#C29246] px-4 py-2.5 rounded-lg text-sm text-[#141A23] focus:outline-none transition-colors"
