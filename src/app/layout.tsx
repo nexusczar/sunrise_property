@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
+import { Playfair_Display, Plus_Jakarta_Sans, Cinzel } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppConcierge from "@/components/WhatsAppConcierge";
 
-const serifFont = Cormorant_Garamond({
+const serifFont = Playfair_Display({
   variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -17,6 +17,13 @@ const sansFont = Plus_Jakarta_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const cinzelFont = Cinzel({
+  variable: "--font-cinzel",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -57,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${serifFont.variable} ${sansFont.variable} scroll-smooth antialiased`}
+      className={`${serifFont.variable} ${sansFont.variable} ${cinzelFont.variable} scroll-smooth antialiased`}
     >
       <body className="min-h-screen flex flex-col bg-[#0c0d0e] text-[#faf8f5] font-sans selection:bg-[#c5a059] selection:text-[#0c0d0e]">
         <Navbar />

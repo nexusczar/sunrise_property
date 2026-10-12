@@ -543,7 +543,7 @@ export default function App() {
       type: 'Residential Apartments',
       beds: '1, 2 & 3 BHK',
       area: '650 - 1,450 SQ FT',
-      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/Real Estate/ashtech_presidential.avif',
       description: 'Sophisticated multi-tier residential development with Olympic-grade clubhouse, private elevators, landscaped sky balconies, and supreme sector connectivity.',
       highlights: ['Prime Sector 12 Connectivity', 'Clubhouse & Gymnasium', 'Children Play Zone', '24x7 Tier-3 Security']
     },
@@ -560,7 +560,7 @@ export default function App() {
       type: '2, 3 & 4 BHK Apartments',
       beds: '2, 3 & 4 BHK',
       area: '1,950 - 3,800 SQ FT',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/Real Estate/godrej_majesty.avif',
       description: 'Ultra-luxury high-rise sanctuary by Godrej Properties featuring Olympic-grade amenities, infinity pool, and panoramic forest corridor vistas.',
       highlights: ['Forest Views & Clean Air', 'Immediate Possession Available', 'Olympic Length Lap Pool', 'White-Glove Concierge']
     },
@@ -577,7 +577,7 @@ export default function App() {
       type: 'Office Spaces, Studio Apartments & Retail Shops',
       beds: 'Studio, Retail & Office',
       area: '550 - 4,800 SQ FT',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+      image: '/images/Real Estate/grandthum-1.webp',
       description: 'Iconic twin-tower commercial and mixed-use landmark featuring an artificial water canal boulevard, dining decks, and retail high street.',
       highlights: ['Iconic Twin-Tower Landmark', 'Canal Dining Boulevard', 'High-Footfall Retail Street', 'Grade-A Corporate Offices']
     }
@@ -805,14 +805,6 @@ export default function App() {
               </motion.span>
             </div>
 
-            {/* Skip Button */}
-            <button
-              onClick={() => setEntranceActive(false)}
-              className="absolute top-8 right-8 text-xs tracking-wider uppercase text-white/70 hover:text-white flex items-center gap-1.5 transition cursor-pointer px-4 py-2 rounded-xl border border-white/15 hover:border-[#c5a059]/50"
-            >
-              <span>Skip Intro</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -1594,139 +1586,183 @@ export default function App() {
           </div>
 
           {/* 5.4 Property Enquiry Form / Enquire Now CTA */}
-          <div id="real-estate-enquiry-form" className="p-8 sm:p-12 rounded-3xl bg-[#0c0d0e] border border-[#c5a059]/30 text-white shadow-2xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              <div className="lg:col-span-5 space-y-4">
-                <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Priority Booking &amp; Due Diligence</span>
-                <h3 className="font-serif-azimute text-3xl sm:text-4xl text-white">
+          <div id="real-estate-enquiry-form" className="relative overflow-hidden rounded-3xl bg-black/60 backdrop-blur-2xl border border-white/15 hover:border-[#c5a059]/50 transition-colors duration-500 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.9),inset_0_1px_1px_rgba(255,255,255,0.08)] p-8 sm:p-12 lg:p-14 text-white">
+            {/* Ambient luxury lighting flares */}
+            <div className="absolute -top-32 -right-32 w-80 h-80 bg-[#c5a059]/15 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-[#c5a059]/10 rounded-full blur-[100px] pointer-events-none" />
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+              {/* Left Column: Acquisitions Advisory Brief */}
+              <div className="lg:col-span-5 space-y-5">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/30 text-[#c5a059] text-[10px] uppercase tracking-[0.22em] font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#c5a059] animate-pulse" />
+                  Direct Acquisitions Desk
+                </div>
+
+                <h3 className="font-serif-azimute text-3xl sm:text-4xl lg:text-5xl text-white font-bold tracking-tight leading-[1.15]">
                   Property Enquiry Form
                 </h3>
+
                 <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-light">
                   Direct consultation with our senior acquisitions desk. Whether enquiring about Ashtech Presidential, Godrej Majesty, Grandthum, or private portfolio acquisitions, our partners provide confidential guidance.
                 </p>
 
-                <div className="pt-4 space-y-3">
-                  <div className="flex items-center gap-3 text-xs text-white/80">
-                    <Check className="w-4 h-4 text-[#c5a059]" />
+                <div className="pt-2 space-y-3">
+                  <div className="flex items-center gap-3.5 text-xs text-white/85">
+                    <div className="w-5 h-5 rounded-full bg-[#c5a059]/15 border border-[#c5a059]/40 flex items-center justify-center shrink-0">
+                      <Check className="w-3 h-3 text-[#c5a059]" />
+                    </div>
                     <span>Direct builder allocations &amp; inventory access</span>
                   </div>
-                  <div className="flex items-center gap-3 text-xs text-white/80">
-                    <Check className="w-4 h-4 text-[#c5a059]" />
+                  <div className="flex items-center gap-3.5 text-xs text-white/85">
+                    <div className="w-5 h-5 rounded-full bg-[#c5a059]/15 border border-[#c5a059]/40 flex items-center justify-center shrink-0">
+                      <Check className="w-3 h-3 text-[#c5a059]" />
+                    </div>
                     <span>Complete legal title &amp; RERA verification</span>
                   </div>
-                  <div className="flex items-center gap-3 text-xs text-white/80">
-                    <Check className="w-4 h-4 text-[#c5a059]" />
-                    <span>Confidential transaction structuring</span>
+                  <div className="flex items-center gap-3.5 text-xs text-white/85">
+                    <div className="w-5 h-5 rounded-full bg-[#c5a059]/15 border border-[#c5a059]/40 flex items-center justify-center shrink-0">
+                      <Check className="w-3 h-3 text-[#c5a059]" />
+                    </div>
+                    <span>Confidential transaction structuring &amp; terms</span>
                   </div>
                 </div>
 
-                {/* Direct WhatsApp CTA */}
-                <div className="pt-6">
+                {/* Direct VIP WhatsApp Concierge Touchpoint */}
+                <div className="pt-3">
                   <a
                     href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20real%20estate%20projects."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs uppercase tracking-wider font-semibold transition shadow-lg cursor-pointer"
+                    className="group flex items-center justify-between p-4 rounded-2xl bg-black/50 hover:bg-black/70 border border-white/10 hover:border-[#25D366]/40 backdrop-blur-md transition-all duration-300 shadow-sm"
                   >
-                    <MessageCircle className="w-4 h-4 fill-current" />
-                    <span>Chat on WhatsApp Directly</span>
+                    <div className="flex items-center gap-3.5">
+                      <div className="w-10 h-10 rounded-xl bg-[#25D366]/15 border border-[#25D366]/30 flex items-center justify-center text-[#25D366] group-hover:scale-105 transition-transform">
+                        <MessageCircle className="w-5 h-5 fill-current" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-white tracking-wide flex items-center gap-2">
+                          Instant WhatsApp Concierge
+                          <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
+                        </div>
+                        <div className="text-[11px] text-white/50 font-light">Direct line to senior acquisitions partner</div>
+                      </div>
+                    </div>
+                    <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </a>
                 </div>
               </div>
 
-              {/* Interactive Form */}
-              <div className="lg:col-span-7 bg-[#131518] p-6 sm:p-8 rounded-2xl border border-white/10">
+              {/* Right Column: Black Transparent Glass Form Surface */}
+              <div className="lg:col-span-7 bg-black/40 backdrop-blur-xl p-6 sm:p-9 rounded-2xl border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
                 {formSubmitted ? (
-                  <div className="p-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-2">
-                    <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
-                    <h4 className="font-serif-azimute text-xl text-white">Property Enquiry Received</h4>
-                    <p className="text-xs text-white/70 max-w-sm mx-auto">
+                  <div className="p-8 rounded-2xl bg-black/60 border border-[#c5a059]/40 text-center space-y-3">
+                    <CheckCircle2 className="w-12 h-12 text-[#c5a059] mx-auto" />
+                    <h4 className="font-serif-azimute text-2xl text-white font-bold">Property Enquiry Received</h4>
+                    <p className="text-xs sm:text-sm text-white/70 max-w-sm mx-auto font-light leading-relaxed">
                       Our acquisitions director will reach out within two business hours with exhaustive brochures and scheduling details.
                     </p>
                     <button 
                       onClick={() => setFormSubmitted(false)}
-                      className="mt-3 px-5 py-2.5 rounded-xl bg-[#c5a059] text-[#0c0d0e] text-xs font-semibold uppercase tracking-wider hover:bg-white transition cursor-pointer"
+                      className="mt-4 px-6 py-3 rounded-xl bg-[#c5a059] text-[#0c0d0e] text-xs font-semibold uppercase tracking-wider hover:bg-white transition cursor-pointer"
                     >
                       Send Another Enquiry
                     </button>
                   </div>
                 ) : (
                   <form onSubmit={(e) => { e.preventDefault(); setFormSubmitted(true); }} className="space-y-4">
+                    <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                      <span className="text-[11px] uppercase tracking-[0.18em] text-white/70 font-semibold">Confidential Allocation Request</span>
+                      <span className="text-[11px] text-[#c5a059] font-light">Response within 2h</span>
+                    </div>
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Your Name</label>
+                        <label className="block text-[10px] uppercase tracking-[0.16em] text-white/60 mb-1.5 font-medium">Your Name</label>
                         <input 
                           type="text" 
                           required 
                           value={contactForm.name} 
                           onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })} 
                           placeholder="e.g. Rahul Sharma"
-                          className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
+                          className="w-full px-4 py-3 rounded-xl bg-black/50 hover:bg-black/70 border border-white/15 focus:border-[#c5a059] focus:bg-black/80 text-white placeholder:text-white/30 text-xs sm:text-sm outline-none transition-all duration-200 focus:ring-1 focus:ring-[#c5a059]/40" 
                         />
                       </div>
                       <div>
-                        <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Email Address</label>
+                        <label className="block text-[10px] uppercase tracking-[0.16em] text-white/60 mb-1.5 font-medium">Email Address</label>
                         <input 
                           type="email" 
                           required 
                           value={contactForm.email} 
                           onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })} 
                           placeholder="name@company.com"
-                          className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
+                          className="w-full px-4 py-3 rounded-xl bg-black/50 hover:bg-black/70 border border-white/15 focus:border-[#c5a059] focus:bg-black/80 text-white placeholder:text-white/30 text-xs sm:text-sm outline-none transition-all duration-200 focus:ring-1 focus:ring-[#c5a059]/40" 
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Phone / WhatsApp</label>
+                        <label className="block text-[10px] uppercase tracking-[0.16em] text-white/60 mb-1.5 font-medium">Phone / WhatsApp</label>
                         <input 
                           type="tel" 
                           required 
                           value={contactForm.phone} 
                           onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })} 
                           placeholder="+91 98703 89489"
-                          className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
+                          className="w-full px-4 py-3 rounded-xl bg-black/50 hover:bg-black/70 border border-white/15 focus:border-[#c5a059] focus:bg-black/80 text-white placeholder:text-white/30 text-xs sm:text-sm outline-none transition-all duration-200 focus:ring-1 focus:ring-[#c5a059]/40" 
                         />
                       </div>
                       <div>
-                        <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Project / Service of Interest</label>
-                        <select 
-                          value={contactForm.service}
-                          onChange={(e) => setContactForm({ ...contactForm, service: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-xl bg-[#0c0d0e] border border-white/15 text-white text-xs focus:border-[#c5a059] outline-none transition"
-                        >
-                          <option value="Ashtech Presidential (Sec 12, Greater Noida)">Ashtech Presidential (Greater Noida, Sector 12)</option>
-                          <option value="Godrej Majesty (Sec 27, Greater Noida)">Godrej Majesty (Greater Noida, Sector 27)</option>
-                          <option value="Grandthum by Group 108 (Greater Noida West)">Grandthum by Group 108 (Greater Noida West)</option>
-                          <option value="Residential Properties">Residential Properties (Villas &amp; Penthouses)</option>
-                          <option value="Commercial Properties">Commercial Properties (Offices &amp; Retail)</option>
-                          <option value="Studio Apartments">Studio Apartments</option>
-                          <option value="Rental &amp; Leasing Services">Rental &amp; Leasing Services</option>
-                          <option value="New Projects">New Projects Launch</option>
-                          <option value="Property Buying &amp; Selling">Property Buying &amp; Selling</option>
-                          <option value="Property Consultation">Property Consultation &amp; Valuation</option>
-                        </select>
+                        <label className="block text-[10px] uppercase tracking-[0.16em] text-white/60 mb-1.5 font-medium">Project / Service of Interest</label>
+                        <div className="relative">
+                          <select 
+                            value={contactForm.service}
+                            onChange={(e) => setContactForm({ ...contactForm, service: e.target.value })}
+                            className="w-full px-4 py-3 pr-10 rounded-xl bg-black/50 hover:bg-black/70 border border-white/15 focus:border-[#c5a059] focus:bg-black/80 text-white text-xs sm:text-sm outline-none transition-all duration-200 focus:ring-1 focus:ring-[#c5a059]/40 appearance-none cursor-pointer"
+                          >
+                            <option className="bg-[#0c0d0e] text-white" value="Ashtech Presidential (Sec 12, Greater Noida)">Ashtech Presidential (Greater Noida, Sector 12)</option>
+                            <option className="bg-[#0c0d0e] text-white" value="Godrej Majesty (Sec 27, Greater Noida)">Godrej Majesty (Greater Noida, Sector 27)</option>
+                            <option className="bg-[#0c0d0e] text-white" value="Grandthum by Group 108 (Greater Noida West)">Grandthum by Group 108 (Greater Noida West)</option>
+                            <option className="bg-[#0c0d0e] text-white" value="Residential Properties">Residential Properties (Villas &amp; Penthouses)</option>
+                            <option className="bg-[#0c0d0e] text-white" value="Commercial Properties">Commercial Properties (Offices &amp; Retail)</option>
+                            <option className="bg-[#0c0d0e] text-white" value="Studio Apartments">Studio Apartments</option>
+                            <option className="bg-[#0c0d0e] text-white" value="Rental &amp; Leasing Services">Rental &amp; Leasing Services</option>
+                            <option className="bg-[#0c0d0e] text-white" value="New Projects">New Projects Launch</option>
+                            <option className="bg-[#0c0d0e] text-white" value="Property Buying &amp; Selling">Property Buying &amp; Selling</option>
+                            <option className="bg-[#0c0d0e] text-white" value="Property Consultation">Property Consultation &amp; Valuation</option>
+                          </select>
+                          <ChevronDown className="w-4 h-4 text-[#c5a059] pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2" />
+                        </div>
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5 font-medium">Requirements / Preferred Unit Size</label>
+                      <label className="block text-[10px] uppercase tracking-[0.16em] text-white/60 mb-1.5 font-medium">Requirements / Preferred Unit Size</label>
                       <textarea 
                         rows={3} 
                         value={contactForm.message} 
                         onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })} 
                         placeholder="Mention budget range, timeline to purchase, or preferred unit configuration..."
-                        className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/30 text-xs focus:border-[#c5a059] outline-none transition" 
+                        className="w-full px-4 py-3 rounded-xl bg-black/50 hover:bg-black/70 border border-white/15 focus:border-[#c5a059] focus:bg-black/80 text-white placeholder:text-white/30 text-xs sm:text-sm outline-none transition-all duration-200 focus:ring-1 focus:ring-[#c5a059]/40 resize-none" 
                       />
                     </div>
 
                     <button 
                       type="submit" 
-                      className="w-full py-3.5 rounded-xl bg-[#c5a059] hover:bg-white text-[#0c0d0e] font-semibold text-xs uppercase tracking-widest transition cursor-pointer shadow-lg"
+                      className="group relative w-full py-4 rounded-xl bg-gradient-to-r from-[#c5a059] via-[#d4b068] to-[#c5a059] hover:from-[#d4b068] hover:to-[#e2be76] text-[#0c0d0e] font-bold text-xs uppercase tracking-[0.2em] shadow-[0_12px_32px_-8px_rgba(197,160,89,0.35)] hover:shadow-[0_16px_40px_-6px_rgba(197,160,89,0.55)] transition-all duration-300 flex items-center justify-center gap-2.5 active:scale-[0.99] cursor-pointer"
                     >
-                      Enquire Now · Schedule Consultation
+                      <span>Enquire Now · Schedule Consultation</span>
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </button>
+
+                    <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 pt-2 text-[11px] text-white/45 font-light">
+                      <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[#c5a059]" /> 100% Confidential</span>
+                      <span>•</span>
+                      <span>Zero Spam Guarantee</span>
+                      <span>•</span>
+                      <span>RERA Verified Advisory</span>
+                    </div>
                   </form>
                 )}
               </div>
@@ -2346,62 +2382,6 @@ export default function App() {
                     </button>
                   </form>
                 )}
-              </div>
-
-              {/* Dedicated WhatsApp Concierge Section (Bottom Right) */}
-              <div className="p-7 sm:p-9 rounded-2xl bg-[#0c0d0e] border-2 border-[#25D366]/40 text-white shadow-2xl relative overflow-hidden">
-                {/* Emerald ambient backlight glow */}
-                <div className="absolute -top-16 -right-16 w-56 h-56 bg-[#25D366]/15 rounded-full blur-3xl pointer-events-none" />
-                <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-[#c5a059]/10 rounded-full blur-3xl pointer-events-none" />
-
-                <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-6 border-b border-white/10">
-                  <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-[#25D366] text-white flex items-center justify-center shrink-0 shadow-lg shadow-[#25D366]/30">
-                      <MessageCircle className="w-8 h-8 fill-current" />
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <span className="relative flex h-2.5 w-2.5">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#25D366]"></span>
-                        </span>
-                        <span className="text-[10px] tracking-[0.2em] uppercase text-[#25D366] font-semibold">
-                          Direct WhatsApp Concierge · Active Desk
-                        </span>
-                      </div>
-                      <h4 className="font-serif-azimute text-2xl sm:text-3xl text-white">
-                        Connect Directly on WhatsApp
-                      </h4>
-                      <p className="text-xs text-white/70 max-w-lg mt-1 font-light leading-relaxed">
-                        Prefer rapid coordination? Message directly at <strong className="text-white font-medium">+91 78359 71222</strong> for verified brochures, floor plans, pricing sheets, or instant site visit bookings.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative z-10 pt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-                  <div className="flex flex-wrap items-center gap-3 text-[11px] text-white/70">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
-                      <Clock className="w-3.5 h-3.5 text-[#25D366]" />
-                      Replies in under 15 mins
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
-                      <ShieldCheck className="w-3.5 h-3.5 text-[#c5a059]" />
-                      Strict Bilateral Privacy
-                    </span>
-                  </div>
-
-                  <a
-                    href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20services."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-xs tracking-wider uppercase transition shadow-lg shadow-[#25D366]/30 hover:scale-[1.02] cursor-pointer"
-                  >
-                    <MessageCircle className="w-4 h-4 fill-current" />
-                    <span>Chat on WhatsApp (+91 78359 71222)</span>
-                    <ArrowUpRight className="w-4 h-4" />
-                  </a>
-                </div>
               </div>
             </div>
           </div>

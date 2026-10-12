@@ -373,34 +373,6 @@ export default function ContactPage() {
                 </div>
               )}
             </div>
-
-            {/* Dedicated WhatsApp Concierge Section - Bottom Right */}
-            <div className="bg-[#0c0d0e] text-white p-7 sm:p-9 rounded-2xl border-2 border-[#25D366]/40 shadow-xl space-y-4 relative overflow-hidden">
-              <div className="absolute -top-16 -right-16 w-48 h-48 bg-[#25D366]/15 rounded-full blur-3xl pointer-events-none" />
-              <div className="relative z-10 flex items-center justify-between pb-4 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#25D366]"></span>
-                  </span>
-                  <span className="text-[10px] tracking-[0.2em] uppercase text-[#25D366] font-semibold">
-                    DIRECT CHAT AVAILABLE · ACTIVE NOW
-                  </span>
-                </div>
-                <span className="text-[10px] tracking-wider uppercase text-[#c5a059] font-medium">Under 15 Mins Response</span>
-              </div>
-              <h3 className="relative z-10 font-serif-luxury text-2xl sm:text-3xl font-normal text-white">WhatsApp Concierge Desk</h3>
-              <p className="relative z-10 text-xs leading-relaxed text-[#C8C4B8] font-light">
-                Prefer direct WhatsApp coordination? Connect directly at <strong className="text-white font-medium">+91 78359 71222</strong> for project brochures, floor plans, and rapid consultations.
-              </p>
-              <button
-                onClick={handleWhatsApp}
-                className="relative z-10 w-full bg-[#25D366] hover:bg-[#20BA5A] text-white text-xs tracking-[0.2em] uppercase py-3.5 rounded-xl font-medium transition-all shadow-lg shadow-[#25D366]/20 flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.01]"
-              >
-                <span>INITIATE WHATSAPP CHAT (+91 78359 71222)</span>
-                <span>→</span>
-              </button>
-            </div>
           </div>
         </div>
       </section>
