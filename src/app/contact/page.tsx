@@ -112,12 +112,12 @@ export default function ContactPage() {
                   HEAD OFFICE &amp; ATELIER
                 </span>
                 <p className="text-xs text-[#141A23] leading-relaxed font-semibold">
-                  Office A-722, Grandthum
+                  Office A-722, 7th Floor, Tower A, Grandthum
                 </p>
                 <p className="text-xs text-[#63615C] leading-relaxed font-normal">
-                  Techzone 4, Greater Noida West, Uttar Pradesh, India.
+                  Grandthum by Group 108, Plot No. 7, Sector Techzone 4, Greater Noida West (Noida Extension), Gautam Buddha Nagar, UP 201306.
                 </p>
-                <p className="text-xs text-[#8F8B83] font-light">Visitor parking and concierge at Tower A</p>
+                <p className="text-xs text-[#8F8B83] font-light">Landmark: 130m Expressway near Gaur Chowk · Visitor parking &amp; concierge at Tower A</p>
               </div>
 
               {/* Hours */}
@@ -126,7 +126,7 @@ export default function ContactPage() {
                   STUDIO OPERATING HOURS
                 </span>
                 <p className="text-xs text-[#141A23] font-normal">
-                  Monday - Saturday: 10:00 AM - 7:00 PM IST
+                  Monday - Saturday: 10:00 AM - 7:30 PM IST
                 </p>
                 <p className="text-xs text-[#8F8B83] font-light">
                   Sunday site visits &amp; consultations by appointment
@@ -151,13 +151,13 @@ export default function ContactPage() {
                       Sunrise Property @ Grandthum
                     </h4>
                     <p className="text-xs text-[#8F8B83] font-light">
-                      Office A-722, Techzone 4, Greater Noida West
+                      Office A-722, 7th Floor, Tower A · Techzone 4, Greater Noida West
                     </p>
                   </div>
                 </div>
 
                 <a
-                  href="https://maps.google.com/?q=Grandthum+by+Group+108+Techzone+4+Greater+Noida+West"
+                  href="https://www.google.com/maps/search/?api=1&query=Grandthum+by+Group+108,+Plot+No.+7,+Techzone+4,+Greater+Noida+West"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="shrink-0 px-3 py-1.5 rounded-lg bg-[#1a73e8] hover:bg-[#1557b0] text-white text-[11px] font-semibold tracking-wide flex items-center gap-1 shadow-sm transition hover:scale-105 cursor-pointer"
@@ -167,11 +167,11 @@ export default function ContactPage() {
                 </a>
               </div>
 
-              {/* Native Full-Color Google Map (No grayscale) */}
+              {/* Native Full-Color Google Map Pinpointed to Grandthum */}
               <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#F0EEEA]">
                 <iframe
                   title="Sunrise Property Grandthum Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.7383236961474!2d77.44747757620242!3d28.577626986716035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cef6f04cbb451%3A0xc391cb44eb89e6eb!2sGrandthum%20by%20Group%20108!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  src="https://maps.google.com/maps?q=Grandthum+by+Group+108,+Techzone+4,+Greater+Noida+West,+Uttar+Pradesh&t=&z=16&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -183,13 +183,17 @@ export default function ContactPage() {
               </div>
 
               {/* Colorful Bottom Navigation Strip */}
-              <div className="p-3.5 sm:p-4 bg-[#FAF8F5] border-t border-[#EAE6DF] flex items-center justify-between text-xs">
-                <span className="text-[#8F8B83] font-light flex items-center gap-1.5 text-[11px] sm:text-xs">
-                  <Clock className="w-3.5 h-3.5 text-[#c5a059]" />
-                  Visiting Hours: 10:00 AM - 7:30 PM IST
-                </span>
+              <div className="p-3.5 sm:p-4 bg-[#FAF8F5] border-t border-[#EAE6DF] flex flex-wrap items-center justify-between gap-2 text-xs">
+                <div className="flex items-center gap-3 text-[11px] sm:text-xs text-[#8F8B83]">
+                  <span className="font-light flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-[#c5a059]" />
+                    Visits: 10:00 AM - 7:30 PM
+                  </span>
+                  <span className="text-[#EAE6DF]">|</span>
+                  <span className="font-medium text-[#141A23]">Tower A, 7th Floor</span>
+                </div>
                 <a
-                  href="https://www.google.com/maps/dir/?api=1&destination=Grandthum+by+Group+108+Techzone+4+Greater+Noida+West"
+                  href="https://www.google.com/maps/dir/?api=1&destination=Grandthum+by+Group+108,+Plot+No.+7,+Techzone+4,+Greater+Noida+West"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#1a73e8] hover:text-[#1557b0] font-semibold text-xs flex items-center gap-1 transition hover:underline"

@@ -10,6 +10,7 @@ import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'mot
 import { 
   ArrowRight, 
   ChevronRight,
+  ChevronDown,
   Phone, 
   Mail, 
   MapPin, 
@@ -170,10 +171,7 @@ function HomeHeroSection({ setShowAnimationsModal, simulateScroll }: HomeHeroSec
           }}
           className="absolute left-[6.25vw] bottom-[15%] max-w-[580px] z-20 pointer-events-auto"
         >
-          <p className="flex items-center gap-4 text-[#c5a059] text-[0.75rem] tracking-[0.15em] uppercase mb-5 sm:mb-[25px]">
-            <span className="w-8 h-[1px] bg-[#c5a059] inline-block" />
-            SUNRISE PROPERTY • REAL ESTATE &amp; INTERIOR
-          </p>
+         
 
           <h1 className="font-serif-azimute mb-6 sm:mb-[34px] text-white drop-shadow-xl">
             <span className="block text-[clamp(2.35rem,3.8vw,4.5rem)] leading-[0.94] tracking-[-0.015em]">
@@ -337,7 +335,7 @@ export default function App() {
     name: '',
     email: '',
     phone: '',
-    service: 'General Advisory & Acquisition',
+    service: 'Real Estate',
     message: ''
   });
 
@@ -2163,15 +2161,18 @@ export default function App() {
                 {/* Office Addresses */}
                 <div className="flex items-start gap-4 pt-4 border-t border-[#f0ece3]">
                   <div className="w-10 h-10 rounded-full bg-[#c5a059]/10 flex items-center justify-center text-[#c5a059] shrink-0 mt-0.5">
-                    <MapPin className="w-5 h-5" />
+                    <MapPin className="w-5 h-5 text-[#c5a059]" />
                   </div>
                   <div>
-                    <span className="block text-[10px] uppercase tracking-wider text-[#8a8f98] font-medium">Head Office &amp; Atelier</span>
-                    <p className="text-sm text-[#0f1115] font-serif-azimute leading-relaxed mt-0.5">
-                      Office A-722, Grandthum
+                    <span className="block text-[10px] uppercase tracking-wider text-[#8a8f98] font-semibold">Head Office &amp; Atelier</span>
+                    <p className="text-sm font-semibold text-[#0f1115] font-serif-azimute leading-relaxed mt-0.5">
+                      Office A-722, 7th Floor, Tower A, Grandthum
                     </p>
                     <p className="text-xs text-[#454950] leading-relaxed mt-0.5">
-                      Techzone 4, Greater Noida West, Uttar Pradesh, India.
+                      Grandthum by Group 108, Plot No. 7, Sector Techzone 4, Greater Noida West (Noida Extension), Gautam Buddha Nagar, Uttar Pradesh 201306.
+                    </p>
+                    <p className="text-[11px] text-[#717680] leading-relaxed mt-1">
+                      <strong className="text-[#0f1115] font-medium">Landmark:</strong> Main 130m Expressway, 5 mins from Gaur Chowk (Kisan Chowk). Dedicated visitor parking &amp; concierge at Tower A.
                     </p>
                   </div>
                 </div>
@@ -2194,13 +2195,13 @@ export default function App() {
                         Sunrise Property @ Grandthum
                       </h4>
                       <p className="text-xs text-[#5a5f67] font-light">
-                        Office A-722, Techzone 4, Greater Noida West
+                        Office A-722, 7th Floor, Tower A · Techzone 4, Greater Noida West
                       </p>
                     </div>
                   </div>
 
                   <a 
-                    href="https://maps.google.com/?q=Grandthum+by+Group+108+Techzone+4+Greater+Noida+West" 
+                    href="https://www.google.com/maps/search/?api=1&query=Grandthum+by+Group+108,+Plot+No.+7,+Techzone+4,+Greater+Noida+West" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="shrink-0 px-3 py-1.5 rounded-lg bg-[#1a73e8] hover:bg-[#1557b0] text-white text-[11px] font-semibold tracking-wide flex items-center gap-1.5 shadow-sm transition hover:scale-105 cursor-pointer"
@@ -2210,24 +2211,28 @@ export default function App() {
                   </a>
                 </div>
 
-                {/* Google Map Full-Color Viewport (No grayscale filter) */}
+                {/* Google Map Full-Color Viewport (Pinpoint Grandthum location) */}
                 <div className="relative aspect-[16/10] sm:aspect-[16/11] w-full bg-[#f0eee9]">
                   <iframe 
                     title="Sunrise Property Grandthum Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.7383236961474!2d77.44747757620242!3d28.577626986716035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cef6f04cbb451%3A0xc391cb44eb89e6eb!2sGrandthum%20by%20Group%20108!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                    src="https://maps.google.com/maps?q=Grandthum+by+Group+108,+Techzone+4,+Greater+Noida+West,+Uttar+Pradesh&t=&z=16&ie=UTF8&iwloc=&output=embed"
                     className="w-full h-full border-0"
                     loading="lazy"
                   />
                 </div>
 
                 {/* Colorful Bottom Navigation Strip */}
-                <div className="p-3.5 sm:p-4 bg-[#faf8f5] border-t border-[#e8e4dc] flex items-center justify-between text-xs">
-                  <span className="text-[#5a5f67] font-light flex items-center gap-1.5 text-[11px] sm:text-xs">
-                    <Clock className="w-3.5 h-3.5 text-[#c5a059]" />
-                    Visits &amp; Consultations: 10:00 AM - 7:30 PM
-                  </span>
+                <div className="p-3.5 sm:p-4 bg-[#faf8f5] border-t border-[#e8e4dc] flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <div className="flex items-center gap-3 text-[11px] sm:text-xs text-[#5a5f67]">
+                    <span className="font-light flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-[#c5a059]" />
+                      Visits: 10:00 AM - 7:30 PM
+                    </span>
+                    <span className="text-[#e2ded6]">|</span>
+                    <span className="font-medium text-[#0f1115]">Tower A, 7th Floor</span>
+                  </div>
                   <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=Grandthum+by+Group+108+Techzone+4+Greater+Noida+West"
+                    href="https://www.google.com/maps/dir/?api=1&destination=Grandthum+by+Group+108,+Plot+No.+7,+Techzone+4,+Greater+Noida+West"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#1a73e8] hover:text-[#1557b0] font-semibold text-xs flex items-center gap-1 transition hover:underline"
@@ -2301,13 +2306,27 @@ export default function App() {
                       </div>
                     </div>
                     <div>
-                      <label className="block text-xs uppercase tracking-wider text-[#6e737c] mb-2 font-medium">Service or Project of Interest</label>
-                      <input 
-                        type="text" 
-                        value={contactForm.service} 
-                        onChange={(e) => setContactForm({ ...contactForm, service: e.target.value })} 
-                        className="w-full px-4 py-3 rounded-xl bg-[#faf8f5] border border-[#e2ded6] text-[#0f1115] placeholder:text-[#9aa0a6] text-sm focus:border-[#c5a059] focus:bg-white outline-none transition" 
-                      />
+                      <div className="flex items-center justify-between mb-2">
+                        <label className="block text-xs uppercase tracking-wider text-[#6e737c] font-medium">
+                          Service or Project of Interest
+                        </label>
+                        <span className="text-[10px] uppercase tracking-wider text-[#c5a059] font-medium">
+                          Real Estate &amp; Interior
+                        </span>
+                      </div>
+                      <div className="relative">
+                        <select 
+                          value={contactForm.service === 'Interior' ? 'Interior' : 'Real Estate'} 
+                          onChange={(e) => setContactForm({ ...contactForm, service: e.target.value })} 
+                          className="w-full px-4 py-3.5 pr-10 rounded-xl bg-[#faf8f5] border border-[#e2ded6] text-[#0f1115] text-sm focus:border-[#c5a059] focus:bg-white outline-none transition appearance-none cursor-pointer font-medium shadow-sm"
+                        >
+                          <option value="Real Estate">Real Estate</option>
+                          <option value="Interior">Interior</option>
+                        </select>
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-3.5 pointer-events-none text-[#8a8f98]">
+                          <ChevronDown className="w-4 h-4 text-[#8a8f98]" />
+                        </div>
+                      </div>
                     </div>
                     <div>
                       <label className="block text-xs uppercase tracking-wider text-[#6e737c] mb-2 font-medium">Project Brief or Particular Requirements</label>
