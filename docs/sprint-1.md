@@ -4,9 +4,9 @@
 
 | Status | Task ID | Task Description | Scope | Assignee / Notes |
 | :---: | :--- | :--- | :--- | :--- |
-| ✅ | SP1-001 | Black Transparent Glass Container & Ambient Lighting (black smoked glass bg `bg-black/60`, backdrop blur, hairline border) | Frontend | Verified in `page.tsx` & `real-estate/page.tsx` |
-| ✅ | SP1-002 | Left Column Typography & Trust Badges (pulsing advisory badge, bold serif, gold circular check indicators) | Frontend | Verified in `page.tsx` & `real-estate/page.tsx` |
-| ✅ | SP1-003 | Luxury WhatsApp Concierge Component (black smoked glass concierge card with live status indicator) | Frontend | Verified in `page.tsx` & `real-estate/page.tsx` |
-| ✅ | SP1-004 | Unified Form Inputs & Custom Chevron (black glass inputs `bg-black/50`, custom SVG select arrow, clean focus halos) | Frontend | Verified in `page.tsx` & `real-estate/page.tsx` |
-| ✅ | SP1-005 | Architectural Champagne CTA & Security Badges (letterspaced gold button with arrow hover micro-interaction) | Frontend | Verified in `page.tsx` & `real-estate/page.tsx` |
+| ✅ | SP1-001 | Architectural Obsidian Card & Ambient Lighting (deep onyx `#0c0d0e`, gold ambient flares, no washed-out grey) | Frontend | Verified in `page.tsx` & `real-estate/page.tsx` |
+| ✅ | SP1-002 | Left Column Typography & Trust Badges (balanced title, crisp high-contrast gold checklist rings) | Frontend | Verified in `page.tsx` & `real-estate/page.tsx` |
+| ✅ | SP1-003 | Luxury WhatsApp Concierge Component (refined VIP advisory card with emerald pulse and smooth hover) | Frontend | Verified in `page.tsx` & `real-estate/page.tsx` |
+| ✅ | SP1-004 | Unified Single-Surface Inputs & Custom Chevron (removed box-in-a-box split, matte `#14161a` inputs, gold chevron) | Frontend | Verified in `page.tsx` & `real-estate/page.tsx` |
+| ✅ | SP1-005 | Architectural Champagne CTA & Security Badges (luminous gold gradient button with arrow micro-interaction) | Frontend | Verified in `page.tsx` & `real-estate/page.tsx` |
 | ✅ | SP1-006 | Synchronize implementations between Home (`#real-estate`) and Dedicated (`/real-estate`) pages | Frontend | Both routes verified with `npm run build` |
