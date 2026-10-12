@@ -1264,39 +1264,66 @@ export default function App() {
         </section>
 
           {/* ============================================================ */}
-          {/* 3.5 HOME SECTION 05: ENQUIRY / CALL-TO-ACTION BANNER         */}
+          {/* 3.5 HOME SECTION 05: ENQUIRY / CALL-TO-ACTION CARD           */}
           {/* ============================================================ */}
-          <section className="relative py-20 px-[6.25vw] text-white border-t border-b border-[#c5a059]/25 bg-[#07090e]/85 backdrop-blur-3xl overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]">
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              <div className="absolute -top-24 right-1/4 w-96 h-96 bg-[radial-gradient(circle,rgba(197,160,89,0.15),transparent_70%)] blur-2xl" />
-              <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] via-transparent to-black/40" />
-            </div>
-            <div className="relative z-10 max-w-[1500px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-              <div className="max-w-2xl">
-                <span className="text-xs tracking-widest uppercase text-[#c5a059]">Private Concierge Desk</span>
-                <h3 className="font-serif-azimute text-3xl sm:text-5xl mt-2 text-white">
-                  Ready to Discuss Your Next Property or Interior Space?
-                </h3>
-                <p className="text-sm text-white/70 mt-2 font-light">
-                  Speak directly with our advisors regarding residential &amp; commercial properties or custom turnkey interior projects.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-4">
-                <a 
-                  href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20services."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-xs uppercase tracking-widest flex items-center gap-2 shadow-xl transition cursor-pointer"
-                >
-                  <MessageCircle className="w-4 h-4 fill-current" />
-                  <span>WhatsApp Concierge</span>
-                </a>
-                <button 
-                  onClick={() => navigateTo('contact')}
-                  className="px-8 py-4 rounded-xl bg-transparent hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] border border-[#c5a059]/50 hover:border-[#c5a059] text-xs uppercase tracking-widest font-semibold transition cursor-pointer shadow-sm"
-                >
-                  Contact Form
-                </button>
+          <section className="py-20 sm:py-28 px-[6.25vw] bg-[#faf8f5]">
+            <div className="max-w-[1500px] mx-auto relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#16181d] via-[#101216] to-[#0a0b0d] border border-[#c5a059]/35 hover:border-[#c5a059]/60 transition-colors duration-500 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.4),0_0_60px_-15px_rgba(197,160,89,0.15)] p-8 sm:p-14 lg:p-16 text-white">
+              {/* Ambient luxury lighting flares */}
+              <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#c5a059]/15 rounded-full blur-[110px] pointer-events-none" />
+              <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#c5a059]/10 rounded-full blur-[110px] pointer-events-none" />
+
+              <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-14">
+                <div className="max-w-2xl space-y-4">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#c5a059]/15 border border-[#c5a059]/35 text-[#c5a059] text-[10px] uppercase tracking-[0.22em] font-semibold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#c5a059] animate-pulse" />
+                    Private Concierge Desk
+                  </div>
+
+                  <h3 className="font-serif-azimute text-3xl sm:text-4xl lg:text-5xl text-white font-bold tracking-tight leading-[1.15]">
+                    Ready to Discuss Your Next Property or Interior Space?
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-white/70 font-light leading-relaxed max-w-xl">
+                    Direct consultation with our senior advisory desk. Confidential guidance for prime acquisitions, developer allocations, and bespoke interior architecture.
+                  </p>
+
+                  <div className="flex flex-wrap items-center gap-5 pt-1 text-xs text-white/75 font-light">
+                    <span className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#c5a059]" />
+                      Verified Developer Allocations
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#c5a059]" />
+                      Bespoke Turnkey Interiors
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#c5a059]" />
+                      Confidential Advisory
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full lg:w-auto shrink-0">
+                  <button 
+                    onClick={() => navigateTo('contact')}
+                    className="group px-8 py-4 rounded-xl bg-gradient-to-r from-[#c5a059] via-[#d4af37] to-[#c5a059] hover:from-[#d4af37] hover:via-[#e2be5f] hover:to-[#d4af37] text-[#0c0d0e] font-bold text-xs uppercase tracking-[0.2em] shadow-[0_10px_30px_-5px_rgba(197,160,89,0.35)] hover:shadow-[0_15px_40px_-5px_rgba(197,160,89,0.55)] transition-all duration-300 flex items-center justify-center gap-3 active:scale-[0.99] cursor-pointer"
+                  >
+                    <span>Schedule Consultation</span>
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </button>
+
+                  <a 
+                    href="https://wa.me/917835971222?text=Hello%20Sunrise%20Property,%20I%20would%20like%20to%20enquire%20about%20your%20services."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group px-7 py-4 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 hover:border-[#25D366]/50 text-white font-semibold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-3 transition-all duration-300 shadow-sm cursor-pointer"
+                  >
+                    <div className="w-5 h-5 rounded-md bg-[#25D366]/20 text-[#25D366] flex items-center justify-center">
+                      <MessageCircle className="w-3.5 h-3.5 fill-current" />
+                    </div>
+                    <span>WhatsApp Concierge</span>
+                  </a>
+                </div>
               </div>
             </div>
           </section>
