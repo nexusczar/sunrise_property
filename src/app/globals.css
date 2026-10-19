@@ -4,7 +4,6 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
   }
   body {
     font-family: var(--font-sans), 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;

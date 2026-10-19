@@ -64,7 +64,7 @@ export default function ContactPage() {
           {/* Left Column (5 cols) */}
           <div className="lg:col-span-5 space-y-8">
             {/* Direct Inquiries Card */}
-            <div className="bg-white p-6 sm:p-8 rounded-2xl border border-[#EAE6DF] space-y-7">
+            <div className="bg-white p-8 rounded-2xl border border-[#EAE6DF] space-y-7">
               <div className="flex items-center justify-between pb-4 border-b border-[#EAE5DC]">
                 <span className="text-[10px] tracking-[0.22em] uppercase text-[#8F8B83] font-medium">
                   DIRECT INQUIRIES
@@ -206,7 +206,7 @@ export default function ContactPage() {
 
           {/* Right Column (7 cols): Request Consultation Form & WhatsApp Section (Bottom Right) */}
           <div className="lg:col-span-7 space-y-8">
-            <div className="bg-white p-6 sm:p-10 lg:p-12 rounded-2xl border border-[#EAE6DF]">
+            <div className="bg-white p-8 sm:p-12 rounded-2xl border border-[#EAE6DF]">
               {formSubmitted ? (
                 <div className="py-16 text-center space-y-4">
                   <h3 className="font-serif-luxury text-3xl font-normal tracking-wide">
@@ -231,7 +231,7 @@ export default function ContactPage() {
                     <span className="text-[10px] tracking-[0.24em] uppercase text-[#C29246] font-medium block mb-1">
                       • FORMAL REGISTRATION
                     </span>
-                    <h2 className="font-serif-luxury text-2xl sm:text-3xl lg:text-4xl font-normal text-[#141A23]">
+                    <h2 className="font-serif-luxury text-3xl sm:text-4xl font-normal text-[#141A23]">
                       Request a Private Consultation
                     </h2>
                     <p className="text-xs text-[#63615C] mt-2 leading-relaxed font-light">
@@ -246,7 +246,7 @@ export default function ContactPage() {
                       <label className="text-[11px] font-medium tracking-[0.14em] uppercase text-[#63615C] block mb-2">
                         PRIMARY AREA OF INTEREST *
                       </label>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                      <div className="grid grid-cols-3 gap-2">
                         {["REAL ESTATE", "INTERIOR DESIGN", "BOTH DISCIPLINES"].map((item) => (
                           <button
                             type="button"
@@ -401,28 +401,28 @@ export default function ContactPage() {
           <div className="bg-white rounded-2xl border border-[#EAE6DF] overflow-hidden">
             <button
               onClick={() => togglePhase(1)}
-              className="w-full px-5 sm:px-8 py-5 sm:py-6 text-left flex items-start sm:items-center justify-between hover:bg-[#FAF8F5] transition-colors cursor-pointer gap-3"
+              className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-[#FAF8F5] transition-colors cursor-pointer"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-5">
+              <div className="flex items-center gap-5">
                 <span className="text-xs font-medium tracking-[0.2em] uppercase text-[#8F8B83]">
                   PHASE 01
                 </span>
-                <h3 className="font-serif-luxury text-lg sm:text-2xl font-normal text-[#141A23]">
+                <h3 className="font-serif-luxury text-xl sm:text-2xl font-normal text-[#141A23]">
                   Discreet Preliminary Discovery Call
                 </h3>
               </div>
-              <span className="text-[#8F8B83] mt-1 sm:mt-0 shrink-0">{openPhase === 1 ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}</span>
+              <span className="text-[#8F8B83]">{openPhase === 1 ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}</span>
             </button>
 
             {openPhase === 1 && (
-              <div className="px-5 sm:px-8 pb-6 sm:pb-8 pt-2 text-[#63615C] text-xs sm:text-sm leading-relaxed border-t border-[#EAE5DC]/60 font-light">
+              <div className="px-8 pb-8 pt-2 text-[#63615C] text-xs sm:text-sm leading-relaxed border-t border-[#EAE5DC]/60 font-light">
                 <p className="mb-4">
                   Within 24 hours of registering, a designated Sunrise Property partner conducts a
                   strictly private 20-minute telephonic discovery. We clarify your qualitative
                   search and design requirements, verify location criteria, access confidential
                   off-market estates, and confirm design scope without third-party solicitation.
                 </p>
-                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-[10px] tracking-wider uppercase text-[#8F8B83] pt-2">
+                <div className="flex flex-wrap items-center gap-3 text-[10px] tracking-wider uppercase text-[#8F8B83] pt-2">
                   <span className="bg-[#FAF8F5] px-3 py-1 rounded-md border border-[#EAE6DF]">
                     TIMEFRAME: WITHIN 24 HOURS
                   </span>
@@ -441,27 +441,27 @@ export default function ContactPage() {
           <div className="bg-white rounded-2xl border border-[#EAE6DF] overflow-hidden">
             <button
               onClick={() => togglePhase(2)}
-              className="w-full px-5 sm:px-8 py-5 sm:py-6 text-left flex items-start sm:items-center justify-between hover:bg-[#FAF8F5] transition-colors cursor-pointer gap-3"
+              className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-[#FAF8F5] transition-colors cursor-pointer"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-5">
+              <div className="flex items-center gap-5">
                 <span className="text-xs font-medium tracking-[0.2em] uppercase text-[#8F8B83]">
                   PHASE 02
                 </span>
-                <h3 className="font-serif-luxury text-lg sm:text-2xl font-normal text-[#141A23]">
+                <h3 className="font-serif-luxury text-xl sm:text-2xl font-normal text-[#141A23]">
                   Private In-Person or Digital Dossier Review
                 </h3>
               </div>
-              <span className="text-[#8F8B83] mt-1 sm:mt-0 shrink-0">{openPhase === 2 ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}</span>
+              <span className="text-[#8F8B83]">{openPhase === 2 ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}</span>
             </button>
 
             {openPhase === 2 && (
-              <div className="px-5 sm:px-8 pb-6 sm:pb-8 pt-2 text-[#63615C] text-xs sm:text-sm leading-relaxed border-t border-[#EAE5DC]/60 font-light">
+              <div className="px-8 pb-8 pt-2 text-[#63615C] text-xs sm:text-sm leading-relaxed border-t border-[#EAE5DC]/60 font-light">
                 <p className="mb-4">
                   We present a customized dossier containing verified architectural assessments,
                   confidential off-market listings, and initial spatial zoning studies tailored to
                   your aesthetic criteria.
                 </p>
-                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-[10px] tracking-wider uppercase text-[#8F8B83] pt-2">
+                <div className="flex flex-wrap items-center gap-3 text-[10px] tracking-wider uppercase text-[#8F8B83] pt-2">
                   <span className="bg-[#FAF8F5] px-3 py-1 rounded-md border border-[#EAE6DF]">
                     TIMEFRAME: 3-5 BUSINESS DAYS
                   </span>
@@ -480,26 +480,26 @@ export default function ContactPage() {
           <div className="bg-white rounded-2xl border border-[#EAE6DF] overflow-hidden">
             <button
               onClick={() => togglePhase(3)}
-              className="w-full px-5 sm:px-8 py-5 sm:py-6 text-left flex items-start sm:items-center justify-between hover:bg-[#FAF8F5] transition-colors cursor-pointer gap-3"
+              className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-[#FAF8F5] transition-colors cursor-pointer"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-5">
+              <div className="flex items-center gap-5">
                 <span className="text-xs font-medium tracking-[0.2em] uppercase text-[#8F8B83]">
                   PHASE 03
                 </span>
-                <h3 className="font-serif-luxury text-lg sm:text-2xl font-normal text-[#141A23]">
+                <h3 className="font-serif-luxury text-xl sm:text-2xl font-normal text-[#141A23]">
                   Tailored Acquisition or Architectural Blueprint Proposal
                 </h3>
               </div>
-              <span className="text-[#8F8B83] mt-1 sm:mt-0 shrink-0">{openPhase === 3 ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}</span>
+              <span className="text-[#8F8B83]">{openPhase === 3 ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}</span>
             </button>
 
             {openPhase === 3 && (
-              <div className="px-5 sm:px-8 pb-6 sm:pb-8 pt-2 text-[#63615C] text-xs sm:text-sm leading-relaxed border-t border-[#EAE5DC]/60 font-light">
+              <div className="px-8 pb-8 pt-2 text-[#63615C] text-xs sm:text-sm leading-relaxed border-t border-[#EAE5DC]/60 font-light">
                 <p className="mb-4">
                   Formal engagement begins with dedicated site viewings, complete due diligence,
                   architectural feasibility studies, and bespoke milestone planning.
                 </p>
-                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-[10px] tracking-wider uppercase text-[#8F8B83] pt-2">
+                <div className="flex flex-wrap items-center gap-3 text-[10px] tracking-wider uppercase text-[#8F8B83] pt-2">
                   <span className="bg-[#FAF8F5] px-3 py-1 rounded-md border border-[#EAE6DF]">
                     TIMEFRAME: UPON DOSSIER ALIGNMENT
                   </span>

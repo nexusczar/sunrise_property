@@ -165,9 +165,9 @@ export default function InteriorDesignPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Pillar 1: Design Services */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between">
+            <div className="bg-white rounded-2xl p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between">
               <div>
                 <div className="w-12 h-12 rounded-xl bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6">
                   <Compass className="w-6 h-6" />
@@ -204,7 +204,7 @@ export default function InteriorDesignPage() {
             </div>
 
             {/* Pillar 2: Execution Services */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between">
+            <div className="bg-white rounded-2xl p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between">
               <div>
                 <div className="w-12 h-12 rounded-xl bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6">
                   <Wrench className="w-6 h-6" />
@@ -241,7 +241,7 @@ export default function InteriorDesignPage() {
             </div>
 
             {/* Pillar 3: Specialized Services */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between md:col-span-2 lg:col-span-1">
+            <div className="bg-white rounded-2xl p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between">
               <div>
                 <div className="w-12 h-12 rounded-xl bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6">
                   <Layers className="w-6 h-6" />
@@ -282,7 +282,7 @@ export default function InteriorDesignPage() {
         {/* =========================================================================
             6.2 PROJECT ENQUIRY FORM / GET A CONSULTATION CTA
            ========================================================================= */}
-        <div id="interior-consultation-form" className="p-6 sm:p-10 lg:p-12 rounded-3xl bg-[#07090e]/85 backdrop-blur-3xl border border-white/12 text-white shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+        <div id="interior-consultation-form" className="p-8 sm:p-12 rounded-3xl bg-[#07090e]/85 backdrop-blur-3xl border border-white/12 text-white shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-5 space-y-4">
               <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Atelier Commission Desk</span>
