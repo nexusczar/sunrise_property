@@ -43,11 +43,10 @@ import {
 type Page = 'home' | 'about' | 'real-estate' | 'interior' | 'contact';
 
 interface HomeHeroSectionProps {
-  setShowAnimationsModal: (show: boolean) => void;
   simulateScroll: (targetRatio: number) => void;
 }
 
-function HomeHeroSection({ setShowAnimationsModal, simulateScroll }: HomeHeroSectionProps) {
+function HomeHeroSection({ simulateScroll }: HomeHeroSectionProps) {
   // Scroll tracking for Home hero animation
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -137,10 +136,6 @@ function HomeHeroSection({ setShowAnimationsModal, simulateScroll }: HomeHeroSec
               background: 'linear-gradient(90deg, rgba(12,13,14,0.45), transparent 60%), linear-gradient(0deg, rgba(12,13,14,0.7), transparent 58%, rgba(12,13,14,0.25))'
             }}
           />
-
-          <div className="absolute right-[6.25vw] bottom-[76px] text-[0.75rem] text-[#faf8f5]/70 pointer-events-none">
-            Architectural Rendering
-          </div>
         </motion.div>
 
         {/* Side text: ARCHITECTURE · LIGHT · LIVING (Vertical) */}
@@ -298,19 +293,6 @@ function HomeHeroSection({ setShowAnimationsModal, simulateScroll }: HomeHeroSec
           className="absolute inset-0 bg-[#0c0d0e] pointer-events-none z-35"
         />
 
-        {/* Exact "|| Animations" Button */}
-        <div className="absolute right-[6.25vw] bottom-6 z-40 pointer-events-auto">
-          <button
-            type="button"
-            onClick={() => setShowAnimationsModal(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0c0d0e]/85 hover:bg-[#0c0d0e] backdrop-blur-md border border-white/20 text-[#faf8f5] text-xs tracking-wider transition shadow-2xl cursor-pointer hover:border-[#c5a059]"
-            aria-label="Open timeline controls"
-          >
-            <span className="font-mono text-[11px] text-[#c5a059]">||</span>
-            <span className="font-sans">Animations</span>
-          </button>
-        </div>
-
       </div>
     </section>
   );
@@ -320,8 +302,6 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [homeKey, setHomeKey] = useState<number>(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showAnimationsModal, setShowAnimationsModal] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [beforeAfterSlider, setBeforeAfterSlider] = useState<number>(50);
   const [realEstateFilter, setRealEstateFilter] = useState<string>('ALL');
@@ -505,29 +485,6 @@ export default function App() {
     }
   };
 
-  const runFullScrubDemo = () => {
-    if (currentPage !== 'home') {
-      setHomeKey(prev => prev + 1);
-      setCurrentPage('home');
-    }
-    setShowAnimationsModal(false);
-    setTimeout(() => simulateScroll(0), 100);
-    setTimeout(() => simulateScroll(0.28), 1000);
-    setTimeout(() => simulateScroll(0.66), 2800);
-    setTimeout(() => simulateScroll(1.0), 5500);
-    setTimeout(() => simulateScroll(0), 8500);
-  };
-
-  const replayEntranceIntro = () => {
-    setShowAnimationsModal(false);
-    if (currentPage !== 'home') {
-      setHomeKey(prev => prev + 1);
-      setCurrentPage('home');
-    }
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    setEntranceActive(true);
-  };
-
   // Top Picks specifically requested by user
   const topPickProjects = [
     {
@@ -696,38 +653,6 @@ export default function App() {
       description: 'Harmonious integration of interior volumes with open-air leisure pockets, fluted timber screens, and water feature accents.'
     }
   ];
-
-  const antigravityPrompt = `Create the exact scroll-scrubbed cinematic hero animation for Sunrise Property:
-
-1. Viewport & Scroll Pinning:
-- 380vh scroll track with a pinned 100vh full-bleed sticky viewport.
-- Smooth bidirectional inertial scroll scrubbing (Framer Motion useScroll/useSpring or GSAP ScrollTrigger with scrub: 0.65, pin: true).
-
-2. Architectural Lighting & Solar Cycle:
-- 0% - 20%: DAY PERSPECTIVE (Bright morning sunlight on the facade, Sunrise Property headline, side typography "ARCHITECTURE · LIGHT · LIVING", explore indicator).
-- 10% - 38%: DAY TO NIGHT CROSSFADE (Smooth dissolve to illuminated night facade with lit windows, glowing balcony railings, and dusk sky).
-- 42% - 54%: FACADE DISSOLVE (Building fades away as the atmospheric crystalline cosmos emerges).
-
-3. EXTENDED FULL-PAGE LOGO & NAME REVEAL (Stage 4):
-- 50% - 85% Scroll: The logo and name animation occupies the ENTIRE viewport and remains 100% VISIBLE across this broad scroll range.
-- Elements:
-  * Animated geometric crystal emblem SVG (viewBox="0 0 120 140") with crystal gradient fill, golden border strokes, bearing pointer, and orbit arc.
-  * "ATELIER MONOGRAPH" in letter-spacing: 0.3em.
-  * Monumental serif "SUNRISE" in clamp(4.5rem, 13vw, 15rem) with metallic luxury gradient text fill.
-  * "PROPERTIES & BESPOKE INTERIOR ATELIER" in letter-spacing: 0.28em.
-  * Subtle floating scroll indicator: "SCROLL TO EXPLORE PORTFOLIO ↓".
-
-4. 1st PAGE CLOSING ANIMATION (Stage 5):
-- 80% - 100%: Sticky viewport darkens into deep obsidian shade as Section 01 slides up and rolls over the sticky frame like an architectural curtain.
-
-5. ENTRANCE INTRO ANIMATION:
-- Fullscreen opening curtain where golden strokes of the crystal emblem draw in, followed by light beam gleam, text reveal, and upward curtain wipe into the daylight hero.`;
-
-  const copyPrompt = () => {
-    navigator.clipboard.writeText(antigravityPrompt);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
-  };
 
   return (
     <div className="relative min-h-screen bg-[#0c0d0e] text-[#faf8f5] selection:bg-[#c5a059] selection:text-[#0c0d0e] font-sans antialiased overflow-x-clip">
@@ -1026,7 +951,6 @@ export default function App() {
           {/* HERO SECTION WITH EXTENDED TRACK (height: 380svh) */}
           <HomeHeroSection
             key={homeKey}
-            setShowAnimationsModal={setShowAnimationsModal}
             simulateScroll={simulateScroll}
           />
 
@@ -2710,107 +2634,6 @@ export default function App() {
                 className="py-3 px-4 rounded-xl bg-[#0c0d0e] hover:bg-[#c5a059] text-white hover:text-[#0c0d0e] text-xs uppercase tracking-wider font-semibold transition cursor-pointer text-center shadow-sm"
               >
                 Contact Advisory Desk
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ================================================================ */}
-      {/* 9. ANIMATIONS & TIMELINE CONTROLS MODAL                          */}
-      {/* ================================================================ */}
-      {showAnimationsModal && (
-        <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
-          <div className="bg-[#0c0d0e] border border-[#c5a059]/30 rounded-2xl max-w-xl w-full p-6 shadow-2xl text-slate-100 flex flex-col max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-4 border-b border-white/10">
-              <div className="flex items-center gap-2">
-                <span className="text-[#c5a059] font-mono text-sm">||</span>
-                <h3 className="font-semibold text-sm tracking-wide text-white">
-                  Timeline &amp; Animation Controls
-                </h3>
-              </div>
-              <button onClick={() => setShowAnimationsModal(false)} className="text-slate-400 hover:text-white cursor-pointer">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Quick Demo Controls */}
-            <div className="py-4 border-b border-white/10 space-y-3">
-              <span className="block text-xs uppercase tracking-wider text-slate-400 font-medium">
-                Milestone Quick Jump:
-              </span>
-              
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <button
-                  onClick={() => { setShowAnimationsModal(false); if (currentPage !== 'home') navigateTo('home'); setTimeout(() => simulateScroll(0), 100); }}
-                  className="p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-left border border-white/10 text-white cursor-pointer"
-                >
-                  <span className="block text-[#c5a059] font-semibold text-[10px]">STAGE 1</span>
-                  <span>01. Day Hero (YOUR NEXT)</span>
-                </button>
-                <button
-                  onClick={() => { setShowAnimationsModal(false); if (currentPage !== 'home') navigateTo('home'); setTimeout(() => simulateScroll(0.32), 100); }}
-                  className="p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-left border border-white/10 text-white cursor-pointer"
-                >
-                  <span className="block text-[#c5a059] font-semibold text-[10px]">STAGE 2</span>
-                  <span>02. Night Facade Crossfade</span>
-                </button>
-                <button
-                  onClick={() => { setShowAnimationsModal(false); if (currentPage !== 'home') navigateTo('home'); setTimeout(() => simulateScroll(0.66), 100); }}
-                  className="p-2.5 rounded-lg bg-[#c5a059]/15 hover:bg-[#c5a059]/25 text-left border border-[#c5a059]/40 text-[#faf8f5] cursor-pointer"
-                >
-                  <span className="block text-[#c5a059] font-semibold text-[10px]">STAGE 3 (PINNED FULL-PAGE)</span>
-                  <span>03. Logo &amp; Name Reveal</span>
-                </button>
-                <button
-                  onClick={() => { setShowAnimationsModal(false); if (currentPage !== 'home') navigateTo('home'); setTimeout(() => simulateScroll(1.0), 100); }}
-                  className="p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-left border border-white/10 text-white cursor-pointer"
-                >
-                  <span className="block text-[#c5a059] font-semibold text-[10px]">STAGE 4</span>
-                  <span>04. Section 01 Handoff</span>
-                </button>
-              </div>
-
-              <div className="flex gap-2 pt-2">
-                <button
-                  onClick={runFullScrubDemo}
-                  className="flex-1 py-2.5 rounded-lg bg-[#c5a059] hover:bg-white text-[#0c0d0e] text-xs font-semibold flex items-center justify-center gap-1.5 transition cursor-pointer"
-                >
-                  <Play className="w-3.5 h-3.5" />
-                  <span>Run Auto Scrub Demo</span>
-                </button>
-                <button
-                  onClick={replayEntranceIntro}
-                  className="px-4 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs flex items-center gap-1.5 transition cursor-pointer"
-                >
-                  <RotateCcw className="w-3.5 h-3.5 text-[#c5a059]" />
-                  <span>Replay Opening</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Prompt */}
-            <div className="py-4 space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-xs uppercase tracking-wider text-slate-400 font-medium">
-                  Antigravity Implementation Prompt:
-                </span>
-                <button
-                  onClick={copyPrompt}
-                  className="px-2.5 py-1 rounded bg-[#c5a059]/20 text-[#c5a059] hover:bg-[#c5a059] hover:text-[#0c0d0e] text-[11px] font-medium flex items-center gap-1 transition cursor-pointer"
-                >
-                  {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                  <span>{copied ? 'Copied!' : 'Copy Prompt'}</span>
-                </button>
-              </div>
-              <pre className="p-3 rounded-lg bg-black/60 border border-white/10 text-[10px] text-slate-300 font-mono whitespace-pre-wrap max-h-48 overflow-y-auto">
-                {antigravityPrompt}
-              </pre>
-            </div>
-
-            <div className="pt-4 border-t border-white/10 flex justify-end">
-              <button onClick={() => setShowAnimationsModal(false)} className="px-4 py-2 rounded-lg text-xs bg-white/10 hover:bg-white/20 text-white cursor-pointer">
-                Close
               </button>
             </div>
           </div>
