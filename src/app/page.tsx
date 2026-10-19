@@ -154,7 +154,7 @@ function HomeHeroSection({ setShowAnimationsModal, simulateScroll }: HomeHeroSec
         {/* Bottom scroll indicator: EXPLORE */}
         <motion.div 
           style={{ opacity: heroSideOpacity }}
-          className="absolute bottom-6 left-[6.25vw] flex items-center gap-[18px] pointer-events-none"
+          className="absolute bottom-6 left-5 sm:left-8 lg:left-[6.25vw] flex items-center gap-[18px] pointer-events-none"
           aria-hidden="true"
         >
           <span className="text-[0.625rem] tracking-[0.2em] text-[#faf8f5]/75 uppercase">EXPLORE</span>
@@ -169,32 +169,32 @@ function HomeHeroSection({ setShowAnimationsModal, simulateScroll }: HomeHeroSec
             opacity: heroContentOpacity,
             y: heroContentY 
           }}
-          className="absolute left-[6.25vw] bottom-[15%] max-w-[580px] z-20 pointer-events-auto"
+          className="absolute left-5 sm:left-8 lg:left-[6.25vw] right-5 sm:right-auto bottom-12 sm:bottom-[15%] max-w-[580px] z-20 pointer-events-auto"
         >
          
 
-          <h1 className="font-serif-azimute mb-6 sm:mb-[34px] text-white drop-shadow-xl">
-            <span className="block text-[clamp(2.35rem,3.8vw,4.5rem)] leading-[0.94] tracking-[-0.015em]">
+          <h1 className="font-serif-azimute mb-5 sm:mb-[34px] text-white drop-shadow-xl">
+            <span className="block text-[clamp(1.75rem,5vw,4.5rem)] leading-[0.96] tracking-[-0.015em]">
               FIND YOUR PROPERTY.
             </span>
-            <em className="block italic font-serif-azimute text-[clamp(3.35rem,5.6vw,6.5rem)] leading-[0.86] mt-1 ml-[3vw] sm:ml-[5vw] text-[#faf8f5]">
+            <em className="block italic font-serif-azimute text-[clamp(2.25rem,6.8vw,6.5rem)] leading-[0.88] mt-1 ml-1 sm:ml-[3vw] lg:ml-[5vw] text-[#faf8f5]">
               Design Your Space.
             </em>
           </h1>
 
-          <div className="flex flex-col sm:flex-row gap-6 sm:gap-[50px] sm:items-end">
-            <p className="text-[0.9375rem] sm:text-[1rem] leading-[1.65] text-[#e2ded7] font-sans drop-shadow max-w-[320px]">
+          <div className="flex flex-col sm:flex-row gap-5 sm:gap-[50px] sm:items-end">
+            <p className="text-[0.875rem] sm:text-[1rem] leading-[1.65] text-[#e2ded7] font-sans drop-shadow max-w-[320px]">
               Live Better.<br />
               Residential &amp; Commercial Real Estate, Property Consultation &amp; Turnkey Interiors.
             </p>
 
             <a 
-              className="inline-flex items-center gap-4 sm:gap-5 text-sm sm:text-base text-white hover:text-[#c5a059] group cursor-pointer drop-shadow transition"
+              className="inline-flex items-center gap-3.5 sm:gap-5 text-sm sm:text-base text-white hover:text-[#c5a059] group cursor-pointer drop-shadow transition"
               href="#intro-services"
               onClick={(e) => { e.preventDefault(); simulateScroll(0.66); }}
             >
               <span className="tracking-wide">Explore Collection</span>
-              <span className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl border border-white/50 flex items-center justify-center text-lg sm:text-xl group-hover:bg-[#c5a059] group-hover:text-[#0c0d0e] group-hover:border-[#c5a059] transition duration-300 bg-black/10">
+              <span className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-white/50 flex items-center justify-center text-base sm:text-xl group-hover:bg-[#c5a059] group-hover:text-[#0c0d0e] group-hover:border-[#c5a059] transition duration-300 bg-black/10">
                 ↓
               </span>
             </a>
@@ -273,13 +273,13 @@ function HomeHeroSection({ setShowAnimationsModal, simulateScroll }: HomeHeroSec
           {/* 3. MONUMENTAL SUNRISE SERIF */}
           <motion.h2 
             style={{ letterSpacing: reframeLetterSpacing }}
-            className="font-serif-azimute text-[clamp(4.5rem,13vw,15rem)] leading-[0.9] text-[#faf8f5] drop-shadow-[0_20px_50px_rgba(0,0,0,0.95)]"
+            className="font-serif-azimute text-[clamp(2.5rem,11vw,15rem)] leading-[0.9] text-[#faf8f5] drop-shadow-[0_20px_50px_rgba(0,0,0,0.95)]"
           >
             SUNRISE
           </motion.h2>
           
           {/* 4. Subtitle */}
-          <span className="block text-[10px] sm:text-xs tracking-[0.25em] text-[#c5a059] uppercase font-light mt-4 drop-shadow">
+          <span className="block text-[10px] sm:text-xs tracking-[0.12em] sm:tracking-[0.25em] text-[#c5a059] uppercase font-light mt-4 drop-shadow px-2 text-center max-w-full break-words">
             FIND YOUR PROPERTY. DESIGN YOUR SPACE. LIVE BETTER.
           </span>
 
@@ -299,11 +299,11 @@ function HomeHeroSection({ setShowAnimationsModal, simulateScroll }: HomeHeroSec
         />
 
         {/* Exact "|| Animations" Button */}
-        <div className="absolute right-[6.25vw] bottom-6 z-40 pointer-events-auto">
+        <div className="absolute right-5 sm:right-8 lg:right-[6.25vw] bottom-6 z-40 pointer-events-auto">
           <button
             type="button"
             onClick={() => setShowAnimationsModal(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0c0d0e]/85 hover:bg-[#0c0d0e] backdrop-blur-md border border-white/20 text-[#faf8f5] text-xs tracking-wider transition shadow-2xl cursor-pointer hover:border-[#c5a059]"
+            className="flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl bg-[#0c0d0e]/85 hover:bg-[#0c0d0e] backdrop-blur-md border border-white/20 text-[#faf8f5] text-xs tracking-wider transition shadow-2xl cursor-pointer hover:border-[#c5a059]"
             aria-label="Open timeline controls"
           >
             <span className="font-mono text-[11px] text-[#c5a059]">||</span>
@@ -812,7 +812,7 @@ export default function App() {
       {/* ================================================================ */}
       {/* 1. EXACT FIXED NAVBAR: STRICT 5 MENU PAGES & BRAND LOGO        */}
       {/* ================================================================ */}
-      <header className={`fixed top-0 inset-x-0 z-50 flex items-center justify-between px-[6.25vw] transition-all duration-500 pointer-events-auto ${
+      <header className={`fixed top-0 inset-x-0 z-50 flex items-center justify-between px-5 sm:px-8 lg:px-[6.25vw] transition-all duration-500 pointer-events-auto ${
         entranceActive
           ? 'opacity-0 pointer-events-none -translate-y-8 invisible'
           : 'opacity-100 translate-y-0 visible'
@@ -896,21 +896,125 @@ export default function App() {
         </div>
       </header>
 
-      {/* Mobile Navigation Drawer: EXACTLY 5 REQUIRED PAGES */}
+      {/* Mobile & Tablet Right-Side Sidebar Navigation Drawer */}
       <AnimatePresence>
         {!entranceActive && mobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-0 top-[65px] z-50 bg-[#0c0d0e]/98 backdrop-blur-xl border-b border-[#c5a059]/25 p-6 flex flex-col gap-4 text-xs uppercase tracking-widest lg:hidden shadow-2xl"
-          >
-            <button type="button" onClick={() => navigateTo('home')} className={`text-left py-2.5 transition cursor-pointer ${currentPage === 'home' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>Home</button>
-            <button type="button" onClick={() => navigateTo('about')} className={`text-left py-2.5 transition cursor-pointer ${currentPage === 'about' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>About Us</button>
-            <button type="button" onClick={() => navigateTo('real-estate')} className={`text-left py-2.5 transition cursor-pointer ${currentPage === 'real-estate' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>Real Estate</button>
-            <button type="button" onClick={() => navigateTo('interior')} className={`text-left py-2.5 transition cursor-pointer ${currentPage === 'interior' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>Interior Design</button>
-            <button type="button" onClick={() => navigateTo('contact')} className={`text-left py-2.5 transition cursor-pointer ${currentPage === 'contact' ? 'text-[#c5a059] font-semibold' : 'text-white/80 hover:text-white'}`}>Contact Us</button>
-          </motion.div>
+          <>
+            {/* Backdrop Blur Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm lg:hidden cursor-pointer"
+              aria-hidden="true"
+            />
+
+            {/* Right-Side Slide-Over Panel */}
+            <motion.aside
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 280 }}
+              className="fixed top-0 bottom-0 right-0 z-50 w-[85vw] max-w-[340px] sm:max-w-[380px] h-full bg-[#0c0d0e]/98 backdrop-blur-2xl border-l border-[#c5a059]/25 shadow-[-25px_0_70px_rgba(0,0,0,0.85)] flex flex-col justify-between p-6 sm:p-8 lg:hidden overflow-y-auto"
+              aria-label="Mobile navigation"
+            >
+              {/* Header: Logo and Close Button */}
+              <div>
+                <div className="flex items-center justify-between pb-6 border-b border-white/10">
+                  <img 
+                    src="/images/logo-light.png" 
+                    alt="Sunrise Property" 
+                    className="h-8 sm:h-9 w-auto object-contain"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/80 hover:text-white border border-white/10 transition cursor-pointer"
+                    aria-label="Close navigation"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Navigation Links */}
+                <nav className="flex flex-col py-6 space-y-1.5">
+                  {[
+                    { id: 'home', label: 'Home', num: '01' },
+                    { id: 'about', label: 'About Us', num: '02' },
+                    { id: 'real-estate', label: 'Real Estate', num: '03' },
+                    { id: 'interior', label: 'Interior Design', num: '04' },
+                    { id: 'contact', label: 'Contact Us', num: '05' },
+                  ].map((item) => {
+                    const isActive = currentPage === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          navigateTo(item.id as Page);
+                        }}
+                        className={`group flex items-center justify-between w-full py-3.5 px-3.5 rounded-xl transition text-left cursor-pointer ${
+                          isActive 
+                            ? 'bg-[#c5a059]/15 text-[#c5a059] font-semibold border border-[#c5a059]/30' 
+                            : 'text-white/80 hover:text-white hover:bg-white/5'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3.5">
+                          <span className={`text-[10px] font-mono tracking-widest ${isActive ? 'text-[#c5a059]' : 'text-white/40 group-hover:text-[#c5a059]'}`}>
+                            {item.num}
+                          </span>
+                          <span className="text-sm tracking-wide">
+                            {item.label}
+                          </span>
+                        </div>
+                        <ChevronRight className={`w-4 h-4 transition-transform ${isActive ? 'text-[#c5a059] translate-x-0.5' : 'text-white/30 group-hover:text-white group-hover:translate-x-0.5'}`} />
+                      </button>
+                    );
+                  })}
+                </nav>
+              </div>
+
+              {/* Bottom Footer Details & Actions */}
+              <div className="pt-6 border-t border-white/10 space-y-4">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    navigateTo('contact');
+                  }}
+                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#c5a059] via-[#d4af37] to-[#c5a059] text-[#0c0d0e] font-bold text-xs uppercase tracking-[0.2em] shadow-lg flex items-center justify-center gap-2 transition hover:opacity-95 active:scale-[0.99] cursor-pointer"
+                >
+                  <span>Enquire Now</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+
+                <div className="space-y-2 text-xs text-white/60">
+                  <a
+                    href="https://wa.me/917835971222"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2.5 text-white/75 hover:text-[#25D366] transition py-1"
+                  >
+                    <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                    <span>WhatsApp: +91 78359 71222</span>
+                  </a>
+                  <a
+                    href="tel:+919870389489"
+                    className="flex items-center gap-2.5 text-white/75 hover:text-[#c5a059] transition py-1"
+                  >
+                    <Phone className="w-4 h-4 text-[#c5a059]" />
+                    <span>Phone: +91 98703 89489</span>
+                  </a>
+                  <p className="text-[11px] text-white/40 pt-1 font-light leading-relaxed">
+                    Grandthum, Techzone 4, Greater Noida West
+                  </p>
+                </div>
+              </div>
+            </motion.aside>
+          </>
         )}
       </AnimatePresence>
 
@@ -932,7 +1036,7 @@ export default function App() {
           {/* ============================================================ */}
           {/* 3.1 HOME SECTION 01: REAL ESTATE + INTERIOR INTRODUCTION     */}
           {/* ============================================================ */}
-          <section id="intro-services" className="bg-[#faf8f5] text-[#0f1115] py-24 sm:py-32 px-[6.25vw] relative z-40 shadow-[0_-35px_80px_rgba(0,0,0,0.7)]">
+          <section id="intro-services" className="bg-[#faf8f5] text-[#0f1115] py-20 sm:py-32 px-5 sm:px-8 lg:px-[6.25vw] relative z-40 shadow-[0_-35px_80px_rgba(0,0,0,0.7)]">
             <div className="max-w-[1500px] mx-auto">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs tracking-[0.2em] uppercase text-[#8a8f98] pb-4 mb-14 gap-2">
                 <div className="flex items-center gap-2">
@@ -945,9 +1049,9 @@ export default function App() {
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
                 <div className="lg:col-span-7">
-                  <h2 className="font-serif-azimute text-[clamp(3.8rem,7.5vw,8.5rem)] leading-[0.92] tracking-[-0.025em] text-[#0f1115]">
+                  <h2 className="font-serif-azimute text-[clamp(2.25rem,6.5vw,8.5rem)] leading-[0.94] tracking-[-0.025em] text-[#0f1115]">
                     <span className="block text-[0.72em]">FIND YOUR PROPERTY.</span>
-                    <em className="block font-serif-azimute not-italic text-[#c5a059] text-[1.15em] ml-6">
+                    <em className="block font-serif-azimute not-italic text-[#c5a059] text-[1.15em] ml-2 sm:ml-6">
                       design your space.
                     </em>
                   </h2>
@@ -1145,7 +1249,7 @@ export default function App() {
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                   {topPickProjects.map((p) => (
                     <div key={p.id} className="bg-white rounded-2xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-[#e8e4dc] hover:border-[#c5a059]/60 hover:shadow-2xl transition duration-500 group flex flex-col justify-between">
                       <div>
@@ -1226,8 +1330,8 @@ export default function App() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] group">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] group">
                   <ShieldCheck className="w-8 h-8 text-[#c5a059] mb-4 group-hover:scale-110 transition" />
                   <h4 className="font-serif-azimute text-xl mb-2 text-[#0f1115]">Professional Guidance</h4>
                   <p className="text-xs text-[#5a5f67] leading-relaxed">
@@ -1235,7 +1339,7 @@ export default function App() {
                   </p>
                 </div>
 
-                <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] group">
+                <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] group">
                   <Award className="w-8 h-8 text-[#c5a059] mb-4 group-hover:scale-110 transition" />
                   <h4 className="font-serif-azimute text-xl mb-2 text-[#0f1115]">Transparent Dealings</h4>
                   <p className="text-xs text-[#5a5f67] leading-relaxed">
@@ -1243,7 +1347,7 @@ export default function App() {
                   </p>
                 </div>
 
-                <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] group">
+                <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] group">
                   <Paintbrush className="w-8 h-8 text-[#c5a059] mb-4 group-hover:scale-110 transition" />
                   <h4 className="font-serif-azimute text-xl mb-2 text-[#0f1115]">Quality Design</h4>
                   <p className="text-xs text-[#5a5f67] leading-relaxed">
@@ -1251,7 +1355,7 @@ export default function App() {
                   </p>
                 </div>
 
-                <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] group">
+                <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.12)] group">
                   <Clock className="w-8 h-8 text-[#c5a059] mb-4 group-hover:scale-110 transition" />
                   <h4 className="font-serif-azimute text-xl mb-2 text-[#0f1115]">End-to-End Support</h4>
                   <p className="text-xs text-[#5a5f67] leading-relaxed">
@@ -1266,8 +1370,8 @@ export default function App() {
           {/* ============================================================ */}
           {/* 3.5 HOME SECTION 05: ENQUIRY / CALL-TO-ACTION CARD           */}
           {/* ============================================================ */}
-          <section className="py-20 sm:py-28 px-[6.25vw] bg-[#faf8f5]">
-            <div className="max-w-[1500px] mx-auto relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#16181d] via-[#101216] to-[#0a0b0d] border border-[#c5a059]/35 hover:border-[#c5a059]/60 transition-colors duration-500 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.4),0_0_60px_-15px_rgba(197,160,89,0.15)] p-8 sm:p-14 lg:p-16 text-white">
+          <section className="py-14 sm:py-20 lg:py-28 px-5 sm:px-8 lg:px-[6.25vw] bg-[#faf8f5]">
+            <div className="max-w-[1500px] mx-auto relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#16181d] via-[#101216] to-[#0a0b0d] border border-[#c5a059]/35 hover:border-[#c5a059]/60 transition-colors duration-500 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.4),0_0_60px_-15px_rgba(197,160,89,0.15)] p-6 sm:p-10 lg:p-16 text-white">
               {/* Ambient luxury lighting flares */}
               <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#c5a059]/15 rounded-full blur-[110px] pointer-events-none" />
               <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#c5a059]/10 rounded-full blur-[110px] pointer-events-none" />
@@ -1334,20 +1438,20 @@ export default function App() {
       {/* 4. ABOUT US PAGE                                                 */}
       {/* ================================================================ */}
       {currentPage === 'about' && (
-        <main className="min-h-screen bg-[#faf8f5] text-[#0f1115] pt-32 pb-24 px-[6.25vw] max-w-[1500px] mx-auto">
+        <main className="min-h-screen bg-[#faf8f5] text-[#0f1115] pt-28 sm:pt-32 pb-20 sm:pb-24 px-5 sm:px-8 lg:px-[6.25vw] max-w-[1500px] mx-auto">
           <div className="border-b border-[#e2ded6] pb-8 mb-16">
             <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Atelier Monograph · Profile</span>
-            <h1 className="font-serif-azimute text-5xl sm:text-7xl mt-2 text-[#0f1115]">
+            <h1 className="font-serif-azimute text-3xl sm:text-5xl lg:text-7xl mt-2 text-[#0f1115]">
               Find Your Property. Design Your Space. Live Better.
             </h1>
-            <p className="text-lg text-[#5a5f67] max-w-3xl mt-4 font-light">
+            <p className="text-base sm:text-lg text-[#5a5f67] max-w-3xl mt-4 font-light">
               Sunrise Property delivers end-to-end expertise across prime real estate discovery and bespoke interior design. We help you find your ideal residential or commercial property, thoughtfully design your spaces, and execute turnkey interior solutions that elevate your lifestyle.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
             <div className="lg:col-span-6 space-y-6 text-sm text-[#5a5f67] leading-relaxed font-light">
-              <h3 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115]">
+              <h3 className="font-serif-azimute text-2xl sm:text-3xl lg:text-4xl text-[#0f1115]">
                 Real Estate &amp; Interior Design in Perfect Harmony
               </h3>
               <p className="text-[#454950]">
@@ -1356,17 +1460,17 @@ export default function App() {
               <p className="text-[#454950]">
                 Whether you are searching for premium residential apartments, villas, studio apartments, commercial offices, or turnkey interior fit-outs, our team offers professional guidance, transparent dealings, quality design, and end-to-end support from discovery to handover.
               </p>
-              <div className="pt-6 border-t border-[#e2ded6] grid grid-cols-3 gap-6">
+              <div className="pt-6 border-t border-[#e2ded6] grid grid-cols-3 gap-3 sm:gap-6">
                 <div>
-                  <span className="block font-serif-azimute text-4xl text-[#c5a059]">100%</span>
+                  <span className="block font-serif-azimute text-2xl sm:text-4xl text-[#c5a059]">100%</span>
                   <span className="text-[10px] uppercase tracking-wider text-[#6e737c]">Transparent Dealings</span>
                 </div>
                 <div>
-                  <span className="block font-serif-azimute text-4xl text-[#c5a059]">5+</span>
+                  <span className="block font-serif-azimute text-2xl sm:text-4xl text-[#c5a059]">5+</span>
                   <span className="text-[10px] uppercase tracking-wider text-[#6e737c]">Core Services</span>
                 </div>
                 <div>
-                  <span className="block font-serif-azimute text-4xl text-[#c5a059]">End-to-End</span>
+                  <span className="block font-serif-azimute text-2xl sm:text-4xl text-[#c5a059]">End-to-End</span>
                   <span className="text-[10px] uppercase tracking-wider text-[#6e737c]">Turnkey Support</span>
                 </div>
               </div>
@@ -1389,16 +1493,16 @@ export default function App() {
 
           {/* Mission & Vision */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
-            <div className="p-8 sm:p-12 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_24px_rgba(0,0,0,0.03)] space-y-4">
+            <div className="p-6 sm:p-10 lg:p-12 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_24px_rgba(0,0,0,0.03)] space-y-4">
               <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Our Mission</span>
-              <h4 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115]">Develop Spaces That Transform</h4>
+              <h4 className="font-serif-azimute text-2xl sm:text-3xl lg:text-4xl text-[#0f1115]">Develop Spaces That Transform</h4>
               <p className="text-sm text-[#5a5f67] leading-relaxed font-light">
                 To deliver enduring residential and commercial spaces that unite engineering precision, refined aesthetics, and seamless turnkey execution for our clients.
               </p>
             </div>
-            <div className="p-8 sm:p-12 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_24px_rgba(0,0,0,0.03)] space-y-4">
+            <div className="p-6 sm:p-10 lg:p-12 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_24px_rgba(0,0,0,0.03)] space-y-4">
               <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Our Vision</span>
-              <h4 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115]">Benchmark in Real Estate &amp; Interiors</h4>
+              <h4 className="font-serif-azimute text-2xl sm:text-3xl lg:text-4xl text-[#0f1115]">Benchmark in Real Estate &amp; Interiors</h4>
               <p className="text-sm text-[#5a5f67] leading-relaxed font-light">
                 To be the most trusted dual-discipline partner for real estate advisory and interior design, recognized for professional guidance, transparent dealings, and superior design quality.
               </p>
@@ -1409,33 +1513,33 @@ export default function App() {
           <div className="border-t border-[#e2ded6] pt-16">
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Why Choose Us</span>
-              <h3 className="font-serif-azimute text-4xl text-[#0f1115] mt-1">Our Core Pillars</h3>
+              <h3 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mt-1">Our Core Pillars</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-3">
                 <span className="text-[#c5a059] font-serif-azimute text-3xl">01</span>
-                <h4 className="font-serif-azimute text-2xl text-[#0f1115]">Professional Guidance</h4>
+                <h4 className="font-serif-azimute text-xl sm:text-2xl text-[#0f1115]">Professional Guidance</h4>
                 <p className="text-xs text-[#5a5f67] leading-relaxed">
                   Expert real estate and interior advisors providing verified project insights, spatial analysis, and tailored recommendations.
                 </p>
               </div>
-              <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-3">
+              <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-3">
                 <span className="text-[#c5a059] font-serif-azimute text-3xl">02</span>
-                <h4 className="font-serif-azimute text-2xl text-[#0f1115]">Transparent Dealings</h4>
+                <h4 className="font-serif-azimute text-xl sm:text-2xl text-[#0f1115]">Transparent Dealings</h4>
                 <p className="text-xs text-[#5a5f67] leading-relaxed">
                   Honest guidance, clear paperwork, transparent pricing structures, and zero hidden costs at every milestone.
                 </p>
               </div>
-              <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-3">
+              <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-3">
                 <span className="text-[#c5a059] font-serif-azimute text-3xl">03</span>
-                <h4 className="font-serif-azimute text-2xl text-[#0f1115]">Quality Design</h4>
+                <h4 className="font-serif-azimute text-xl sm:text-2xl text-[#0f1115]">Quality Design</h4>
                 <p className="text-xs text-[#5a5f67] leading-relaxed">
                   Custom space planning, photorealistic 3D visualization, premium material curation, and flawless execution.
                 </p>
               </div>
-              <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-3">
+              <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#e8e4dc] hover:border-[#c5a059] transition shadow-[0_4px_20px_rgba(0,0,0,0.03)] space-y-3">
                 <span className="text-[#c5a059] font-serif-azimute text-3xl">04</span>
-                <h4 className="font-serif-azimute text-2xl text-[#0f1115]">End-to-End Support</h4>
+                <h4 className="font-serif-azimute text-xl sm:text-2xl text-[#0f1115]">End-to-End Support</h4>
                 <p className="text-xs text-[#5a5f67] leading-relaxed">
                   A seamless single window covering property search, buying, design drawings, civil execution, and final turnkey handover.
                 </p>
@@ -1449,11 +1553,11 @@ export default function App() {
       {/* 5. REAL ESTATE PAGE                                              */}
       {/* ================================================================ */}
       {currentPage === 'real-estate' && (
-        <main className="min-h-screen bg-[#faf8f5] text-[#0f1115] pt-32 pb-24 px-[6.25vw] max-w-[1500px] mx-auto">
+        <main className="min-h-screen bg-[#faf8f5] text-[#0f1115] pt-28 sm:pt-32 pb-20 sm:pb-24 px-5 sm:px-8 lg:px-[6.25vw] max-w-[1500px] mx-auto">
           {/* Page Header */}
           <div className="border-b border-[#e2ded6] pb-8 mb-14">
             <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Section 05 · Real Estate Advisory &amp; Portfolio</span>
-            <h1 className="font-serif-azimute text-5xl sm:text-7xl mt-2 text-[#0f1115]">
+            <h1 className="font-serif-azimute text-3xl sm:text-5xl lg:text-7xl mt-2 text-[#0f1115]">
               Curated Estates &amp; Prime Developments
             </h1>
             <p className="text-base text-[#5a5f67] max-w-3xl mt-4 font-light leading-relaxed">
@@ -1466,14 +1570,14 @@ export default function App() {
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#e2ded6]">
               <div>
                 <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Comprehensive Advisory</span>
-                <h2 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mt-1">Our Real Estate Services</h2>
+                <h2 className="font-serif-azimute text-2xl sm:text-3xl lg:text-4xl text-[#0f1115] mt-1">Our Real Estate Services</h2>
               </div>
               <p className="text-xs text-[#6e737c] mt-2 sm:mt-0 max-w-md">
                 End-to-end custody spanning private acquisitions, commercial leasing, new developer launches, and portfolio advisory.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {realEstateServices.map((service, idx) => (
                 <div 
                   key={idx}
@@ -1518,7 +1622,7 @@ export default function App() {
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#e2ded6]">
               <div>
                 <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Curated Developments</span>
-                <h2 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mt-1">
+                <h2 className="font-serif-azimute text-2xl sm:text-3xl lg:text-4xl text-[#0f1115] mt-1">
                   Featured Prime Developments
                 </h2>
               </div>
@@ -1541,7 +1645,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {filteredProperties.map((p) => (
                 <div 
                   key={p.id}
@@ -1613,7 +1717,7 @@ export default function App() {
           </div>
 
           {/* 5.4 Property Enquiry Form / Enquire Now CTA */}
-          <div id="real-estate-enquiry-form" className="relative overflow-hidden rounded-3xl bg-[#0c0d0e] border border-[#c5a059]/30 hover:border-[#c5a059]/60 transition-colors duration-500 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85),0_0_60px_-15px_rgba(197,160,89,0.12)] p-8 sm:p-12 lg:p-14 text-white">
+          <div id="real-estate-enquiry-form" className="relative overflow-hidden rounded-3xl bg-[#0c0d0e] border border-[#c5a059]/30 hover:border-[#c5a059]/60 transition-colors duration-500 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85),0_0_60px_-15px_rgba(197,160,89,0.12)] p-6 sm:p-10 lg:p-14 text-white">
             {/* Ambient luxury lighting flares */}
             <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#c5a059]/15 rounded-full blur-[110px] pointer-events-none" />
             <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#c5a059]/10 rounded-full blur-[110px] pointer-events-none" />
@@ -1806,10 +1910,10 @@ export default function App() {
       {/* 6. INTERIOR DESIGN PAGE                                          */}
       {/* ================================================================ */}
       {currentPage === 'interior' && (
-        <main className="min-h-screen bg-[#faf8f5] text-[#0f1115] pt-32 pb-24 px-[6.25vw] max-w-[1500px] mx-auto">
+        <main className="min-h-screen bg-[#faf8f5] text-[#0f1115] pt-28 sm:pt-32 pb-20 sm:pb-24 px-5 sm:px-8 lg:px-[6.25vw] max-w-[1500px] mx-auto">
           <div className="border-b border-[#e2ded6] pb-8 mb-12">
             <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Interior Architecture &amp; Atelier</span>
-            <h1 className="font-serif-azimute text-5xl sm:text-7xl mt-2 text-[#0f1115]">
+            <h1 className="font-serif-azimute text-3xl sm:text-5xl lg:text-7xl mt-2 text-[#0f1115]">
               Interiors With Purpose. Spaces With Character.
             </h1>
             <p className="text-base text-[#5a5f67] max-w-3xl mt-4 font-light">
@@ -1820,7 +1924,7 @@ export default function App() {
           {/* Interactive Before & After Comparison Slider */}
           <div className="mb-20">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-[#e2ded6] gap-2">
-              <h3 className="font-serif-azimute text-2xl text-[#0f1115]">
+              <h3 className="font-serif-azimute text-xl sm:text-2xl text-[#0f1115]">
                 Transforming Space into Stillness (Before &amp; After)
               </h3>
               <span className="text-xs text-[#a6833d]">Drag horizontal slider to examine transformation</span>
@@ -1880,7 +1984,7 @@ export default function App() {
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-[#e2ded6]">
               <div>
                 <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Disciplines &amp; Craft</span>
-                <h2 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mt-1">
+                <h2 className="font-serif-azimute text-2xl sm:text-3xl lg:text-4xl text-[#0f1115] mt-1">
                   Comprehensive Interior Services
                 </h2>
               </div>
@@ -1889,9 +1993,9 @@ export default function App() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {/* Pillar 1: Design Services */}
-              <div className="bg-white rounded-2xl p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between">
+              <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between">
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6">
                     <Compass className="w-6 h-6" />
@@ -1932,7 +2036,7 @@ export default function App() {
               </div>
 
               {/* Pillar 2: Execution Services */}
-              <div className="bg-white rounded-2xl p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between">
+              <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between">
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6">
                     <Wrench className="w-6 h-6" />
@@ -1973,7 +2077,7 @@ export default function App() {
               </div>
 
               {/* Pillar 3: Specialized Services */}
-              <div className="bg-white rounded-2xl p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between">
+              <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#e8e4dc] hover:border-[#c5a059] transition duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-2xl flex flex-col justify-between md:col-span-2 lg:col-span-1">
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-[#faf8f5] border border-[#e8e4dc] flex items-center justify-center text-[#c5a059] mb-6">
                     <Layers className="w-6 h-6" />
@@ -2016,7 +2120,7 @@ export default function App() {
           </div>
 
           {/* 6.2 Project Enquiry Form / Get a Consultation CTA */}
-          <div id="interior-consultation-form" className="p-8 sm:p-12 rounded-3xl bg-[#07090e]/85 backdrop-blur-3xl border border-white/12 text-white shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+          <div id="interior-consultation-form" className="p-6 sm:p-10 lg:p-12 rounded-3xl bg-[#07090e]/85 backdrop-blur-3xl border border-white/12 text-white shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
               <div className="lg:col-span-5 space-y-4">
                 <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Atelier Commission Desk</span>
@@ -2158,10 +2262,10 @@ export default function App() {
       {/* 7. CONTACT US PAGE                                               */}
       {/* ================================================================ */}
       {currentPage === 'contact' && (
-        <main className="min-h-screen bg-[#faf8f5] text-[#0f1115] pt-32 pb-24 px-[6.25vw] max-w-[1500px] mx-auto">
+        <main className="min-h-screen bg-[#faf8f5] text-[#0f1115] pt-28 sm:pt-32 pb-20 sm:pb-24 px-5 sm:px-8 lg:px-[6.25vw] max-w-[1500px] mx-auto">
           <div className="border-b border-[#e2ded6] pb-8 mb-12">
             <span className="text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Private Advisory &amp; Inquiries</span>
-            <h1 className="font-serif-azimute text-5xl sm:text-7xl mt-2 text-[#0f1115]">
+            <h1 className="font-serif-azimute text-3xl sm:text-5xl lg:text-7xl mt-2 text-[#0f1115]">
               Let’s Talk About Your Next Space
             </h1>
             <p className="text-base text-[#5a5f67] max-w-3xl mt-4 font-light">
@@ -2169,10 +2273,10 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
             {/* Left Column: Direct Channels & Google Map */}
             <div className="lg:col-span-5 space-y-8">
-              <div className="p-8 rounded-2xl bg-white border border-[#e8e4dc] shadow-md space-y-6">
+              <div className="p-6 sm:p-8 rounded-2xl bg-white border border-[#e8e4dc] shadow-md space-y-6">
                 <div className="flex items-center justify-between pb-4 border-b border-[#e2ded6]">
                   <h3 className="font-serif-azimute text-2xl text-[#0f1115]">Direct Advisory Channels</h3>
                   <span className="text-[10px] tracking-wider uppercase text-[#c5a059] font-semibold">Confidential Desk</span>
@@ -2313,8 +2417,8 @@ export default function App() {
 
             {/* Right Column: Interactive Contact Form & WhatsApp Concierge Section */}
             <div className="lg:col-span-7 space-y-8">
-              <div className="p-8 sm:p-12 rounded-2xl bg-white border border-[#e8e4dc] shadow-xl">
-                <h3 className="font-serif-azimute text-3xl sm:text-4xl text-[#0f1115] mb-2">
+              <div className="p-6 sm:p-10 lg:p-12 rounded-2xl bg-white border border-[#e8e4dc] shadow-xl">
+                <h3 className="font-serif-azimute text-2xl sm:text-3xl lg:text-4xl text-[#0f1115] mb-2">
                   Initiate a Confidential Inquiry
                 </h3>
                 <p className="text-xs text-[#5a5f67] mb-8 leading-relaxed">
@@ -2422,11 +2526,11 @@ export default function App() {
       {/* ================================================================ */}
       {/* 8. GLOBAL FOOTER                                                 */}
       {/* ================================================================ */}
-      <footer className="bg-[#0c0d0e] text-[#faf8f5] py-16 px-[6.25vw] border-t border-white/10">
+      <footer className="bg-[#0c0d0e] text-[#faf8f5] py-12 sm:py-16 px-5 sm:px-8 lg:px-[6.25vw] border-t border-white/10">
         <div className="max-w-[1500px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b border-white/10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-white/10">
             {/* Brand Logo & Bio */}
-            <div className="md:col-span-5 space-y-4">
+            <div className="md:col-span-2 lg:col-span-5 space-y-4">
               <img 
                 src="/images/logo-light.png" 
                 alt="Sunrise Property - Properties & Interior Design" 
@@ -2442,7 +2546,7 @@ export default function App() {
             </div>
 
             {/* Quick Links: EXACT 5 PAGES */}
-            <div className="md:col-span-3 space-y-3">
+            <div className="md:col-span-1 lg:col-span-3 space-y-3">
               <span className="block text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Navigation</span>
               <ul className="text-xs text-white/70 space-y-2">
                 <li><button type="button" onClick={() => navigateTo('home')} className="hover:text-[#c5a059] transition cursor-pointer">Home</button></li>
@@ -2454,7 +2558,7 @@ export default function App() {
             </div>
 
             {/* Contact Coordinates */}
-            <div className="md:col-span-4 space-y-3">
+            <div className="md:col-span-1 lg:col-span-4 space-y-3">
               <span className="block text-xs uppercase tracking-widest text-[#c5a059] font-semibold">Head Office</span>
               <p className="text-xs text-white/60 leading-relaxed font-light">
                 Office A-722, Grandthum, Techzone 4,<br />

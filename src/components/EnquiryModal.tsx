@@ -91,7 +91,7 @@ export default function EnquiryModal({
                   <label className="text-[11px] font-medium tracking-[0.14em] uppercase text-[#63615C] block mb-2">
                     PRIMARY AREA OF INTEREST *
                   </label>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                     {["REAL ESTATE", "INTERIOR DESIGN", "BOTH DISCIPLINES"].map((item) => (
                       <button
                         type="button"

@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronRight, ArrowRight, MessageCircle, Phone } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 
 interface NavbarProps {
   onOpenEnquiry?: () => void;
@@ -114,43 +115,135 @@ export default function Navbar({ onOpenEnquiry }: NavbarProps) {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden absolute inset-x-0 top-full bg-[#0c0d0e]/98 backdrop-blur-xl border-b border-[#c5a059]/25 py-6 px-6 shadow-2xl">
-          <nav className="flex flex-col gap-4">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
+      {/* Mobile & Tablet Right-Side Sidebar Navigation Drawer */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            {/* Backdrop Blur Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm lg:hidden cursor-pointer"
+              aria-hidden="true"
+            />
+
+            {/* Right-Side Slide-Over Panel */}
+            <motion.aside
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 280 }}
+              className="fixed top-0 bottom-0 right-0 z-50 w-[85vw] max-w-[340px] sm:max-w-[380px] h-full bg-[#0c0d0e]/98 backdrop-blur-2xl border-l border-[#c5a059]/25 shadow-[-25px_0_70px_rgba(0,0,0,0.85)] flex flex-col justify-between p-6 sm:p-8 lg:hidden overflow-y-auto"
+              aria-label="Mobile navigation"
+            >
+              {/* Header: Logo and Close Button */}
+              <div>
+                <div className="flex items-center justify-between pb-6 border-b border-white/10">
+                  <div className="relative h-8 w-32 sm:h-9 sm:w-36">
+                    <Image
+                      src="/images/logo-light.png"
+                      alt="Sunrise Property"
+                      fill
+                      className="object-contain object-left"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/80 hover:text-white border border-white/10 transition cursor-pointer"
+                    aria-label="Close navigation"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Navigation Links */}
+                <nav className="flex flex-col py-6 space-y-1.5">
+                  {navLinks.map((link, idx) => {
+                    const isActive = pathname === link.href;
+                    const num = `0${idx + 1}`;
+                    return (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        scroll={true}
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          if (link.href === "/" && typeof window !== "undefined") {
+                            window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+                          }
+                        }}
+                        className={`group flex items-center justify-between w-full py-3.5 px-3.5 rounded-xl transition text-left cursor-pointer ${
+                          isActive
+                            ? "bg-[#c5a059]/15 text-[#c5a059] font-semibold border border-[#c5a059]/30"
+                            : "text-white/80 hover:text-white hover:bg-white/5"
+                        }`}
+                      >
+                        <div className="flex items-center gap-3.5">
+                          <span
+                            className={`text-[10px] font-mono tracking-widest ${
+                              isActive ? "text-[#c5a059]" : "text-white/40 group-hover:text-[#c5a059]"
+                            }`}
+                          >
+                            {num}
+                          </span>
+                          <span className="text-sm tracking-wide capitalize">
+                            {link.label.toLowerCase()}
+                          </span>
+                        </div>
+                        <ChevronRight
+                          className={`w-4 h-4 transition-transform ${
+                            isActive
+                              ? "text-[#c5a059] translate-x-0.5"
+                              : "text-white/30 group-hover:text-white group-hover:translate-x-0.5"
+                          }`}
+                        />
+                      </Link>
+                    );
+                  })}
+                </nav>
+              </div>
+
+              {/* Bottom Footer Details & Actions */}
+              <div className="pt-6 border-t border-white/10 space-y-4">
                 <Link
-                  key={link.href}
-                  href={link.href}
-                  scroll={true}
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    if (link.href === "/" && typeof window !== "undefined") {
-                      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-                    }
-                  }}
-                  className={`text-xs tracking-[0.2em] uppercase py-2.5 border-b border-white/10 ${
-                    isActive ? "text-[#c5a059] font-semibold" : "text-white/75"
-                  }`}
+                  href="/contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#c5a059] via-[#d4af37] to-[#c5a059] text-[#0c0d0e] font-bold text-xs uppercase tracking-[0.2em] shadow-lg flex items-center justify-center gap-2 transition hover:opacity-95 active:scale-[0.99] cursor-pointer"
                 >
-                  {link.label}
+                  <span>Enquire Now</span>
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
-              );
-            })}
-            <div className="pt-2">
-              <Link
-                href="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full block bg-[#c5a059] text-[#0c0d0e] text-xs tracking-[0.2em] uppercase py-3 rounded-xl text-center font-semibold shadow-md"
-              >
-                ENQUIRE NOW
-              </Link>
-            </div>
-          </nav>
-        </div>
-      )}
+
+                <div className="space-y-2 text-xs text-white/60">
+                  <a
+                    href="https://wa.me/917835971222"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2.5 text-white/75 hover:text-[#25D366] transition py-1"
+                  >
+                    <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                    <span>WhatsApp: +91 78359 71222</span>
+                  </a>
+                  <a
+                    href="tel:+919870389489"
+                    className="flex items-center gap-2.5 text-white/75 hover:text-[#c5a059] transition py-1"
+                  >
+                    <Phone className="w-4 h-4 text-[#c5a059]" />
+                    <span>Phone: +91 98703 89489</span>
+                  </a>
+                  <p className="text-[11px] text-white/40 pt-1 font-light leading-relaxed">
+                    Grandthum, Techzone 4, Greater Noida West
+                  </p>
+                </div>
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

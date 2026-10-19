@@ -26,7 +26,7 @@ export default function AboutPage() {
       {/* =========================================================================
           HERO SECTION (Image 4)
          ========================================================================= */}
-      <section className="pt-28 pb-16 px-6 sm:px-8 max-w-7xl mx-auto border-b border-[#EAE6DF]">
+      <section className="pt-28 pb-16 px-5 sm:px-8 max-w-7xl mx-auto border-b border-[#EAE6DF]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Content (6 cols) */}
           <div className="lg:col-span-6 space-y-6">
@@ -34,7 +34,7 @@ export default function AboutPage() {
               • THE INTERSECTION OF LIVING SPACES
             </span>
 
-            <h1 className="font-serif-luxury text-4xl sm:text-6xl lg:text-7xl font-normal leading-[1.08] text-[#141A23]">
+            <h1 className="font-serif-luxury text-3xl sm:text-5xl lg:text-7xl font-normal leading-[1.08] text-[#141A23]">
               Find Your Property. <br />
               <span className="italic font-light text-[#A87A36]">Design Your Space. Live Better.</span>
             </h1>

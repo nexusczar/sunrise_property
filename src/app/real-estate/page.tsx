@@ -186,7 +186,7 @@ export default function RealEstatePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {realEstateServices.map((service, idx) => (
               <div 
                 key={idx}
@@ -252,7 +252,7 @@ export default function RealEstatePage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredProperties.map((p) => (
               <div 
                 key={p.id}
@@ -323,7 +323,7 @@ export default function RealEstatePage() {
             5.4 PROPERTY ENQUIRY FORM / ENQUIRE NOW CTA
            ========================================================================= */}
         {/* 5.4 PROPERTY ENQUIRY FORM / ENQUIRE NOW CTA */}
-        <div id="property-enquiry-form" className="relative overflow-hidden rounded-3xl bg-[#0c0d0e] border border-[#c5a059]/30 hover:border-[#c5a059]/60 transition-colors duration-500 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85),0_0_60px_-15px_rgba(197,160,89,0.12)] p-8 sm:p-12 lg:p-14 text-white">
+        <div id="property-enquiry-form" className="relative overflow-hidden rounded-3xl bg-[#0c0d0e] border border-[#c5a059]/30 hover:border-[#c5a059]/60 transition-colors duration-500 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85),0_0_60px_-15px_rgba(197,160,89,0.12)] p-6 sm:p-10 lg:p-14 text-white">
           {/* Ambient luxury lighting flares */}
           <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#c5a059]/15 rounded-full blur-[110px] pointer-events-none" />
           <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#c5a059]/10 rounded-full blur-[110px] pointer-events-none" />
