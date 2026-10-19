@@ -65,8 +65,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${serifFont.variable} ${sansFont.variable} ${cinzelFont.variable} scroll-smooth antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-screen flex flex-col bg-[#0c0d0e] text-[#faf8f5] font-sans selection:bg-[#c5a059] selection:text-[#0c0d0e]">
+      <body 
+        suppressHydrationWarning
+        className="min-h-screen flex flex-col bg-[#0c0d0e] text-[#faf8f5] font-sans selection:bg-[#c5a059] selection:text-[#0c0d0e]"
+      >
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

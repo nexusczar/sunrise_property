@@ -17,7 +17,7 @@ Sunrise Property & Interior luxury portal. Redesigning and elevating user experi
 
 | Sprint | Title | Status | Summary |
 | :--- | :--- | :---: | :--- |
-| **Sprint 1** | Senior UI/UX Redesign of Property Enquiry Form | 🔴 | Redesign Section 5.4 in `src/app/page.tsx` & `src/app/real-estate/page.tsx` |
+| **Sprint 1** | Senior UI/UX Redesign of Property Enquiry Form | ✅ | Redesign Section 5.4 in `src/app/page.tsx` & `src/app/real-estate/page.tsx` |
 | **Sprint 2** | Responsive Verification, Micro-interactions & Build Audit | 🔴 | Full multi-device audit, form states, and zero-error build verification |
 
 ---
