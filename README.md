@@ -1,4 +1,4 @@
-# Sunrise Property.
+# Sunrise Property
 
 Sunrise Property - Luxury Real Estate & Interior Design portal.
 
