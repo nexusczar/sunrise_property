@@ -144,7 +144,16 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#8F8B83] tracking-[0.08em] font-light">
           <div>
-            © 2026 Sunrise Property (sunriseproperty.in). All rights reserved.
+            © 2026 Sunrise Property (sunriseproperty.in). All rights reserved. •{" "}
+            <span className="font-medium text-[#646A74]">Developed by </span>
+            <a
+              href="https://www.nexusczar.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#967332] font-bold hover:underline transition-colors"
+            >
+              Nexusczar
+            </a>
           </div>
           <div className="flex items-center gap-6">
             <Link href="/privacy-policy" className="hover:text-[#141A23] transition-colors">

@@ -2495,7 +2495,18 @@ export default function App() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-between pt-8 text-xs text-white/40 gap-4">
-            <p>© 2026 Sunrise Property. All rights reserved.</p>
+            <p>
+              © 2026 Sunrise Property. All rights reserved. •{" "}
+              <span className="font-medium text-white/70">Developed by </span>
+              <a
+                href="https://www.nexusczar.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#c5a059] font-bold tracking-wide hover:underline transition-colors"
+              >
+                Nexusczar
+              </a>
+            </p>
             <div className="flex items-center gap-6 text-[11px] text-white/60">
               <a href="/privacy-policy" className="hover:text-[#c5a059] transition">
                 Privacy Policy
